@@ -85,22 +85,22 @@ export const GLOBAL_CSS = `
     }
 
     .mobile-nav-height {
-      height: 64px !important;
+      height: 56px !important;
     }
     
     nav {
-      height: 64px !important;
+      height: 56px !important;
       padding: 0 16px !important;
     }
     
     #hero {
-      margin-top: 64px !important;
-      height: calc(100vh - 64px) !important;
+      margin-top: 56px !important;
+      height: calc(100vh - 56px) !important;
     }
 
     .mobile-nav-overlay {
-      top: 64px !important;
-      max-height: calc(100vh - 64px) !important;
+      top: 56px !important;
+      max-height: calc(100vh - 56px) !important;
     }
   }
 `;

@@ -206,10 +206,12 @@ export function SectionHeader({ eyebrow, title, sub, dark, center }) {
  * Navbar — sticky, white, scroll-spy aware.
  * Transitions to frosted-glass on scroll. Includes a mobile
  * full-screen overlay menu triggered by the hamburger button.
+ * Fully responsive across all screen sizes.
  */
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const sectionIds = NAV_LINKS.map((l) => l.href);
   const active = useScrollSpy(sectionIds);
 
@@ -219,6 +221,29 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
+  // Handle window resize to toggle mobile view
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize, { passive: true });
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Close mobile menu on escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape" && mobileOpen) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleEscape);
+    return () => window.removeEventListener("keydown", handleEscape);
+  }, [mobileOpen]);
+
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMobileOpen(false);
@@ -226,7 +251,7 @@ export function Navbar() {
 
   return (
     <>
-      {/* ── Desktop Navbar ── */}
+      {/* ── Navbar ── */}
       <nav
         style={{
           position: "fixed",
@@ -239,8 +264,8 @@ export function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 5%",
-          height: 68,
+          padding: isMobile ? "0 4%" : "0 5%",
+          height: isMobile ? 60 : 68,
           boxShadow: scrolled
             ? "0 4px 20px rgba(15,32,68,.12)"
             : "0 2px 8px rgba(15,32,68,.06)",
@@ -250,13 +275,20 @@ export function Navbar() {
       >
         {/* Logo */}
         <div
-          style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: isMobile ? 8 : 10,
+            cursor: "pointer",
+            minWidth: 0,
+            flex: isMobile ? 1 : "auto",
+          }}
           onClick={() => scrollTo("hero")}
         >
           <div
             style={{
-              width: 44,
-              height: 44,
+              width: isMobile ? 40 : 44,
+              height: isMobile ? 40 : 44,
               borderRadius: "50%",
               border: `2.5px solid ${T.gold}`,
               overflow: "hidden",
@@ -270,7 +302,7 @@ export function Navbar() {
           >
             <img src={myLogo} alt="St. Antony's Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
           </div>
-          <div>
+          <div style={{ display: isMobile ? "none" : "block" }}>
             <div style={{ color: T.navy, fontSize: ".82rem", fontWeight: 700, lineHeight: 1.2 }}>
               St. Antony's
             </div>
@@ -280,151 +312,210 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Desktop nav links */}
-        <ul style={{ display: "flex", alignItems: "center", gap: 24, listStyle: "none" }}>
-          {NAV_LINKS.map((l) => (
-            <li key={l.href}>
-              <button
-                onClick={() => scrollTo(l.href)}
-                className={active === l.href ? "nav-active" : ""}
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  color: active === l.href ? T.navy : T.gray,
-                  fontSize: ".84rem",
-                  fontWeight: active === l.href ? 700 : 500,
-                  letterSpacing: ".04em",
-                  padding: "6px 2px",
-                  position: "relative",
-                  transition: "color .25s",
-                }}
-              >
-                {l.label}
-              </button>
-            </li>
-          ))}
-        </ul>
+        {/* Desktop nav links — hidden on mobile */}
+        {!isMobile && (
+          <ul style={{ display: "flex", alignItems: "center", gap: 24, listStyle: "none" }}>
+            {NAV_LINKS.map((l) => (
+              <li key={l.href}>
+                <button
+                  onClick={() => scrollTo(l.href)}
+                  className={active === l.href ? "nav-active" : ""}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    color: active === l.href ? T.navy : T.gray,
+                    fontSize: ".84rem",
+                    fontWeight: active === l.href ? 700 : 500,
+                    letterSpacing: ".04em",
+                    padding: "6px 2px",
+                    position: "relative",
+                    transition: "color .25s",
+                  }}
+                >
+                  {l.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
 
         {/* Right — login + hamburger */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <button
-            onClick={() =>
-              alert("🔐 Login portal launching soon!\nContact: admissions@stantonys.edu.in")
-            }
-            style={{
-              background: T.gold,
-              color: T.navy,
-              border: "none",
-              padding: "8px 18px",
-              borderRadius: 6,
-              fontSize: ".84rem",
-              fontWeight: 700,
-              cursor: "pointer",
-              transition: "all .2s",
-              boxShadow: `0 2px 8px ${T.gold}44`,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = T.goldLt;
-              e.currentTarget.style.transform = "translateY(-1px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = T.gold;
-              e.currentTarget.style.transform = "none";
-            }}
-          >
-            Login
-          </button>
+        <div style={{ display: "flex", alignItems: "center", gap: isMobile ? 8 : 10 }}>
+          {!isMobile && (
+            <button
+              onClick={() =>
+                alert("🔐 Login portal launching soon!\nContact: admissions@stantonys.edu.in")
+              }
+              style={{
+                background: T.gold,
+                color: T.navy,
+                border: "none",
+                padding: "8px 18px",
+                borderRadius: 6,
+                fontSize: ".84rem",
+                fontWeight: 700,
+                cursor: "pointer",
+                transition: "all .2s",
+                boxShadow: `0 2px 8px ${T.gold}44`,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = T.goldLt;
+                e.currentTarget.style.transform = "translateY(-1px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = T.gold;
+                e.currentTarget.style.transform = "none";
+              }}
+            >
+              Login
+            </button>
+          )}
 
-          {/* Hamburger */}
-          <button
-            onClick={() => setMobileOpen((o) => !o)}
-            style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              flexDirection: "column",
-              gap: 5,
-              padding: 4,
-            }}
-          >
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                style={{
-                  display: "block",
-                  width: 24,
-                  height: 2.5,
-                  background: T.navy,
-                  borderRadius: 2,
-                  transition: "all .3s",
-                  transform: mobileOpen
-                    ? i === 0
-                      ? "rotate(45deg) translate(5px,5px)"
-                      : i === 1
-                      ? "scaleX(0)"
-                      : "rotate(-45deg) translate(5px,-5px)"
-                    : "none",
-                  opacity: mobileOpen && i === 1 ? 0 : 1,
-                }}
-              />
-            ))}
-          </button>
+          {/* Hamburger — visible on mobile only */}
+          {isMobile && (
+            <button
+              onClick={() => setMobileOpen((o) => !o)}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                gap: 5,
+                padding: 4,
+                zIndex: 1001,
+              }}
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+            >
+              {[0, 1, 2].map((i) => (
+                <span
+                  key={i}
+                  style={{
+                    display: "block",
+                    width: 24,
+                    height: 2.5,
+                    background: T.navy,
+                    borderRadius: 2,
+                    transition: "all .3s",
+                    transform: mobileOpen
+                      ? i === 0
+                        ? "rotate(45deg) translate(5px,5px)"
+                        : i === 1
+                        ? "scaleX(0)"
+                        : "rotate(-45deg) translate(5px,-5px)"
+                      : "none",
+                    opacity: mobileOpen && i === 1 ? 0 : 1,
+                  }}
+                />
+              ))}
+            </button>
+          )}
         </div>
       </nav>
 
-      {/* ── Mobile full-screen overlay ── */}
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          background: T.white,
-          zIndex: 999,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: 32,
-          opacity: mobileOpen ? 1 : 0,
-          pointerEvents: mobileOpen ? "all" : "none",
-          transition: "opacity .3s",
-        }}
-      >
-        {NAV_LINKS.map((l) => (
-          <button
-            key={l.href}
-            onClick={() => scrollTo(l.href)}
+      {/* ── Mobile full-screen overlay menu ── */}
+      {isMobile && (
+        <>
+          {/* Backdrop overlay */}
+          <div
+            onClick={() => setMobileOpen(false)}
             style={{
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              color: T.navy,
-              fontSize: "1.4rem",
-              fontFamily: "'Playfair Display', serif",
-              transition: "color .2s",
+              position: "fixed",
+              inset: 0,
+              background: mobileOpen ? "rgba(15,32,68,0.5)" : "transparent",
+              zIndex: 998,
+              opacity: mobileOpen ? 1 : 0,
+              pointerEvents: mobileOpen ? "all" : "none",
+              transition: "all .3s ease",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = T.gold)}
-            onMouseLeave={(e) => (e.currentTarget.style.color = T.navy)}
+          />
+          {/* Menu content */}
+          <div
+            style={{
+              position: "fixed",
+              top: 60,
+              left: 0,
+              right: 0,
+              background: T.white,
+              zIndex: 999,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "stretch",
+              maxHeight: "calc(100vh - 60px)",
+              overflowY: "auto",
+              opacity: mobileOpen ? 1 : 0,
+              transform: mobileOpen ? "translateY(0)" : "translateY(-100%)",
+              pointerEvents: mobileOpen ? "all" : "none",
+              transition: "all .3s ease",
+              boxShadow: mobileOpen ? "0 8px 32px rgba(15,32,68,.15)" : "none",
+            }}
           >
-            {l.label}
-          </button>
-        ))}
-        <button
-          style={{
-            background: T.gold,
-            color: T.navy,
-            border: "none",
-            padding: "12px 36px",
-            borderRadius: 8,
-            fontSize: "1rem",
-            fontWeight: 700,
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
-      </div>
+            {/* Navigation links */}
+            <div style={{ display: "flex", flexDirection: "column", padding: "16px 0" }}>
+              {NAV_LINKS.map((l, idx) => (
+                <button
+                  key={l.href}
+                  onClick={() => scrollTo(l.href)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    color: active === l.href ? T.gold : T.navy,
+                    fontSize: "1rem",
+                    fontFamily: "'Inter', sans-serif",
+                    fontWeight: active === l.href ? 600 : 500,
+                    padding: "14px 20px",
+                    textAlign: "left",
+                    transition: "all .2s",
+                    borderBottom: idx < NAV_LINKS.length - 1 ? `1px solid ${T.light}` : "none",
+                    backgroundColor: active === l.href ? T.light : "transparent",
+                  }}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Divider */}
+            <div style={{ height: "1px", background: T.light, margin: "8px 0" }} />
+
+            {/* Login button */}
+            <div style={{ padding: "16px 20px" }}>
+              <button
+                onClick={() => {
+                  alert("🔐 Login portal launching soon!\nContact: admissions@stantonys.edu.in");
+                  setMobileOpen(false);
+                }}
+                style={{
+                  background: T.gold,
+                  color: T.navy,
+                  border: "none",
+                  padding: "12px 24px",
+                  borderRadius: 6,
+                  fontSize: ".95rem",
+                  fontWeight: 700,
+                  cursor: "pointer",
+                  width: "100%",
+                  transition: "all .2s",
+                  boxShadow: `0 2px 8px ${T.gold}44`,
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = T.goldLt;
+                  e.currentTarget.style.transform = "translateY(-1px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = T.gold;
+                  e.currentTarget.style.transform = "none";
+                }}
+              >
+                Login
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }

@@ -304,7 +304,7 @@ export function Navbar() {
             <div style={{ color: T.navy, fontSize: ".82rem", fontWeight: 700, lineHeight: 1.2 }}>
               St. Antony's
             </div>
-            <div style={{ color: T.gray, fontSize: ".7rem", fontWeight: 400, marginLeft: 4 }}>
+            <div style={{ color: T.gray, fontSize: ".7rem", fontWeight: 400 }}>
               High School / College
             </div>
           </div>
@@ -2032,8 +2032,8 @@ export function ContactUs() {
                 {icon}
               </div>
               <div>
-                <div style={{ color: T.gold, fontSize: ".7rem", fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", marginBottom: 3 }}>{label}</div>
-                <p style={{ color: "rgba(255,255,255,.8)", fontSize: ".84rem", lineHeight: 1.6, whiteSpace: "pre-line" }}>{val}</p>
+                <div style={{ color: T.gold, fontSize: ".7rem", fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", marginBottom: 3, textAlign: "left" }}>{label}</div>
+                <p style={{ color: "rgba(255,255,255,.8)", fontSize: ".84rem", lineHeight: 1.6, whiteSpace: "pre-line", textAlign: "left" }}>{val}</p>
               </div>
             </div>
           ))}
@@ -2142,7 +2142,7 @@ export function ContactUs() {
             <textarea
               rows={5} placeholder="Write your message or question here…"
               value={form.message} onChange={set("message")}
-              style={{ ...inputStyle(errors.message), resize: "vertical", minHeight: 110 }}
+              style={{ ...inputStyle(errors.message), resize: "vertical", minHeight: 110, textAlign: "left", verticalAlign: "top" }}
               onFocus={(e) => (e.target.style.borderColor = T.gold)}
               onBlur={(e)  => (e.target.style.borderColor = errors.message ? T.red : "#d1d5db")}
             />

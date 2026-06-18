@@ -73,6 +73,7 @@ export const GLOBAL_CSS = `
   @media (max-width: 768px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: flex !important; }
+    body { overflow-x: hidden; }
   }
 `;
 

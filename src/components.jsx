@@ -262,8 +262,8 @@ export function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 5%",
-          height: 68,
+          padding: window.innerWidth < 768 ? "0 12px" : "0 5%",
+          height: window.innerWidth < 768 ? 56 : 68,
           boxShadow: scrolled
             ? "0 4px 20px rgba(15,32,68,.12)"
             : "0 2px 8px rgba(15,32,68,.06)",
@@ -276,16 +276,17 @@ export function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 10,
+            gap: window.innerWidth < 768 ? 6 : 10,
             cursor: "pointer",
             minWidth: 0,
+            flex: 1,
           }}
           onClick={() => scrollTo("hero")}
         >
           <div
             style={{
-              width: 44,
-              height: 44,
+              width: window.innerWidth < 768 ? 36 : 44,
+              height: window.innerWidth < 768 ? 36 : 44,
               borderRadius: "50%",
               border: `2.5px solid ${T.gold}`,
               overflow: "hidden",
@@ -310,7 +311,7 @@ export function Navbar() {
         </div>
 
         {/* Desktop nav links — hidden on mobile via CSS class */}
-        <ul className="desktop-only" style={{ alignItems: "center", gap: 24, listStyle: "none" }}>
+        <ul className="desktop-only" style={{ alignItems: "center", gap: 24, listStyle: "none", flex: 1, justifyContent: "center" }}>
           {NAV_LINKS.map((l) => (
             <li key={l.href}>
               <button
@@ -346,13 +347,14 @@ export function Navbar() {
               background: T.gold,
               color: T.navy,
               border: "none",
-              padding: "8px 18px",
+              padding: "8px 16px",
               borderRadius: 6,
               fontSize: ".84rem",
               fontWeight: 700,
               cursor: "pointer",
               transition: "all .2s",
               boxShadow: `0 2px 8px ${T.gold}44`,
+              whiteSpace: "nowrap",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = T.goldLt;
@@ -539,9 +541,9 @@ export function Hero() {
     <section
       id="hero"
       style={{
-        marginTop: 68,
+        marginTop: window.innerWidth < 768 ? 56 : 68,
         position: "relative",
-        height: "calc(100vh - 68px)",
+        height: window.innerWidth < 768 ? "calc(100vh - 56px)" : "calc(100vh - 68px)",
         minHeight: 480,
         overflow: "hidden",
       }}

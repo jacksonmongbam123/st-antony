@@ -263,7 +263,7 @@ export function Navbar() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "0 5%",
-          height: 68,
+          height: 72,
           boxShadow: scrolled
             ? "0 4px 20px rgba(15,32,68,.12)"
             : "0 2px 8px rgba(15,32,68,.06)",
@@ -379,8 +379,8 @@ export function Navbar() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              gap: 5,
-              padding: "4px 8px",
+              gap: 6,
+              padding: "8px 12px",
               zIndex: 1001,
               marginRight: "-8px"
             }}
@@ -392,17 +392,17 @@ export function Navbar() {
                 key={i}
                 style={{
                   display: "block",
-                  width: 24,
-                  height: 2.5,
+                  width: 28,
+                  height: 3,
                   background: T.navy,
                   borderRadius: 2,
                   transition: "all .3s",
                   transform: mobileOpen
                     ? i === 0
-                      ? "rotate(45deg) translate(5px,5px)"
+                      ? "rotate(45deg) translate(6px,6px)"
                       : i === 1
                       ? "scaleX(0)"
-                      : "rotate(-45deg) translate(5px,-5px)"
+                      : "rotate(-45deg) translate(6px,-6px)"
                     : "none",
                   opacity: mobileOpen && i === 1 ? 0 : 1,
                 }}
@@ -432,7 +432,7 @@ export function Navbar() {
           className="mobile-nav-overlay"
           style={{
             position: "fixed",
-            top: 68,
+            top: 72,
             left: 0,
             right: 0,
             background: T.white,
@@ -440,7 +440,7 @@ export function Navbar() {
             display: "flex",
             flexDirection: "column",
             alignItems: "stretch",
-            maxHeight: "calc(100vh - 68px)",
+            maxHeight: "calc(100vh - 72px)",
             overflowY: "auto",
             opacity: mobileOpen ? 1 : 0,
             transform: mobileOpen ? "translateY(0)" : "translateY(-100%)",
@@ -545,9 +545,9 @@ export function Hero() {
     <section
       id="hero"
       style={{
-        marginTop: 68,
+        marginTop: 72,
         position: "relative",
-        height: "calc(100vh - 68px)",
+        height: "calc(100vh - 72px)",
         minHeight: 480,
         overflow: "hidden",
       }}
@@ -746,14 +746,14 @@ export function Hero() {
             transform: "translateY(-50%)",
             [di === 0 ? "left" : "right"]: "2%",
             zIndex: 10,
-            width: 46,
-            height: 46,
+            width: "clamp(44px, 6vw, 56px)",
+            height: "clamp(44px, 6vw, 56px)",
             borderRadius: "50%",
             border: "2px solid rgba(255,255,255,.35)",
             background: "rgba(255,255,255,.08)",
             backdropFilter: "blur(4px)",
             color: T.white,
-            fontSize: "1.2rem",
+            fontSize: "clamp(1rem, 1.5vw, 1.4rem)",
             cursor: "pointer",
             display: "grid",
             placeItems: "center",

@@ -14,6 +14,10 @@ export const T = {
   gray:   "#6b7280",
   light:  "#f1f3f7",
   red:    "#c0392b",
+  shadow: "rgba(15, 32, 68, 0.08)",
+  shadowMd: "rgba(15, 32, 68, 0.12)",
+  radius: 12,
+  radiusLg: 20,
 };
 
 // ── GLOBAL CSS (injected once in App) ──────────────────────
@@ -21,8 +25,11 @@ export const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
-  body { font-family: 'Inter', sans-serif; background: #f8f5ef; color: #0f2044; overflow-x: hidden; max-width: 100vw; position: relative; }
+  body { font-family: 'Inter', sans-serif; background: #f8f5ef; color: #0f2044; overflow-x: hidden; max-width: 100vw; position: relative; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   #root { overflow-x: hidden; max-width: 100vw; }
+
+  h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
+  p { line-height: 1.6; }
 
   @keyframes shimmer {
     0%   { background-position: -700px 0; }
@@ -63,9 +70,13 @@ export const GLOBAL_CSS = `
   ::-webkit-scrollbar-thumb { background: #c9963a; border-radius: 3px; }
 
   .nav-active::after {
-    content: ''; position: absolute; bottom: -2px; left: 0;
-    width: 100%; height: 2px; background: #c9963a; border-radius: 2px;
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 3px; background: #c9963a; border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(201, 150, 58, 0.4);
   }
+
+  button:active { transform: scale(0.98); }
+  input:focus, select:focus, textarea:focus { background: #fff !important; }
 
   /* Responsive Utilities */
   .desktop-only { display: flex !important; }

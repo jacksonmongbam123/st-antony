@@ -5,6 +5,7 @@
 ═══════════════════════════════════════════════════════════ */
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useInView, useScrollSpy } from "./hooks";
 import {
   T,
   NAV_LINKS,
@@ -17,63 +18,6 @@ import {
 
 import myLogo from './assets/logo2.png';
 import cImg from './assets/school.jpeg';
-
-// ══════════════════════════════════════════════════════════
-// HOOKS
-// ══════════════════════════════════════════════════════════
-
-/**
- * useInView — fires once when the ref'd element enters the viewport.
- * Used to trigger scroll-reveal animations section by section.
- */
-export function useInView(threshold = 0.15) {
-  const ref = useRef(null);
-  const [inView, setInView] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setInView(true);
-          obs.disconnect();
-        }
-      },
-      { threshold }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [threshold]);
-
-  return [ref, inView];
-}
-
-/**
- * useScrollSpy — tracks which section id is currently in view
- * and returns it, driving the active state in the Navbar.
- */
-export function useScrollSpy(ids) {
-  const [active, setActive] = useState(ids[0]);
-
-  useEffect(() => {
-    const handler = () => {
-      const sections = ids.map((id) => document.getElementById(id));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = sections[i];
-        if (el && el.getBoundingClientRect().top <= 80) {
-          setActive(ids[i]);
-          return;
-        }
-      }
-      setActive(ids[0]);
-    };
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, [ids]);
-
-  return active;
-}
 
 // ══════════════════════════════════════════════════════════
 // SHARED COMPONENTS
@@ -151,12 +95,14 @@ export function SectionHeader({ eyebrow, title, sub, dark, center }) {
       <h2
         style={{
           fontFamily: "'Playfair Display', serif",
-          fontSize: "clamp(1.7rem,3.5vw,2.5rem)",
+          fontSize: "clamp(2rem, 4vw, 2.8rem)",
           color: dark ? T.white : T.navy,
           marginBottom: sub ? 16 : 0,
           opacity: inView ? 1 : 0,
           transform: inView ? "none" : "translateY(16px)",
           transition: "all .55s .2s",
+          lineHeight: 1.2,
+          fontWeight: 700,
         }}
       >
         {title}
@@ -169,11 +115,12 @@ export function SectionHeader({ eyebrow, title, sub, dark, center }) {
             height: 3,
             background: T.gold,
             borderRadius: 2,
-            margin: center ? "12px auto 0" : "12px 0 0",
+            margin: center ? "16px auto 0" : "16px 0 0",
             opacity: inView ? 1 : 0,
             transform: inView ? "scaleX(1)" : "scaleX(0)",
             transformOrigin: center ? "center" : "left",
-            transition: "all .5s .35s",
+            transition: "all .6s .4s cubic-bezier(0.165, 0.84, 0.44, 1)",
+            boxShadow: `0 1px 4px ${T.gold}44`,
           }}
         />
       )}
@@ -276,7 +223,7 @@ export function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 10,
+            gap: 14,
             cursor: "pointer",
             minWidth: 0,
             flex: 1,
@@ -285,26 +232,27 @@ export function Navbar() {
         >
           <div
             style={{
-              width: 44,
-              height: 44,
+              width: 48,
+              height: 48,
               borderRadius: "50%",
-              border: `2.5px solid ${T.gold}`,
+              border: `2px solid ${T.gold}`,
               overflow: "hidden",
               display: "grid",
               placeItems: "center",
               background: T.white,
               flexShrink: 0,
-              boxShadow: `0 0 0 3px ${T.gold}22`,
+              boxShadow: scrolled ? `0 2px 10px ${T.shadow}` : `0 0 0 4px ${T.gold}15`,
               animation: "pulse 3s infinite",
+              transition: "all 0.3s ease",
             }}
           >
-            <img src={myLogo} alt="St. Antony's Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src={myLogo} alt="St. Antony's Logo" style={{ width: "85%", height: "85%", objectFit: "contain" }} />
           </div>
-          <div className="desktop-only">
-            <div style={{ color: T.navy, fontSize: ".82rem", fontWeight: 700, lineHeight: 1.2 }}>
+          <div className="desktop-only" style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+            <div style={{ color: T.navy, fontSize: "1.1rem", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.01em", fontFamily: "'Playfair Display', serif" }}>
               St. Antony's
             </div>
-            <div style={{ color: T.gray, fontSize: ".7rem", fontWeight: 400 }}>
+            <div style={{ color: T.gold, fontSize: ".75rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", marginTop: 2 }}>
               High School / College
             </div>
           </div>
@@ -317,18 +265,18 @@ export function Navbar() {
               <button
                 onClick={() => scrollTo(l.href)}
                 className={active === l.href ? "nav-active" : ""}
-                style={{
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  color: active === l.href ? T.navy : T.gray,
-                  fontSize: ".84rem",
-                  fontWeight: active === l.href ? 700 : 500,
-                  letterSpacing: ".04em",
-                  padding: "6px 2px",
-                  position: "relative",
-                  transition: "color .25s",
-                }}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    color: active === l.href ? T.navy : T.gray,
+                    fontSize: ".9rem",
+                    fontWeight: active === l.href ? 700 : 500,
+                    letterSpacing: ".02em",
+                    padding: "8px 4px",
+                    position: "relative",
+                    transition: "all .3s ease",
+                  }}
               >
                 {l.label}
               </button>
@@ -373,16 +321,20 @@ export function Navbar() {
             className="mobile-only"
             onClick={() => setMobileOpen((o) => !o)}
             style={{
-              background: "none",
+              background: scrolled ? T.gold + "15" : "rgba(15,32,68,0.05)",
               border: "none",
               cursor: "pointer",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
+              alignItems: "center",
               gap: 5,
-              padding: "4px 8px",
+              width: 42,
+              height: 42,
+              borderRadius: 10,
               zIndex: 1001,
-              marginRight: "-8px"
+              marginRight: "-4px",
+              transition: "all 0.3s ease",
             }}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
@@ -629,13 +581,13 @@ export function Hero() {
         <div>
           <div
             style={{
-              color: T.gold,
-              fontSize: ".78rem",
-              fontWeight: 600,
-              letterSpacing: ".16em",
+              color: T.goldLt,
+              fontSize: "clamp(.85rem, 1.5vw, 1.05rem)",
+              fontWeight: 700,
+              letterSpacing: ".25em",
               textTransform: "uppercase",
-              marginBottom: 16,
-              animation: "fadeInUp .5s .1s both",
+              marginBottom: 20,
+              animation: "fadeInUp .6s .1s both",
             }}
           >
             {slide.eyebrow}
@@ -644,11 +596,13 @@ export function Hero() {
           <h1
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2rem,5vw,3.4rem)",
+              fontSize: "clamp(2.8rem, 7vw, 5.2rem)",
               color: T.white,
-              lineHeight: 1.15,
-              marginBottom: 20,
-              animation: "fadeInUp .55s .2s both",
+              lineHeight: 1.05,
+              marginBottom: 28,
+              fontWeight: 700,
+              letterSpacing: "-0.02em",
+              animation: "fadeInUp .7s .2s both",
             }}
           >
             {slide.title[0]}
@@ -658,12 +612,12 @@ export function Hero() {
 
           <p
             style={{
-              color: "rgba(255,255,255,.78)",
-              fontSize: "1.05rem",
-              lineHeight: 1.7,
-              marginBottom: 36,
-              maxWidth: 520,
-              animation: "fadeInUp .55s .32s both",
+              color: "rgba(255,255,255,0.92)",
+              fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)",
+              lineHeight: 1.6,
+              maxWidth: 700,
+              marginBottom: 48,
+              animation: "fadeInUp .7s .35s both",
             }}
           >
             {slide.desc}
@@ -677,21 +631,24 @@ export function Hero() {
               background: T.gold,
               color: T.navy,
               border: "none",
-              padding: "14px 32px",
-              borderRadius: 8,
+              padding: "16px 40px",
+              borderRadius: 10,
               fontWeight: 700,
-              fontSize: ".95rem",
+              fontSize: "1rem",
               cursor: "pointer",
-              animation: "fadeInUp .55s .44s both",
-              transition: "all .2s",
+              animation: "fadeInUp .7s .5s both",
+              transition: "all .3s ease",
+              boxShadow: `0 6px 20px ${T.gold}44`,
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = T.goldLt;
-              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.transform = "translateY(-3px)";
+              e.currentTarget.style.boxShadow = `0 10px 25px ${T.gold}66`;
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = T.gold;
               e.currentTarget.style.transform = "none";
+              e.currentTarget.style.boxShadow = `0 6px 20px ${T.gold}44`;
             }}
           >
             {slide.cta.label} →
@@ -720,13 +677,14 @@ export function Hero() {
               goTo(i);
             }}
             style={{
-              width: 4,
-              height: i === cur ? 36 : 18,
-              borderRadius: 4,
+              width: 6,
+              height: i === cur ? 48 : 12,
+              borderRadius: 6,
               border: "none",
-              background: i === cur ? T.gold : "rgba(255,255,255,.35)",
+              background: i === cur ? T.gold : "rgba(255,255,255,.3)",
               cursor: "pointer",
-              transition: "all .4s ease",
+              transition: "all .5s cubic-bezier(0.165, 0.84, 0.44, 1)",
+              boxShadow: i === cur ? `0 0 15px ${T.gold}88` : "none",
             }}
           />
         ))}
@@ -805,6 +763,67 @@ export function Hero() {
 /**
  * VisionMission — two cards with scroll-reveal + lift-on-hover.
  */
+function VisionCard({ card, index }) {
+  const [ref, inView] = useInView();
+  return (
+    <div
+      ref={ref}
+      style={{
+        background: T.cream,
+        borderRadius: 12,
+        overflow: "hidden",
+        boxShadow: "0 4px 24px rgba(15,32,68,.10)",
+        transition: "transform .3s, box-shadow .3s",
+        opacity: inView ? 1 : 0,
+        transform: inView ? "none" : "translateY(24px)",
+        transitionDelay: `${index * 0.15}s`,
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "translateY(-8px)";
+        e.currentTarget.style.boxShadow = "0 16px 48px rgba(15,32,68,.18)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "none";
+        e.currentTarget.style.boxShadow = "0 4px 24px rgba(15,32,68,.10)";
+      }}
+    >
+      <div style={{ height: 180, background: card.bg, display: "grid", placeItems: "center" }}>
+        <span style={{ fontSize: "3.5rem" }}>{card.icon}</span>
+      </div>
+      <div style={{ padding: "24px 28px" }}>
+        <span
+          style={{
+            display: "inline-block",
+            background: T.gold,
+            color: T.navy,
+            fontSize: ".7rem",
+            fontWeight: 700,
+            letterSpacing: ".1em",
+            textTransform: "uppercase",
+            padding: "4px 10px",
+            borderRadius: 4,
+            marginBottom: 12,
+          }}
+        >
+          {card.tag}
+        </span>
+        <h3
+          style={{
+            fontFamily: "'Playfair Display', serif",
+            fontSize: "1.6rem",
+            marginBottom: 12,
+            fontWeight: 700,
+            color: T.navy,
+          }}
+        >
+          {card.title}
+        </h3>
+        <p style={{ color: T.gray, fontSize: "1rem", lineHeight: 1.7 }}>{card.body}</p>
+      </div>
+    </div>
+  );
+}
+
 export function VisionMission() {
   const CARDS = [
     {
@@ -833,65 +852,9 @@ export function VisionMission() {
           gap: 32,
         }}
       >
-        {CARDS.map((c, i) => {
-          const [ref, inView] = useInView();
-          return (
-            <div
-              key={i}
-              ref={ref}
-              style={{
-                background: T.cream,
-                borderRadius: 12,
-                overflow: "hidden",
-                boxShadow: "0 4px 24px rgba(15,32,68,.10)",
-                transition: "transform .3s, box-shadow .3s",
-                opacity: inView ? 1 : 0,
-                transform: inView ? "none" : "translateY(24px)",
-                transitionDelay: `${i * 0.15}s`,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "translateY(-8px)";
-                e.currentTarget.style.boxShadow = "0 16px 48px rgba(15,32,68,.18)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "none";
-                e.currentTarget.style.boxShadow = "0 4px 24px rgba(15,32,68,.10)";
-              }}
-            >
-              <div style={{ height: 180, background: c.bg, display: "grid", placeItems: "center" }}>
-                <span style={{ fontSize: "3.5rem" }}>{c.icon}</span>
-              </div>
-              <div style={{ padding: "24px 28px" }}>
-                <span
-                  style={{
-                    display: "inline-block",
-                    background: T.gold,
-                    color: T.navy,
-                    fontSize: ".7rem",
-                    fontWeight: 700,
-                    letterSpacing: ".1em",
-                    textTransform: "uppercase",
-                    padding: "4px 10px",
-                    borderRadius: 4,
-                    marginBottom: 12,
-                  }}
-                >
-                  {c.tag}
-                </span>
-                <h3
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "1.3rem",
-                    marginBottom: 10,
-                  }}
-                >
-                  {c.title}
-                </h3>
-                <p style={{ color: T.gray, fontSize: ".93rem", lineHeight: 1.75 }}>{c.body}</p>
-              </div>
-            </div>
-          );
-        })}
+        {CARDS.map((c, i) => (
+          <VisionCard key={i} card={c} index={i} />
+        ))}
       </div>
     </section>
   );
@@ -975,22 +938,23 @@ export function Admissions() {
               <div style={{ animation: "fadeIn .5s ease" }}>
                 <div
                   style={{
-                    padding: "22px 22px 14px",
+                    padding: "32px 28px 20px",
                     display: "flex",
-                    gap: 14,
-                    alignItems: "flex-start",
+                    gap: 18,
+                    alignItems: "center",
                   }}
                 >
                   <div
                     style={{
-                      width: 50,
-                      height: 50,
-                      borderRadius: 12,
+                      width: 56,
+                      height: 56,
+                      borderRadius: 14,
                       background: d.bg,
                       display: "grid",
                       placeItems: "center",
-                      fontSize: "1.5rem",
+                      fontSize: "1.8rem",
                       flexShrink: 0,
+                      boxShadow: `0 4px 12px ${d.bg}aa`,
                     }}
                   >
                     {d.icon}
@@ -999,38 +963,39 @@ export function Admissions() {
                     <h4
                       style={{
                         fontFamily: "'Playfair Display', serif",
-                        fontSize: "1.05rem",
+                        fontSize: "1.25rem",
                         color: T.navy,
                         marginBottom: 4,
+                        fontWeight: 700,
                       }}
                     >
                       {d.title}
                     </h4>
-                    <p style={{ color: T.gray, fontSize: ".8rem" }}>{d.subtitle}</p>
+                    <p style={{ color: T.gray, fontSize: ".85rem", fontWeight: 500 }}>{d.subtitle}</p>
                   </div>
                 </div>
-                <div style={{ height: 1, background: T.light, margin: "0 22px" }} />
-                <div style={{ padding: "16px 22px 22px" }}>
+                <div style={{ height: 1, background: T.light, margin: "0 28px" }} />
+                <div style={{ padding: "20px 28px 32px" }}>
                   {d.rows.map((r, j) => (
                     <div
                       key={j}
                       style={{
                         display: "flex",
                         justifyContent: "space-between",
-                        alignItems: "flex-start",
-                        padding: "9px 0",
-                        borderBottom: j < d.rows.length - 1 ? "1px dashed #e5e7eb" : "none",
+                        alignItems: "center",
+                        padding: "12px 0",
+                        borderBottom: j < d.rows.length - 1 ? `1px solid ${T.light}` : "none",
                         gap: 12,
                       }}
                     >
-                      <span style={{ color: T.gray, fontSize: ".8rem", fontWeight: 500 }}>
+                      <span style={{ color: T.gray, fontSize: ".88rem", fontWeight: 500 }}>
                         {r.label}
                       </span>
                       <span
                         style={{
                           color: r.hi ? T.gold : T.navy,
-                          fontSize: r.hi ? ".94rem" : ".84rem",
-                          fontWeight: 600,
+                          fontSize: r.hi ? ".95rem" : ".9rem",
+                          fontWeight: 700,
                           textAlign: "right",
                         }}
                       >
@@ -1217,6 +1182,7 @@ export function Achievements() {
 
   // Reset slide index when category changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveSlide(0);
     setAnimKey((k) => k + 1);
   }, [activeTab]);
@@ -1399,7 +1365,7 @@ export function Achievements() {
           {/* Right — title + description */}
           <div
             style={{
-              padding: "40px 36px",
+              padding: "48px 44px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
@@ -1409,9 +1375,10 @@ export function Achievements() {
               style={{
                 color: T.white,
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "1.4rem",
-                marginBottom: 16,
-                lineHeight: 1.3,
+                fontSize: "1.8rem",
+                marginBottom: 18,
+                lineHeight: 1.2,
+                fontWeight: 700,
                 animation: "fadeInUp .5s .25s both",
               }}
             >
@@ -1419,9 +1386,9 @@ export function Achievements() {
             </h4>
             <p
               style={{
-                color: "rgba(255,255,255,.7)",
-                fontSize: ".93rem",
-                lineHeight: 1.75,
+                color: "rgba(255,255,255,.85)",
+                fontSize: "1rem",
+                lineHeight: 1.7,
                 animation: "fadeInUp .5s .35s both",
               }}
             >
@@ -1548,17 +1515,18 @@ export function Faculty() {
             onMouseLeave={() => setHovered(null)}
             style={{
               background: T.white,
-              borderRadius: 12,
-              padding: "28px 20px",
+              borderRadius: 20,
+              padding: "36px 24px",
               textAlign: "center",
               cursor: "pointer",
-              transition: "transform .3s, box-shadow .3s",
-              transform: hovered === f.id ? "translateY(-10px)" : "none",
+              transition: "all .4s cubic-bezier(0.165, 0.84, 0.44, 1)",
+              transform: hovered === f.id ? "translateY(-12px)" : "none",
               boxShadow:
                 hovered === f.id
-                  ? "0 20px 50px rgba(15,32,68,.18)"
-                  : "0 4px 24px rgba(15,32,68,.10)",
+                  ? `0 24px 60px ${T.shadowMd}`
+                  : `0 8px 30px ${T.shadow}`,
               animation: `fadeInUp .5s ${i * 0.07}s both`,
+              border: `1px solid ${hovered === f.id ? T.gold + "33" : "rgba(15,32,68,0.05)"}`,
             }}
           >
             <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
@@ -1567,8 +1535,10 @@ export function Faculty() {
             <h4
               style={{
                 fontFamily: "'Playfair Display', serif",
-                fontSize: "1.05rem",
-                marginBottom: 4,
+                fontSize: "1.25rem",
+                marginBottom: 6,
+                fontWeight: 700,
+                color: T.navy,
               }}
             >
               {f.name}
@@ -1576,11 +1546,11 @@ export function Faculty() {
             <div
               style={{
                 color: T.gold,
-                fontSize: ".74rem",
-                fontWeight: 600,
-                letterSpacing: ".08em",
+                fontSize: ".8rem",
+                fontWeight: 700,
+                letterSpacing: ".1em",
                 textTransform: "uppercase",
-                marginBottom: 10,
+                marginBottom: 12,
               }}
             >
               {f.role}
@@ -1670,14 +1640,14 @@ export function Faculty() {
             onClick={(e) => e.stopPropagation()}
             style={{
               background: T.white,
-              borderRadius: 16,
-              width: "min(700px,92vw)",
+              borderRadius: 24,
+              width: "min(760px, 92vw)",
               maxHeight: "88vh",
               overflowY: "auto",
-              padding: "40px",
+              padding: "48px",
               position: "relative",
-              boxShadow: "0 24px 64px rgba(15,32,68,.3)",
-              animation: "scaleIn .35s ease",
+              boxShadow: `0 30px 90px rgba(15, 32, 68, 0.4)`,
+              animation: "scaleIn .4s cubic-bezier(0.165, 0.84, 0.44, 1)",
             }}
           >
             {/* Close button */}
@@ -1940,25 +1910,27 @@ export function ContactUs() {
 
   const inputStyle = (err) => ({
     width: "100%",
-    padding: "11px 14px",
+    padding: "12px 16px",
     borderRadius: 8,
-    border: `1.5px solid ${err ? T.red : "#d1d5db"}`,
-    fontSize: ".9rem",
+    border: `1.5px solid ${err ? T.red : "#e5e7eb"}`,
+    fontSize: ".95rem",
     fontFamily: "'Inter', sans-serif",
     color: T.navy,
-    background: "#fff",
+    background: "#f9fafb",
     outline: "none",
-    transition: "border-color .2s",
+    transition: "all .2s ease",
     boxSizing: "border-box",
+    textAlign: "left",
   });
 
   const labelStyle = {
     display: "block",
-    fontSize: ".78rem",
+    fontSize: ".85rem",
     fontWeight: 600,
     color: T.navy,
-    marginBottom: 6,
-    letterSpacing: ".04em",
+    marginBottom: 8,
+    letterSpacing: ".02em",
+    textAlign: "left",
   };
 
   const errStyle = { color: T.red, fontSize: ".74rem", marginTop: 4 };
@@ -2021,19 +1993,20 @@ export function ContactUs() {
             { icon: "✉️", label: "Email",    val: "info@stantonys.edu.in" },
             { icon: "🕐", label: "Office Hours", val: "Mon – Sat: 8:00 AM – 5:00 PM" },
           ].map(({ icon, label, val }) => (
-            <div key={label} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+            <div key={label} style={{ display: "flex", gap: 16, alignItems: "center", minHeight: 60 }}>
               <div
                 style={{
-                  width: 38, height: 38, borderRadius: 10,
-                  background: `${T.gold}22`, display: "grid", placeItems: "center",
-                  fontSize: "1rem", flexShrink: 0, marginTop: 2,
+                  width: 42, height: 42, borderRadius: 12,
+                  background: `rgba(201, 150, 58, 0.15)`, display: "grid", placeItems: "center",
+                  fontSize: "1.2rem", flexShrink: 0,
+                  border: `1px solid rgba(201, 150, 58, 0.2)`,
                 }}
               >
                 {icon}
               </div>
-              <div>
-                <div style={{ color: T.gold, fontSize: ".7rem", fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", marginBottom: 3, textAlign: "left" }}>{label}</div>
-                <p style={{ color: "rgba(255,255,255,.8)", fontSize: ".84rem", lineHeight: 1.6, whiteSpace: "pre-line", textAlign: "left" }}>{val}</p>
+              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <div style={{ color: T.gold, fontSize: ".75rem", fontWeight: 700, letterSpacing: ".1em", textTransform: "uppercase", marginBottom: 2, textAlign: "left" }}>{label}</div>
+                <p style={{ color: "rgba(255,255,255,.9)", fontSize: ".9rem", lineHeight: 1.4, whiteSpace: "pre-line", textAlign: "left" }}>{val}</p>
               </div>
             </div>
           ))}
@@ -2081,8 +2054,16 @@ export function ContactUs() {
               <input
                 type="text" placeholder="Your full name" value={form.name}
                 onChange={set("name")} style={inputStyle(errors.name)}
-                onFocus={(e) => (e.target.style.borderColor = T.gold)}
-                onBlur={(e)  => (e.target.style.borderColor = errors.name ? T.red : "#d1d5db")}
+                onFocus={(e) => {
+                  e.target.style.borderColor = T.gold;
+                  e.target.style.background = "#fff";
+                  e.target.style.boxShadow = `0 0 0 4px ${T.gold}15`;
+                }}
+                onBlur={(e)  => {
+                  e.target.style.borderColor = errors.name ? T.red : "#e5e7eb";
+                  e.target.style.background = "#f9fafb";
+                  e.target.style.boxShadow = "none";
+                }}
               />
               {errors.name && <p style={errStyle}>{errors.name}</p>}
             </div>
@@ -2091,8 +2072,16 @@ export function ContactUs() {
               <input
                 type="tel" placeholder="+91 00000 00000" value={form.phone}
                 onChange={set("phone")} style={inputStyle(false)}
-                onFocus={(e) => (e.target.style.borderColor = T.gold)}
-                onBlur={(e)  => (e.target.style.borderColor = "#d1d5db")}
+                onFocus={(e) => {
+                  e.target.style.borderColor = T.gold;
+                  e.target.style.background = "#fff";
+                  e.target.style.boxShadow = `0 0 0 4px ${T.gold}15`;
+                }}
+                onBlur={(e)  => {
+                  e.target.style.borderColor = "#e5e7eb";
+                  e.target.style.background = "#f9fafb";
+                  e.target.style.boxShadow = "none";
+                }}
               />
             </div>
           </div>
@@ -2103,8 +2092,16 @@ export function ContactUs() {
             <input
               type="email" placeholder="you@example.com" value={form.email}
               onChange={set("email")} style={inputStyle(errors.email)}
-              onFocus={(e) => (e.target.style.borderColor = T.gold)}
-              onBlur={(e)  => (e.target.style.borderColor = errors.email ? T.red : "#d1d5db")}
+              onFocus={(e) => {
+                e.target.style.borderColor = T.gold;
+                e.target.style.background = "#fff";
+                e.target.style.boxShadow = `0 0 0 4px ${T.gold}15`;
+              }}
+              onBlur={(e)  => {
+                e.target.style.borderColor = errors.email ? T.red : "#e5e7eb";
+                e.target.style.background = "#f9fafb";
+                e.target.style.boxShadow = "none";
+              }}
             />
             {errors.email && <p style={errStyle}>{errors.email}</p>}
           </div>
@@ -2142,9 +2139,17 @@ export function ContactUs() {
             <textarea
               rows={5} placeholder="Write your message or question here…"
               value={form.message} onChange={set("message")}
-              style={{ ...inputStyle(errors.message), resize: "vertical", minHeight: 110, textAlign: "left", verticalAlign: "top" }}
-              onFocus={(e) => (e.target.style.borderColor = T.gold)}
-              onBlur={(e)  => (e.target.style.borderColor = errors.message ? T.red : "#d1d5db")}
+              style={{ ...inputStyle(errors.message), resize: "vertical", minHeight: 140, textAlign: "left", verticalAlign: "top" }}
+              onFocus={(e) => {
+                e.target.style.borderColor = T.gold;
+                e.target.style.background = "#fff";
+                e.target.style.boxShadow = `0 0 0 4px ${T.gold}15`;
+              }}
+              onBlur={(e)  => {
+                e.target.style.borderColor = errors.message ? T.red : "#e5e7eb";
+                e.target.style.background = "#f9fafb";
+                e.target.style.boxShadow = "none";
+              }}
             />
             {errors.message && <p style={errStyle}>{errors.message}</p>}
           </div>
@@ -2203,11 +2208,11 @@ export function Footer() {
       >
         {/* Brand */}
         <div>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
             <div
               style={{
-                width: 52,
-                height: 52,
+                width: 56,
+                height: 56,
                 borderRadius: "50%",
                 border: `2px solid ${T.gold}`,
                 overflow: "hidden",
@@ -2215,18 +2220,20 @@ export function Footer() {
                 placeItems: "center",
                 flexShrink: 0,
                 background: T.white,
+                boxShadow: `0 4px 12px rgba(0,0,0,0.2)`,
               }}
             >
-              <img src={myLogo} alt="St. Antony's Logo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img src={myLogo} alt="St. Antony's Logo" style={{ width: "85%", height: "85%", objectFit: "contain" }} />
             </div>
             <div>
               <span
                 style={{
                   color: T.white,
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: "1.05rem",
+                  fontSize: "1.3rem",
                   display: "block",
-                  lineHeight: 1.25,
+                  lineHeight: 1.1,
+                  fontWeight: 700,
                 }}
               >
                 St. Antony's
@@ -2234,9 +2241,12 @@ export function Footer() {
               <span
                 style={{
                   color: T.gold,
-                  fontSize: ".78rem",
+                  fontSize: ".8rem",
                   fontWeight: 600,
-                  letterSpacing: ".04em",
+                  letterSpacing: ".06em",
+                  textTransform: "uppercase",
+                  marginTop: 4,
+                  display: "block",
                 }}
               >
                 High School / College

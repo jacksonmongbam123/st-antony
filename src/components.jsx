@@ -1095,12 +1095,15 @@ export function Admissions() {
 
         {/* Subject table */}
         <div
+          className="table-scroll"
           style={{
             background: T.white,
             borderRadius: 12,
             boxShadow: "0 4px 24px rgba(15,32,68,.10)",
-            overflow: "hidden",
+            overflowX: "auto",
+            overflowY: "hidden",
             animation: "fadeIn .35s ease",
+            maxWidth: "100%",
           }}
         >
           <table style={{ width: "100%", borderCollapse: "collapse" }}>

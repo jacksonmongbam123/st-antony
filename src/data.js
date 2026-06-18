@@ -20,8 +20,9 @@ export const T = {
 export const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: #f8f5ef; color: #0f2044; overflow-x: hidden; }
+  html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
+  body { font-family: 'Inter', sans-serif; background: #f8f5ef; color: #0f2044; overflow-x: hidden; max-width: 100vw; position: relative; }
+  #root { overflow-x: hidden; max-width: 100vw; }
 
   @keyframes shimmer {
     0%   { background-position: -700px 0; }
@@ -102,7 +103,17 @@ export const GLOBAL_CSS = `
       top: 56px !important;
       max-height: calc(100vh - 56px) !important;
     }
+
+    /* Allow wide tables to scroll horizontally instead of overflowing the page */
+    .table-scroll {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-scroll table { min-width: 520px; }
   }
+
+  /* Default table wrapper behaviour (desktop + mobile) */
+  .table-scroll { overflow-x: auto; }
 `;
 
 // ── NAVIGATION ─────────────────────────────────────────────

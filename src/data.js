@@ -74,6 +74,34 @@ export const GLOBAL_CSS = `
     .desktop-only { display: none !important; }
     .mobile-only { display: flex !important; }
     body { overflow-x: hidden; }
+    
+    .mobile-stack { 
+      grid-template-columns: 1fr !important; 
+    }
+    
+    .mobile-padding-x {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+
+    .mobile-nav-height {
+      height: 56px !important;
+    }
+    
+    nav {
+      height: 56px !important;
+      padding: 0 16px !important;
+    }
+    
+    #hero {
+      margin-top: 56px !important;
+      height: calc(100vh - 56px) !important;
+    }
+
+    .mobile-nav-overlay {
+      top: 56px !important;
+      max-height: calc(100vh - 56px) !important;
+    }
   }
 `;
 

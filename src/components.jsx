@@ -262,8 +262,8 @@ export function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: window.innerWidth < 768 ? "0 12px" : "0 5%",
-          height: window.innerWidth < 768 ? 56 : 68,
+          padding: "0 5%",
+          height: 68,
           boxShadow: scrolled
             ? "0 4px 20px rgba(15,32,68,.12)"
             : "0 2px 8px rgba(15,32,68,.06)",
@@ -276,7 +276,7 @@ export function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: window.innerWidth < 768 ? 6 : 10,
+            gap: 10,
             cursor: "pointer",
             minWidth: 0,
             flex: 1,
@@ -285,8 +285,8 @@ export function Navbar() {
         >
           <div
             style={{
-              width: window.innerWidth < 768 ? 36 : 44,
-              height: window.innerWidth < 768 ? 36 : 44,
+              width: 44,
+              height: 44,
               borderRadius: "50%",
               border: `2.5px solid ${T.gold}`,
               overflow: "hidden",
@@ -376,10 +376,13 @@ export function Navbar() {
               background: "none",
               border: "none",
               cursor: "pointer",
+              display: "flex",
               flexDirection: "column",
+              justifyContent: "center",
               gap: 5,
-              padding: 4,
+              padding: "4px 8px",
               zIndex: 1001,
+              marginRight: "-8px"
             }}
             aria-label="Toggle menu"
             aria-expanded={mobileOpen}
@@ -426,6 +429,7 @@ export function Navbar() {
         />
         {/* Menu content */}
         <div
+          className="mobile-nav-overlay"
           style={{
             position: "fixed",
             top: 68,
@@ -541,9 +545,9 @@ export function Hero() {
     <section
       id="hero"
       style={{
-        marginTop: window.innerWidth < 768 ? 56 : 68,
+        marginTop: 68,
         position: "relative",
-        height: window.innerWidth < 768 ? "calc(100vh - 56px)" : "calc(100vh - 68px)",
+        height: "calc(100vh - 68px)",
         minHeight: 480,
         overflow: "hidden",
       }}
@@ -1960,6 +1964,7 @@ export function ContactUs() {
     <section
       id="contact"
       ref={ref}
+      className="mobile-padding-x"
       style={{
         background: T.cream,
         padding: "88px 7%",
@@ -1976,6 +1981,7 @@ export function ContactUs() {
       />
 
       <div
+        className="mobile-stack"
         style={{
           maxWidth: 820,
           margin: "0 auto",
@@ -2066,7 +2072,7 @@ export function ContactUs() {
           )}
 
           {/* Name + Phone — 2 col */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div className="mobile-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <div>
               <label style={labelStyle}>Full Name <span style={{ color: T.red }}>*</span></label>
               <input
@@ -2101,7 +2107,7 @@ export function ContactUs() {
           </div>
 
           {/* Enquiry type + Subject — 2 col */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+          <div className="mobile-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
             <div>
               <label style={labelStyle}>Enquiry Type</label>
               <select

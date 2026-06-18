@@ -65,6 +65,15 @@ export const GLOBAL_CSS = `
     content: ''; position: absolute; bottom: -2px; left: 0;
     width: 100%; height: 2px; background: #c9963a; border-radius: 2px;
   }
+
+  /* Responsive Utilities */
+  .desktop-only { display: flex !important; }
+  .mobile-only { display: none !important; }
+
+  @media (max-width: 768px) {
+    .desktop-only { display: none !important; }
+    .mobile-only { display: flex !important; }
+  }
 `;
 
 // ── NAVIGATION ─────────────────────────────────────────────

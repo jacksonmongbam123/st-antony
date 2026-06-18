@@ -2193,26 +2193,63 @@ export function ContactUs() {
  * Footer — dark footer with brand, quick links, and contact info.
  */
 export function Footer() {
+  const footerHeadingStyle = {
+    color: T.white,
+    fontSize: "1rem",
+    fontWeight: 700,
+    letterSpacing: ".05em",
+    textTransform: "uppercase",
+    marginBottom: 24,
+    position: "relative",
+    display: "inline-block",
+    paddingBottom: 8,
+  };
+
+  const footerLinkStyle = {
+    color: "rgba(255,255,255,.65)",
+    textDecoration: "none",
+    fontSize: ".9rem",
+    transition: "all .3s ease",
+    display: "inline-block",
+    marginBottom: 12,
+  };
+
+  const footerContactItemStyle = {
+    display: "flex",
+    gap: 12,
+    alignItems: "flex-start",
+    marginBottom: 16,
+    color: "rgba(255,255,255,.7)",
+    fontSize: ".9rem",
+    lineHeight: 1.5,
+  };
+
   return (
     <footer
       id="footer"
-      style={{ background: "#08152e", color: "rgba(255,255,255,.7)", padding: "60px 7% 28px" }}
+      style={{
+        background: "#08152e",
+        color: "rgba(255,255,255,.7)",
+        padding: "80px 7% 40px",
+        borderTop: `1px solid rgba(255,255,255,0.05)`,
+      }}
     >
       <div
+        className="mobile-stack"
         style={{
           display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr",
-          gap: 48,
-          marginBottom: 48,
+          gridTemplateColumns: "1.2fr 0.8fr 0.8fr 1.2fr",
+          gap: 40,
+          marginBottom: 60,
         }}
       >
-        {/* Brand */}
-        <div>
-          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 20 }}>
+        {/* 1. School Logo & About */}
+        <div style={{ textAlign: "left" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
             <div
               style={{
-                width: 56,
-                height: 56,
+                width: 60,
+                height: 60,
                 borderRadius: "50%",
                 border: `2px solid ${T.gold}`,
                 overflow: "hidden",
@@ -2220,7 +2257,7 @@ export function Footer() {
                 placeItems: "center",
                 flexShrink: 0,
                 background: T.white,
-                boxShadow: `0 4px 12px rgba(0,0,0,0.2)`,
+                boxShadow: `0 4px 12px rgba(0,0,0,0.3)`,
               }}
             >
               <img src={myLogo} alt="St. Antony's Logo" style={{ width: "85%", height: "85%", objectFit: "contain" }} />
@@ -2230,7 +2267,7 @@ export function Footer() {
                 style={{
                   color: T.white,
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: "1.3rem",
+                  fontSize: "1.4rem",
                   display: "block",
                   lineHeight: 1.1,
                   fontWeight: 700,
@@ -2241,7 +2278,7 @@ export function Footer() {
               <span
                 style={{
                   color: T.gold,
-                  fontSize: ".8rem",
+                  fontSize: ".85rem",
                   fontWeight: 600,
                   letterSpacing: ".06em",
                   textTransform: "uppercase",
@@ -2253,120 +2290,151 @@ export function Footer() {
               </span>
             </div>
           </div>
-          <p style={{ fontSize: ".88rem", lineHeight: 1.75, maxWidth: 300 }}>
+          <p style={{ fontSize: ".95rem", lineHeight: 1.7, color: "rgba(255,255,255,0.7)", marginBottom: 28 }}>
             A premier institution committed to academic excellence, holistic growth, and producing
             leaders who make a difference — To Know, To Love, To Serve.
           </p>
-          <div style={{ marginTop: 20, display: "flex", gap: 10 }}>
-            {["📘", "📷", "🐦", "▶️"].map((icon, i) => (
-              <div
+          {/* Social Links */}
+          <div style={{ display: "flex", gap: 12 }}>
+            {[
+              { icon: "📘", label: "Facebook" },
+              { icon: "📷", label: "Instagram" },
+              { icon: "🐦", label: "Twitter" },
+              { icon: "▶️", label: "YouTube" }
+            ].map((social, i) => (
+              <a
                 key={i}
+                href="#"
+                aria-label={social.label}
                 style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,.08)",
+                  width: 40,
+                  height: 40,
+                  borderRadius: "10px",
+                  background: "rgba(255,255,255,.05)",
                   display: "grid",
                   placeItems: "center",
                   cursor: "pointer",
-                  fontSize: "1rem",
-                  transition: "background .2s",
+                  fontSize: "1.1rem",
+                  transition: "all .3s cubic-bezier(0.165, 0.84, 0.44, 1)",
+                  border: "1px solid rgba(255,255,255,0.1)",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = `${T.gold}33`)}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,255,255,.08)")}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = T.gold;
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                  e.currentTarget.style.boxShadow = `0 6px 15px ${T.gold}44`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "rgba(255,255,255,.05)";
+                  e.currentTarget.style.transform = "none";
+                  e.currentTarget.style.boxShadow = "none";
+                }}
               >
-                {icon}
-              </div>
+                {social.icon}
+              </a>
             ))}
           </div>
         </div>
 
-        {/* Quick links */}
-        <div>
-          <h4
-            style={{
-              color: T.white,
-              fontSize: ".82rem",
-              fontWeight: 700,
-              letterSpacing: ".1em",
-              textTransform: "uppercase",
-              marginBottom: 18,
-              paddingBottom: 10,
-              borderBottom: "1px solid rgba(255,255,255,.1)",
-            }}
-          >
-            About
+        {/* 2. Quick Links */}
+        <div style={{ textAlign: "left" }}>
+          <h4 style={footerHeadingStyle}>
+            Quick Links
+            <div style={{ position: "absolute", bottom: 0, left: 0, width: 30, height: 2, background: T.gold }}></div>
           </h4>
           <ul style={{ listStyle: "none" }}>
-            {["Our History", "Vision & Mission", "Leadership Team", "Accreditations", "Campus Life"].map(
-              (item) => (
-                <li key={item} style={{ marginBottom: 9 }}>
-                  <a
-                    href="#"
-                    style={{
-                      color: "rgba(255,255,255,.6)",
-                      textDecoration: "none",
-                      fontSize: ".87rem",
-                      transition: "color .2s",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = T.gold)}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,.6)")}
-                  >
-                    {item}
-                  </a>
-                </li>
-              )
-            )}
+            {["Home", "About Us", "Admissions", "Achievements", "Contact Us"].map((item) => (
+              <li key={item}>
+                <a
+                  href={`#${item.toLowerCase().replace(" ", "")}`}
+                  style={footerLinkStyle}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = T.gold;
+                    e.currentTarget.style.transform = "translateX(5px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "rgba(255,255,255,.65)";
+                    e.currentTarget.style.transform = "none";
+                  }}
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 
-        {/* Contact */}
-        <div>
-          <h4
-            style={{
-              color: T.white,
-              fontSize: ".82rem",
-              fontWeight: 700,
-              letterSpacing: ".1em",
-              textTransform: "uppercase",
-              marginBottom: 18,
-              paddingBottom: 10,
-              borderBottom: "1px solid rgba(255,255,255,.1)",
-            }}
-          >
-            Contact
+        {/* 3. Academic Links */}
+        <div style={{ textAlign: "left" }}>
+          <h4 style={footerHeadingStyle}>
+            Academics
+            <div style={{ position: "absolute", bottom: 0, left: 0, width: 30, height: 2, background: T.gold }}></div>
           </h4>
-          {[
-            ["📍", "St. Antony's Catholic Church Mugatageri, Ponnampet — 571216, Karnataka"],
-            ["📞", "+91 9448315531"],
-            ["✉️", "info@stantonys.edu.in"],
-            ["🕐", "Mon–Sat: 8:00 AM – 5:00 PM"],
-          ].map(([icon, text]) => (
-            <p key={text} style={{ fontSize: ".87rem", lineHeight: 1.8, marginBottom: 4 }}>
-              {icon} {text}
-            </p>
-          ))}
+          <ul style={{ listStyle: "none" }}>
+            {["Science Stream", "Commerce Stream", "Arts Stream", "Curriculum", "Faculty"].map((item) => (
+              <li key={item}>
+                <a
+                  href="#"
+                  style={footerLinkStyle}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = T.gold;
+                    e.currentTarget.style.transform = "translateX(5px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "rgba(255,255,255,.65)";
+                    e.currentTarget.style.transform = "none";
+                  }}
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* 4. Contact Information */}
+        <div style={{ textAlign: "left" }}>
+          <h4 style={footerHeadingStyle}>
+            Contact Info
+            <div style={{ position: "absolute", bottom: 0, left: 0, width: 30, height: 2, background: T.gold }}></div>
+          </h4>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            {[
+              { icon: "📍", text: "St. Antony's Catholic Church Mugatageri, Ponnampet — 571216, Karnataka" },
+              { icon: "📞", text: "+91 9448315531" },
+              { icon: "✉️", text: "info@stantonys.edu.in" },
+              { icon: "🕐", text: "Mon – Sat: 8:00 AM – 5:00 PM" }
+            ].map((item, i) => (
+              <div key={i} style={footerContactItemStyle}>
+                <span style={{ fontSize: "1.1rem", flexShrink: 0 }}>{item.icon}</span>
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Bottom bar */}
+      {/* Bottom Bar */}
       <div
         style={{
           borderTop: "1px solid rgba(255,255,255,.08)",
-          paddingTop: 24,
+          paddingTop: 32,
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           flexWrap: "wrap",
-          gap: 8,
+          gap: 20,
         }}
       >
-        <p style={{ fontSize: ".82rem" }}>
+        <p style={{ fontSize: ".9rem", color: "rgba(255,255,255,0.5)" }}>
           © {new Date().getFullYear()}{" "}
-          <span style={{ color: T.gold }}>St. Antony's High School / College, Ponnampet</span>. All rights
+          <span style={{ color: T.gold, fontWeight: 600 }}>St. Antony's Institution, Ponnampet</span>. All rights
           reserved.
         </p>
-        <p style={{ fontSize: ".78rem" }}>Designed by Mack, Jack &amp; Anil</p>
+        <div style={{ display: "flex", gap: 24 }}>
+          <a href="#" style={{ fontSize: ".85rem", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>Privacy Policy</a>
+          <a href="#" style={{ fontSize: ".85rem", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>Terms of Service</a>
+          <p style={{ fontSize: ".85rem", color: "rgba(255,255,255,0.4)" }}>Designed with ❤️ for Excellence</p>
+        </div>
       </div>
     </footer>
   );

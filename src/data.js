@@ -88,7 +88,8 @@ export const GLOBAL_CSS = `
     body { overflow-x: hidden; }
     
     .mobile-stack { 
-      grid-template-columns: 1fr !important; 
+      grid-template-columns: 1fr !important;
+      gap: 32px !important;
     }
     
     .mobile-padding-x {

@@ -142,7 +142,7 @@ export const NAV_LINKS = [
 export const HERO_SLIDES = [
   {
     image:    "./school.jpeg",
-    overlay:  "linear-gradient(135deg,rgba(70, 71, 71, 0.78) 0%,rgba(218, 221, 227, 0.55) 100%)",
+    
     eyebrow:  "Est. 1986 · Ranked #1 in the Region",
     title:    ["Shaping Minds,", "Building Futures"],
     desc:     "St. Antony's Institution nurtures curiosity, fosters excellence, and prepares graduates to lead in a rapidly evolving world.",

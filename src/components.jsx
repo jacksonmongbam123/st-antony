@@ -1788,6 +1788,61 @@ export function Achievements() {
   );
 }
 
+function getFacultyExtendedInfo(f) {
+  const nameSlug = f.name.toLowerCase().replace(/\s+/g, '.').replace(/[^a-z.]/g, '');
+  const email = `${nameSlug}@st-antony.edu`;
+  
+  let dept = "High School Department";
+  let room = "Staff Room B, Main Block";
+  let classes = "High School Classes (8th - 10th)";
+  let topics = ["Core Curriculum", "Interactive Assignments", "Problem Solving"];
+
+  if (f.role.includes("HOD") || f.role.includes("Head")) {
+    room = "HOD Office, Ground Floor Block A";
+  }
+
+  // Customize based on subject
+  const subjectLower = f.subject.toLowerCase();
+  if (subjectLower.includes("math")) {
+    dept = "Mathematics Department";
+    topics = ["Calculus & Analysis", "Coordinate Geometry", "Algebraic Structures", "Vedic Mathematics"];
+  } else if (subjectLower.includes("science") || subjectLower.includes("phys") || subjectLower.includes("chem") || subjectLower.includes("biol")) {
+    dept = "Science Stream Department";
+    if (subjectLower.includes("phys")) {
+      topics = ["Thermodynamics", "Electromagnetism", "Optics & Wave Theory", "Practical Lab Guide"];
+    } else if (subjectLower.includes("chem")) {
+      topics = ["Organic Chemistry", "Chemical Kinetics", "Analytical Techniques", "Lab Safety & Experiments"];
+    } else if (subjectLower.includes("biol")) {
+      topics = ["Plant Physiology", "Genetics & Evolution", "Human Anatomy", "Ecology Workshops"];
+    } else {
+      topics = ["General Science", "Physics Basics", "Chemistry Reactions", "Biology Labs"];
+    }
+  } else if (subjectLower.includes("social") || subjectLower.includes("history") || subjectLower.includes("eco") || subjectLower.includes("bus") || subjectLower.includes("acc")) {
+    dept = f.role.includes("Commerce") || subjectLower.includes("acc") || subjectLower.includes("bus") ? "Commerce Department" : "Arts & Humanities Department";
+    if (subjectLower.includes("eco")) {
+      topics = ["Microeconomics", "Macroeconomic Policy", "Indian Economic Development", "Statistical Analysis"];
+    } else if (subjectLower.includes("acc")) {
+      topics = ["Financial Accounting", "Partnership Accounts", "Company Accounts & Audit", "Costing Principles"];
+    } else if (subjectLower.includes("bus")) {
+      topics = ["Business Management", "Marketing Strategy", "Entrepreneurship Development", "Organizational Behavior"];
+    } else {
+      topics = ["Indian History", "Civics & Governance", "Geography & Climate", "Social Dynamics"];
+    }
+  } else if (subjectLower.includes("eng") || subjectLower.includes("kann") || subjectLower.includes("hind")) {
+    dept = "Languages Department";
+    topics = ["Grammar & Composition", "Classical & Modern Literature", "Public Speaking", "Creative Prose & Poetry"];
+  } else if (subjectLower.includes("computer")) {
+    dept = "Computer Science Department";
+    topics = ["Python Programming", "Database Management (SQL)", "Data Structures", "Web Development Basics"];
+  } else if (subjectLower.includes("physical") || subjectLower.includes("pet")) {
+    dept = "Physical Education Department";
+    topics = ["Track & Field Athletics", "Sports Medicine & First Aid", "Yoga & Wellness coaching", "Inter-school Tournament Drills"];
+    room = "Sports Room, College Gymnasium";
+  }
+
+  return { email, dept, room, classes, topics };
+}
+
 /**
  * Faculty — filterable grid of dynamically rendered faculty cards
  * (avatar generated from initials + colour), with a full-detail modal.
@@ -1797,6 +1852,7 @@ export function Faculty() {
   const [subCat, setSubCat] = useState("8th Standard");
   const [stream, setStream] = useState("Science Stream");
   const [hovered, setHovered] = useState(null);
+  const [selectedFaculty, setSelectedFaculty] = useState(null);
 
   const handleMainCatChange = (catId) => {
     setMainCat(catId);
@@ -2018,12 +2074,299 @@ export function Faculty() {
               </div>
             </div>
 
-            <p style={{ color: T.gray, fontSize: "0.85rem", lineHeight: 1.6, fontStyle: "italic" }}>
+            <p style={{ color: T.gray, fontSize: "0.85rem", lineHeight: 1.6, fontStyle: "italic", marginBottom: 16 }}>
               "{f.bio}"
             </p>
+
+            {/* View Full Profile Button */}
+            <button
+              onClick={() => setSelectedFaculty(f)}
+              style={{
+                marginTop: "auto",
+                width: "100%",
+                padding: "12px 24px",
+                borderRadius: "30px",
+                border: `1.5px solid ${T.navy}`,
+                background: "transparent",
+                color: T.navy,
+                fontSize: "0.9rem",
+                fontWeight: 700,
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = T.navy;
+                e.currentTarget.style.color = T.white;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.color = T.navy;
+              }}
+            >
+              View Full Profile
+            </button>
           </div>
         ))}
       </div>
+
+      {/* Faculty Profile Modal */}
+      {selectedFaculty && (() => {
+        const ext = getFacultyExtendedInfo(selectedFaculty);
+        return (
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(10, 21, 45, 0.7)",
+              backdropFilter: "blur(12px)",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 9999,
+              padding: 20,
+              animation: "fadeIn .3s ease",
+            }}
+            onClick={() => setSelectedFaculty(null)}
+          >
+            <div
+              style={{
+                background: T.white,
+                borderRadius: 24,
+                width: "100%",
+                maxWidth: 600,
+                maxHeight: "90vh",
+                overflowY: "auto",
+                boxShadow: "0 24px 60px rgba(15, 32, 68, 0.25)",
+                border: `1px solid rgba(15, 32, 68, 0.08)`,
+                position: "relative",
+                animation: "scaleIn .3s cubic-bezier(0.175, 0.885, 0.32, 1.15) both",
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Top Cover Banner */}
+              <div style={{ height: 100, background: `linear-gradient(135deg, ${T.navy}, ${T.navy2})`, position: "relative" }}>
+                {/* Close Button Cross */}
+                <button
+                  onClick={() => setSelectedFaculty(null)}
+                  style={{
+                    position: "absolute",
+                    top: 16,
+                    right: 16,
+                    width: 36,
+                    height: 36,
+                    borderRadius: "50%",
+                    border: "none",
+                    background: "rgba(255,255,255,0.15)",
+                    color: T.white,
+                    fontSize: "1.2rem",
+                    cursor: "pointer",
+                    display: "grid",
+                    placeItems: "center",
+                    transition: "all 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(255,255,255,0.3)";
+                    e.currentTarget.style.color = T.goldLt;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(255,255,255,0.15)";
+                    e.currentTarget.style.color = T.white;
+                  }}
+                >
+                  &times;
+                </button>
+              </div>
+
+              {/* Main Content Container */}
+              <div style={{ padding: "0 24px 24px", marginTop: -50, position: "relative" }}>
+                
+                {/* Profile Header Block */}
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center", marginBottom: 24 }}>
+                  <div style={{ position: "relative", marginBottom: 16 }}>
+                    <img 
+                      src={selectedFaculty.photo} 
+                      alt={selectedFaculty.name} 
+                      style={{ 
+                        width: 100, 
+                        height: 100, 
+                        borderRadius: "50%", 
+                        objectFit: "cover",
+                        border: `4px solid ${T.white}`,
+                        boxShadow: "0 8px 24px rgba(15, 32, 68, 0.15)",
+                        background: T.cream,
+                      }} 
+                    />
+                    <div style={{ 
+                      position: "absolute", 
+                      bottom: 2, 
+                      right: 2, 
+                      background: T.gold, 
+                      color: T.white, 
+                      width: 28, 
+                      height: 28, 
+                      borderRadius: "50%", 
+                      display: "grid", 
+                      placeItems: "center",
+                      boxShadow: "0 4px 8px rgba(0,0,0,0.15)",
+                      fontSize: "0.85rem"
+                    }}>🎓</div>
+                  </div>
+
+                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.6rem", color: T.navy, fontWeight: 700, marginBottom: 4 }}>
+                    {selectedFaculty.name}
+                  </h3>
+                  
+                  <div style={{ color: T.gold, fontWeight: 700, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 12 }}>
+                    {selectedFaculty.role}
+                  </div>
+
+                  {/* Department Badge */}
+                  <span style={{ 
+                    background: "rgba(30, 58, 110, 0.08)", 
+                    color: T.navy2, 
+                    padding: "6px 14px", 
+                    borderRadius: 30, 
+                    fontSize: "0.8rem",
+                    fontWeight: 700,
+                  }}>
+                    {ext.dept}
+                  </span>
+                </div>
+
+                {/* Grid Info Block */}
+                <div style={{ 
+                  display: "grid", 
+                  gridTemplateColumns: "repeat(3, 1fr)", 
+                  gap: 12, 
+                  marginBottom: 24,
+                  background: T.cream,
+                  padding: 16,
+                  borderRadius: 16,
+                  border: "1px solid rgba(15, 32, 68, 0.03)"
+                }}>
+                  <div style={{ textAlign: "center" }}>
+                    <div style={{ color: T.gray, fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>
+                      Degree
+                    </div>
+                    <div style={{ fontWeight: 700, color: T.navy, fontSize: "0.9rem" }}>
+                      {selectedFaculty.qualification}
+                    </div>
+                  </div>
+                  <div style={{ textAlign: "center", borderLeft: "1px solid rgba(15, 32, 68, 0.1)", borderRight: "1px solid rgba(15, 32, 68, 0.1)" }}>
+                    <div style={{ color: T.gray, fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>
+                      Experience
+                    </div>
+                    <div style={{ fontWeight: 700, color: T.navy, fontSize: "0.9rem" }}>
+                      {selectedFaculty.experience}
+                    </div>
+                  </div>
+                  <div style={{ textAlign: "center" }}>
+                    <div style={{ color: T.gray, fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>
+                      At St. Antony's
+                    </div>
+                    <div style={{ fontWeight: 700, color: T.navy, fontSize: "0.9rem" }}>
+                      {selectedFaculty.yearsOfService.split(' ')[0]} Yrs
+                    </div>
+                  </div>
+                </div>
+
+                {/* Profile Details */}
+                <div style={{ display: "flex", flexDirection: "column", gap: 20, textAlign: "left" }}>
+                  
+                  {/* Bio Description */}
+                  <div>
+                    <h4 style={{ fontSize: "0.95rem", color: T.navy, fontWeight: 700, borderBottom: `1.5px solid ${T.gold}44`, paddingBottom: 4, marginBottom: 8 }}>
+                      About the Educator
+                    </h4>
+                    <p style={{ color: T.gray, fontSize: "0.85rem", lineHeight: 1.6, fontStyle: "italic" }}>
+                      "{selectedFaculty.bio} Fosters conceptual clarity and academic development through student-centric pedagogical approaches."
+                    </p>
+                  </div>
+
+                  {/* Areas of Focus */}
+                  <div>
+                    <h4 style={{ fontSize: "0.95rem", color: T.navy, fontWeight: 700, borderBottom: `1.5px solid ${T.gold}44`, paddingBottom: 4, marginBottom: 8 }}>
+                      Key Specializations
+                    </h4>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                      {ext.topics.map((t, idx) => (
+                        <span 
+                          key={idx}
+                          style={{
+                            background: "rgba(201, 150, 58, 0.08)",
+                            border: `1px solid ${T.gold}22`,
+                            color: T.navy,
+                            padding: "4px 10px",
+                            borderRadius: 10,
+                            fontSize: "0.78rem",
+                            fontWeight: 600,
+                          }}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Contact & Location Details */}
+                  <div style={{ 
+                    background: "rgba(15, 32, 68, 0.02)", 
+                    padding: 14, 
+                    borderRadius: 12, 
+                    border: "1px solid rgba(15, 32, 68, 0.05)",
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gap: 12
+                  }}>
+                    <div>
+                      <div style={{ fontWeight: 600, color: T.navy, fontSize: "0.8rem", marginBottom: 2 }}>Office Location</div>
+                      <div style={{ color: T.gray, fontSize: "0.8rem" }}>{ext.room}</div>
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: 600, color: T.navy, fontSize: "0.8rem", marginBottom: 2 }}>Official Email</div>
+                      <div style={{ color: T.navy2, fontSize: "0.8rem", fontWeight: 500, wordBreak: "break-all" }}>{ext.email}</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                {/* Footer Action */}
+                <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
+                  <button
+                    onClick={() => setSelectedFaculty(null)}
+                    style={{
+                      padding: "10px 28px",
+                      borderRadius: 30,
+                      border: "none",
+                      background: T.navy,
+                      color: T.white,
+                      fontWeight: 700,
+                      fontSize: "0.85rem",
+                      cursor: "pointer",
+                      boxShadow: `0 4px 12px ${T.shadowMd}`,
+                      transition: "all 0.2s ease"
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = T.navy2;
+                      e.currentTarget.style.transform = "translateY(-1px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = T.navy;
+                      e.currentTarget.style.transform = "none";
+                    }}
+                  >
+                    Close Profile
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </section>
   );
 }

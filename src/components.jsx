@@ -171,13 +171,14 @@ export function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "0 5%",
-          height: 68,
+          padding: "0 clamp(16px, 5%, 40px)",
+          height: "clamp(56px, 12vw, 68px)",
           boxShadow: scrolled
             ? "0 4px 20px rgba(15,32,68,.12)"
             : "0 2px 8px rgba(15,32,68,.06)",
           backdropFilter: scrolled ? "blur(12px)" : "none",
           transition: "all .35s ease",
+          overflow: "hidden",
         }}
       >
         {/* Logo */}
@@ -194,8 +195,8 @@ export function Navbar() {
         >
           <div
             style={{
-              width: 48,
-              height: 48,
+              width: "clamp(40px, 8vw, 48px)",
+              height: "clamp(40px, 8vw, 48px)",
               borderRadius: "50%",
               border: `2px solid ${T.gold}`,
               overflow: "hidden",
@@ -210,11 +211,11 @@ export function Navbar() {
           >
             <img src={myLogo} alt="St. Antony's Logo" style={{ width: "85%", height: "85%", objectFit: "contain" }} />
           </div>
-          <div className="desktop-only" style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
-            <div style={{ color: T.navy, fontSize: "1.1rem", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.01em", fontFamily: "'Playfair Display', serif" }}>
+          <div className="desktop-only" style={{ display: "flex", flexDirection: "column", justifyContent: "center", minWidth: 0 }}>
+            <div style={{ color: T.navy, fontSize: "clamp(0.9rem, 1.5vw, 1.1rem)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.01em", fontFamily: "'Playfair Display', serif", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               St. Antony's
             </div>
-            <div style={{ color: T.gold, fontSize: ".75rem", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", marginTop: 2 }}>
+            <div style={{ color: T.gold, fontSize: "clamp(0.6rem, 1vw, 0.75rem)", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", marginTop: 2, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
               High School / College
             </div>
           </div>
@@ -536,8 +537,9 @@ export function Hero() {
           height: "100%",
           display: "flex",
           alignItems: "center",
-          padding: "0 8%",
-          maxWidth: 680,
+          padding: "0 clamp(20px, 8%, 60px)",
+          maxWidth: "min(680px, 90vw)",
+          width: "100%",
         }}
       >
         <div>
@@ -558,13 +560,14 @@ export function Hero() {
           <h1
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2.8rem, 7vw, 5.2rem)",
+              fontSize: "clamp(2rem, 7vw, 5.2rem)",
               color: T.white,
-              lineHeight: 1.05,
-              marginBottom: 28,
+              lineHeight: 1.1,
+              marginBottom: "clamp(16px, 4vw, 28px)",
               fontWeight: 700,
               letterSpacing: "-0.02em",
               animation: "fadeInUp .7s .2s both",
+              wordBreak: "break-word",
             }}
           >
             {slide.title[0]}
@@ -575,10 +578,10 @@ export function Hero() {
           <p
             style={{
               color: "rgba(255,255,255,0.92)",
-              fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)",
+              fontSize: "clamp(0.95rem, 1.6vw, 1.25rem)",
               lineHeight: 1.6,
-              maxWidth: 700,
-              marginBottom: 48,
+              maxWidth: "min(700px, 90vw)",
+              marginBottom: "clamp(24px, 6vw, 48px)",
               animation: "fadeInUp .7s .35s both",
             }}
           >
@@ -593,11 +596,12 @@ export function Hero() {
               background: T.gold,
               color: T.navy,
               border: "none",
-              padding: "16px 40px",
+              padding: "clamp(12px, 3vw, 16px) clamp(24px, 6vw, 40px)",
               borderRadius: 10,
               fontWeight: 700,
-              fontSize: "1rem",
+              fontSize: "clamp(0.9rem, 1.2vw, 1rem)",
               cursor: "pointer",
+              whiteSpace: "nowrap",
               animation: "fadeInUp .7s .5s both",
               transition: "all .3s ease",
               boxShadow: `0 6px 20px ${T.gold}44`,
@@ -622,13 +626,15 @@ export function Hero() {
       <div
         style={{
           position: "absolute",
-          right: "5%",
+          right: "clamp(16px, 5%, 40px)",
           top: "50%",
           transform: "translateY(-50%)",
           zIndex: 10,
           display: "flex",
           flexDirection: "column",
           gap: 8,
+          opacity: window.innerWidth > 768 ? 1 : 0,
+          pointerEvents: window.innerWidth > 768 ? "all" : "none",
         }}
       >
         {HERO_SLIDES.map((_, i) => (
@@ -664,20 +670,21 @@ export function Hero() {
             position: "absolute",
             top: "50%",
             transform: "translateY(-50%)",
-            [di === 0 ? "left" : "right"]: "2%",
+            [di === 0 ? "left" : "right"]: "clamp(8px, 2%, 20px)",
             zIndex: 10,
-            width: 46,
-            height: 46,
+            width: "clamp(36px, 8vw, 46px)",
+            height: "clamp(36px, 8vw, 46px)",
             borderRadius: "50%",
             border: "2px solid rgba(255,255,255,.35)",
             background: "rgba(255,255,255,.08)",
             backdropFilter: "blur(4px)",
             color: T.white,
-            fontSize: "1.2rem",
+            fontSize: "clamp(0.9rem, 2vw, 1.2rem)",
             cursor: "pointer",
             display: "grid",
             placeItems: "center",
             transition: "all .2s",
+            opacity: window.innerWidth > 768 ? 1 : 0.5,
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.borderColor = T.gold;
@@ -696,7 +703,7 @@ export function Hero() {
       <div
         style={{
           position: "absolute",
-          bottom: 28,
+          bottom: "clamp(16px, 4vw, 28px)",
           left: "50%",
           transform: "translateX(-50%)",
           display: "flex",
@@ -704,8 +711,9 @@ export function Hero() {
           alignItems: "center",
           gap: 4,
           color: "rgba(255,255,255,.5)",
-          fontSize: ".7rem",
+          fontSize: ".65rem",
           letterSpacing: ".1em",
+          opacity: window.innerWidth > 768 ? 1 : 0,
         }}
       >
         <span style={{ animation: "fadeInUp 1s 1.5s both" }}>SCROLL</span>
@@ -927,7 +935,7 @@ export function AcademicPerformance() {
         ))}
       </div>
 
-      <div ref={ref} className="mobile-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 32, alignItems: "stretch" }}>
+      <div ref={ref} className="mobile-stack equal-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: "clamp(20px, 5vw, 32px)", alignItems: "stretch" }}>
         {/* Left: Top Scorer Card */}
         <div 
           style={{ 
@@ -1821,8 +1829,8 @@ export function Faculty() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: 32,
+          gridTemplateColumns: "repeat(auto-fill, minmax(clamp(240px, 80vw, 280px), 1fr))",
+          gap: "clamp(20px, 4vw, 32px)",
           alignItems: "stretch"
         }}
       >
@@ -1834,7 +1842,7 @@ export function Faculty() {
             style={{
               background: T.white,
               borderRadius: 24,
-              padding: "40px 28px",
+              padding: "clamp(24px, 5vw, 40px) clamp(20px, 4vw, 28px)",
               textAlign: "center",
               transition: "all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)",
               transform: hovered === `${f.name}-${f.subject}` ? "translateY(-10px)" : "none",
@@ -1842,7 +1850,8 @@ export function Faculty() {
               border: `1px solid ${hovered === `${f.name}-${f.subject}` ? T.gold + "44" : "rgba(15,32,68,0.05)"}`,
               display: "flex",
               flexDirection: "column",
-              animation: `fadeInUp .5s ${i * 0.05}s both`
+              animation: `fadeInUp .5s ${i * 0.05}s both`,
+              minHeight: "100%"
             }}
           >
             <div style={{ marginBottom: 20, position: "relative", display: "inline-block", margin: "0 auto 24px" }}>
@@ -1850,8 +1859,8 @@ export function Faculty() {
                 src={f.photo} 
                 alt={f.name} 
                 style={{ 
-                  width: 120, 
-                  height: 120, 
+                  width: "clamp(80px, 20vw, 120px)", 
+                  height: "clamp(80px, 20vw, 120px)", 
                   borderRadius: "50%", 
                   objectFit: "cover",
                   border: `3px solid ${T.gold}33`,
@@ -2001,7 +2010,7 @@ export function ContactUs() {
       <div
         className="mobile-stack"
         style={{
-          maxWidth: 820,
+          maxWidth: "min(820px, 95vw)",
           margin: "0 auto",
           background: T.white,
           borderRadius: 18,
@@ -2015,17 +2024,17 @@ export function ContactUs() {
         <div
           style={{
             background: `linear-gradient(160deg, ${T.navy} 0%, ${T.navy2} 100%)`,
-            padding: "44px 32px",
+            padding: "clamp(24px, 5vw, 44px) clamp(20px, 4vw, 32px)",
             display: "flex",
             flexDirection: "column",
-            gap: 28,
+            gap: "clamp(16px, 4vw, 28px)",
           }}
         >
           <div>
             <div style={{ color: T.gold, fontSize: ".72rem", fontWeight: 700, letterSpacing: ".18em", textTransform: "uppercase", marginBottom: 10 }}>
               Reach Us
             </div>
-            <p style={{ color: T.white, fontFamily: "'Playfair Display', serif", fontSize: "1.3rem", lineHeight: 1.3 }}>
+            <p style={{ color: T.white, fontFamily: "'Playfair Display', serif", fontSize: "clamp(1rem, 2.5vw, 1.3rem)", lineHeight: 1.3 }}>
               St. Antony's<br />High School / College
             </p>
           </div>
@@ -2075,7 +2084,7 @@ export function ContactUs() {
         </div>
 
         {/* ── Right form panel ── */}
-        <form onSubmit={handleSubmit} noValidate style={{ padding: "44px 36px", display: "flex", flexDirection: "column", gap: 18 }}>
+        <form onSubmit={handleSubmit} noValidate style={{ padding: "clamp(24px, 5vw, 44px) clamp(20px, 4vw, 36px)", display: "flex", flexDirection: "column", gap: 18 }}>
           {submitted && (
             <div
               style={{
@@ -2273,7 +2282,7 @@ export function Footer() {
       style={{
         background: "#08152e",
         color: "rgba(255,255,255,.7)",
-        padding: "80px 7% 40px",
+        padding: "clamp(40px, 10vw, 80px) clamp(20px, 7%, 40px) clamp(24px, 5vw, 40px)",
         borderTop: `1px solid rgba(255,255,255,0.05)`,
       }}
     >
@@ -2282,8 +2291,8 @@ export function Footer() {
         style={{
           display: "grid",
           gridTemplateColumns: "1.2fr 0.8fr 0.8fr 1.2fr",
-          gap: 40,
-          marginBottom: 60,
+          gap: "clamp(24px, 5vw, 40px)",
+          marginBottom: "clamp(40px, 10vw, 60px)",
         }}
       >
         {/* 1. School Logo & About */}
@@ -2291,8 +2300,8 @@ export function Footer() {
           <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 24 }}>
             <div
               style={{
-                width: 60,
-                height: 60,
+                width: "clamp(48px, 10vw, 60px)",
+                height: "clamp(48px, 10vw, 60px)",
                 borderRadius: "50%",
                 border: `2px solid ${T.gold}`,
                 overflow: "hidden",
@@ -2310,7 +2319,7 @@ export function Footer() {
                 style={{
                   color: T.white,
                   fontFamily: "'Playfair Display', serif",
-                  fontSize: "1.4rem",
+                  fontSize: "clamp(1rem, 2.5vw, 1.4rem)",
                   display: "block",
                   lineHeight: 1.1,
                   fontWeight: 700,
@@ -2321,7 +2330,7 @@ export function Footer() {
               <span
                 style={{
                   color: T.gold,
-                  fontSize: ".85rem",
+                  fontSize: "clamp(0.7rem, 1.5vw, 0.85rem)",
                   fontWeight: 600,
                   letterSpacing: ".06em",
                   textTransform: "uppercase",

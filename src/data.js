@@ -81,50 +81,61 @@ export const GLOBAL_CSS = `
   /* Responsive Utilities */
   .desktop-only { display: flex !important; }
   .mobile-only { display: none !important; }
+  .tablet-only { display: none !important; }
+
+  /* Section Padding Defaults */
+  section { padding: 80px 7% !important; }
+
+  @media (max-width: 1024px) {
+    section { padding: 60px 5% !important; }
+    .tablet-stack { grid-template-columns: 1fr !important; gap: 32px !important; }
+  }
 
   @media (max-width: 768px) {
+    section { padding: 48px 20px !important; }
     .desktop-only { display: none !important; }
     .mobile-only { display: flex !important; }
+    .tablet-only { display: flex !important; }
     body { overflow-x: hidden; }
     
     .mobile-stack { 
       grid-template-columns: 1fr !important;
-      gap: 32px !important;
+      gap: 24px !important;
+      display: grid !important;
+    }
+
+    .mobile-flex-stack {
+      flex-direction: column !important;
+      gap: 24px !important;
     }
     
     .mobile-padding-x {
-      padding-left: 16px !important;
-      padding-right: 16px !important;
+      padding-left: 20px !important;
+      padding-right: 20px !important;
     }
 
-    .mobile-nav-height {
-      height: 56px !important;
-    }
+    .mobile-nav-height { height: 60px !important; }
+    nav { height: 60px !important; padding: 0 16px !important; }
+    #hero { margin-top: 60px !important; height: calc(100vh - 60px) !important; min-height: 560px !important; }
+    .mobile-nav-overlay { top: 60px !important; max-height: calc(100vh - 60px) !important; }
+
+    /* Typography scaling */
+    h1 { font-size: clamp(2.2rem, 8vw, 3rem) !important; }
+    h2 { font-size: clamp(1.8rem, 6vw, 2.2rem) !important; }
     
-    nav {
-      height: 56px !important;
-      padding: 0 16px !important;
-    }
-    
-    #hero {
-      margin-top: 56px !important;
-      height: calc(100vh - 56px) !important;
-    }
-
-    .mobile-nav-overlay {
-      top: 56px !important;
-      max-height: calc(100vh - 56px) !important;
-    }
-
-    /* Allow wide tables to scroll horizontally instead of overflowing the page */
-    .table-scroll {
-      overflow-x: auto !important;
-      -webkit-overflow-scrolling: touch;
-    }
-    .table-scroll table { min-width: 520px; }
+    /* Table responsiveness */
+    .table-scroll { overflow-x: auto !important; -webkit-overflow-scrolling: touch; margin: 0 -20px; padding: 0 20px; width: calc(100% + 40px); }
+    .table-scroll table { min-width: 600px; }
   }
 
-  /* Default table wrapper behaviour (desktop + mobile) */
+  @media (max-width: 480px) {
+    section { padding: 40px 16px !important; }
+    .mobile-padding-x { padding-left: 16px !important; padding-right: 16px !important; }
+    .table-scroll { margin: 0 -16px; padding: 0 16px; width: calc(100% + 32px); }
+  }
+
+  /* Grid helper for equal height cards */
+  .equal-grid { display: grid; align-items: stretch; }
   .table-scroll { overflow-x: auto; }
 `;
 

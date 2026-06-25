@@ -253,30 +253,90 @@ export const ACHIEVEMENT_DATA = [
 ];
 
 // ── FACULTY ────────────────────────────────────────────────
-export const FACULTY_DATA = [
-  {
-    id: 1, name: "Dr. Rajan Mehta", degree: "PhD", role: "Head of PUC Sciences",
-    dept: "PUC", deptTag: "PUC Dept.", avatarInitials: "RM", avatarColor: "#2563eb",
-    subjects: ["Physics"],
-    classes: ["1st PUC", "2nd PUC"],
-    bio: "20+ years experience in Pre-University education.",
-    stats: { years: 22, papers: 42, students: 1800 },
-    email: "r.mehta@stantonys.edu.in", phone: "+91 98450 11001",
-    office: "Science Block, Room 304",
-    achievements: "Best Educator Award — Karnataka (2022)",
+const generateFaculty = (name, subject, role, qualification, experience, yearsOfService) => ({
+  name,
+  subject,
+  role,
+  qualification,
+  experience: `${experience} Years`,
+  yearsOfService: `${yearsOfService} Years at St. Antony's`,
+  bio: `Expert in ${subject} with a passion for student-centric learning and academic excellence.`,
+  photo: `https://i.pravatar.cc/150?u=${name.replace(/\s+/g, '')}`
+});
+
+export const FACULTY_DATA = {
+  highSchool: {
+    "8th Standard": [
+      generateFaculty("Mr. Ramesh K.", "Mathematics", "Senior Teacher", "MSc, BEd", 15, 10),
+      generateFaculty("Ms. Savitha M.", "Science", "HOD High School", "MSc, BEd", 12, 8),
+      generateFaculty("Mr. Prakash G.", "Social Science", "Senior Teacher", "MA, BEd", 18, 12),
+      generateFaculty("Ms. Mary D.", "English", "Language Head", "MA, BEd", 14, 9),
+      generateFaculty("Mr. Shivu L.", "Kannada", "Senior Teacher", "MA, BEd", 20, 15),
+      generateFaculty("Mr. Vinay P.", "Hindi", "Teacher", "MA, BEd", 8, 5),
+      generateFaculty("Mr. Raju S.", "Physical Education", "PET", "BPEd", 10, 6),
+    ],
+    "9th Standard": [
+      generateFaculty("Mr. Ramesh K.", "Mathematics", "Senior Teacher", "MSc, BEd", 15, 10),
+      generateFaculty("Ms. Savitha M.", "Science", "HOD High School", "MSc, BEd", 12, 8),
+      generateFaculty("Mr. Prakash G.", "Social Science", "Senior Teacher", "MA, BEd", 18, 12),
+      generateFaculty("Ms. Mary D.", "English", "Language Head", "MA, BEd", 14, 9),
+      generateFaculty("Mr. Shivu L.", "Kannada", "Senior Teacher", "MA, BEd", 20, 15),
+      generateFaculty("Mr. Vinay P.", "Hindi", "Teacher", "MA, BEd", 8, 5),
+      generateFaculty("Mr. Raju S.", "Physical Education", "PET", "BPEd", 10, 6),
+    ],
+    "10th Standard": [
+      generateFaculty("Mr. Ramesh K.", "Mathematics", "Senior Teacher", "MSc, BEd", 15, 10),
+      generateFaculty("Ms. Savitha M.", "Science", "HOD High School", "MSc, BEd", 12, 8),
+      generateFaculty("Mr. Prakash G.", "Social Science", "Senior Teacher", "MA, BEd", 18, 12),
+      generateFaculty("Ms. Mary D.", "English", "Language Head", "MA, BEd", 14, 9),
+      generateFaculty("Mr. Shivu L.", "Kannada", "Senior Teacher", "MA, BEd", 20, 15),
+      generateFaculty("Mr. Vinay P.", "Hindi", "Teacher", "MA, BEd", 8, 5),
+      generateFaculty("Mr. Raju S.", "Physical Education", "PET", "BPEd", 10, 6),
+    ],
   },
-  {
-    id: 2, name: "Ms. Savitha M.", degree: "MSc, BEd", role: "High School Science Head",
-    dept: "High School", deptTag: "HS Dept.", avatarInitials: "SM", avatarColor: "#0891b2",
-    subjects: ["Science"],
-    classes: ["8th Std", "9th Std", "10th Std"],
-    bio: "Expert in foundational science for high school students.",
-    stats: { years: 12, papers: 3, students: 1200 },
-    email: "savitha.m@stantonys.edu.in", phone: "+91 98450 11005",
-    office: "HS Block, Room 102",
-    achievements: "District Best Teacher 2023",
+  puc: {
+    "1st PUC": {
+      "Science Stream": [
+        generateFaculty("Dr. Rajan Mehta", "Physics", "HOD Science", "PhD", 22, 15),
+        generateFaculty("Ms. Priya Nair", "Chemistry", "Senior Lecturer", "MSc", 12, 7),
+        generateFaculty("Mr. Aarav Singh", "Mathematics", "Senior Lecturer", "MTech", 10, 5),
+        generateFaculty("Dr. Sunita Rao", "Biology", "Senior Lecturer", "PhD", 16, 10),
+        generateFaculty("Prof. Ananya K.", "Computer Science", "HOD CS", "MTech", 14, 8),
+        generateFaculty("Ms. Clara F.", "English", "Senior Lecturer", "MA", 11, 6),
+        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10),
+      ],
+      "Commerce Stream": [
+        generateFaculty("Mr. Vikram Joshi", "Accountancy", "HOD Commerce", "MBA, CA", 18, 12),
+        generateFaculty("Ms. Rekha Pillai", "Business Studies", "Senior Lecturer", "MBA", 12, 8),
+        generateFaculty("Dr. Kiran Bose", "Economics", "Senior Lecturer", "PhD", 15, 9),
+        generateFaculty("Mr. Aarav Singh", "Statistics", "Senior Lecturer", "MTech", 10, 5),
+        generateFaculty("Prof. Ananya K.", "Computer Science", "HOD CS", "MTech", 14, 8),
+        generateFaculty("Ms. Clara F.", "English", "Senior Lecturer", "MA", 11, 6),
+        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10),
+      ],
+    },
+    "2nd PUC": {
+      "Science Stream": [
+        generateFaculty("Dr. Rajan Mehta", "Physics", "HOD Science", "PhD", 22, 15),
+        generateFaculty("Ms. Priya Nair", "Chemistry", "Senior Lecturer", "MSc", 12, 7),
+        generateFaculty("Mr. Aarav Singh", "Mathematics", "Senior Lecturer", "MTech", 10, 5),
+        generateFaculty("Dr. Sunita Rao", "Biology", "Senior Lecturer", "PhD", 16, 10),
+        generateFaculty("Prof. Ananya K.", "Computer Science", "HOD CS", "MTech", 14, 8),
+        generateFaculty("Ms. Clara F.", "English", "Senior Lecturer", "MA", 11, 6),
+        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10),
+      ],
+      "Commerce Stream": [
+        generateFaculty("Mr. Vikram Joshi", "Accountancy", "HOD Commerce", "MBA, CA", 18, 12),
+        generateFaculty("Ms. Rekha Pillai", "Business Studies", "Senior Lecturer", "MBA", 12, 8),
+        generateFaculty("Dr. Kiran Bose", "Economics", "Senior Lecturer", "PhD", 15, 9),
+        generateFaculty("Mr. Aarav Singh", "Statistics", "Senior Lecturer", "MTech", 10, 5),
+        generateFaculty("Prof. Ananya K.", "Computer Science", "HOD CS", "MTech", 14, 8),
+        generateFaculty("Ms. Clara F.", "English", "Senior Lecturer", "MA", 11, 6),
+        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10),
+      ],
+    },
   },
-];
+};
 
 // ── ACADEMIC PERFORMANCE ──────────────────────────────────
 export const ACADEMIC_PERFORMANCE_DATA = {

@@ -28,46 +28,7 @@ import cImg from './assets/school.jpeg';
  * FacultyAvatar — colour-coded initials circle with degree badge.
  * Rendered both on the grid card and inside the modal.
  */
-export function FacultyAvatar({ faculty, size = 84, fontSize = "1.5rem" }) {
-  return (
-    <div
-      style={{
-        width: size,
-        height: size,
-        borderRadius: "50%",
-        background: `linear-gradient(135deg, ${faculty.avatarColor}, ${faculty.avatarColor}cc)`,
-        display: "grid",
-        placeItems: "center",
-        border: `4px solid ${T.gold}`,
-        flexShrink: 0,
-        fontSize,
-        color: T.white,
-        fontWeight: 700,
-        fontFamily: "'Playfair Display', serif",
-        boxShadow: `0 4px 16px ${faculty.avatarColor}55`,
-        position: "relative",
-      }}
-    >
-      {faculty.avatarInitials}
-      <div
-        style={{
-          position: "absolute",
-          bottom: -4,
-          right: -4,
-          background: T.gold,
-          border: `2px solid ${T.white}`,
-          borderRadius: 12,
-          padding: "2px 7px",
-          fontSize: ".6rem",
-          color: T.navy,
-          fontWeight: 700,
-        }}
-      >
-        {faculty.degree}
-      </div>
-    </div>
-  );
-}
+
 
 /**
  * SectionHeader — animated eyebrow + title + gold rule + subtitle.
@@ -1724,418 +1685,236 @@ export function Achievements() {
  * (avatar generated from initials + colour), with a full-detail modal.
  */
 export function Faculty() {
-  const [deptFilter, setDeptFilter] = useState("All");
-  const [modal, setModal] = useState(null);
+  const [mainCat, setMainCat] = useState("highSchool"); // "highSchool" or "puc"
+  const [subCat, setSubCat] = useState("8th Standard");
+  const [stream, setStream] = useState("Science Stream");
   const [hovered, setHovered] = useState(null);
 
-  const depts = ["All", ...new Set(FACULTY_DATA.map((f) => f.dept))];
-  const visible =
-    deptFilter === "All" ? FACULTY_DATA : FACULTY_DATA.filter((f) => f.dept === deptFilter);
+  const handleMainCatChange = (catId) => {
+    setMainCat(catId);
+    if (catId === "highSchool") {
+      setSubCat("8th Standard");
+    } else {
+      setSubCat("1st PUC");
+      setStream("Science Stream");
+    }
+  };
+
+  const getFacultyList = () => {
+    if (mainCat === "highSchool") {
+      return FACULTY_DATA.highSchool[subCat] || [];
+    } else {
+      return FACULTY_DATA.puc[subCat]?.[stream] || [];
+    }
+  };
+
+  const facultyList = getFacultyList();
 
   return (
     <section id="faculty" style={{ background: T.cream, padding: "80px 7%" }}>
       <SectionHeader
         eyebrow="Our Educators"
         title="Faculty Information"
-        sub="Meet the passionate educators who shape every student's journey at St. Antony's."
+        sub="Meet our subject-specialist educators assigned to each class and stream."
       />
 
-      {/* Department filter pills */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 36 }}>
-        {depts.map((d) => (
-          <button
-            key={d}
-            onClick={() => setDeptFilter(d)}
-            style={{
-              padding: "8px 18px",
-              borderRadius: 30,
-              border: `1.5px solid ${deptFilter === d ? T.navy : "#cbd5e1"}`,
-              background: deptFilter === d ? T.navy : T.white,
-              color: deptFilter === d ? T.white : T.navy,
-              fontSize: ".82rem",
-              fontWeight: 500,
-              cursor: "pointer",
-              transition: "all .25s",
-            }}
-          >
-            {d}
-          </button>
-        ))}
+      {/* Main Category Selector */}
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
+        <div style={{ background: "rgba(15,32,68,0.05)", padding: 6, borderRadius: 40, display: "flex", gap: 4 }}>
+          {[
+            { id: "highSchool", label: "High School" },
+            { id: "puc", label: "PUC / College" }
+          ].map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => handleMainCatChange(cat.id)}
+              style={{
+                padding: "10px 24px",
+                borderRadius: 30,
+                border: "none",
+                background: mainCat === cat.id ? T.navy : "transparent",
+                color: mainCat === cat.id ? T.white : T.gray,
+                fontWeight: 700,
+                fontSize: "0.95rem",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+              }}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Faculty card grid */}
+      {/* Sub-Category Selector */}
+      <div style={{ display: "flex", justifyContent: "center", gap: 12, marginBottom: 32, flexWrap: "wrap" }}>
+        {mainCat === "highSchool" ? (
+          ["8th Standard", "9th Standard", "10th Standard"].map((std) => (
+            <button
+              key={std}
+              onClick={() => setSubCat(std)}
+              style={{
+                padding: "8px 20px",
+                borderRadius: 30,
+                border: `1.5px solid ${subCat === std ? T.gold : "#cbd5e1"}`,
+                background: subCat === std ? T.white : "transparent",
+                color: subCat === std ? T.navy : T.gray,
+                fontWeight: 600,
+                fontSize: "0.85rem",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+              }}
+            >
+              {std}
+            </button>
+          ))
+        ) : (
+          <>
+            <div style={{ display: "flex", gap: 8 }}>
+              {["1st PUC", "2nd PUC"].map((puc) => (
+                <button
+                  key={puc}
+                  onClick={() => setSubCat(puc)}
+                  style={{
+                    padding: "8px 20px",
+                    borderRadius: 30,
+                    border: `1.5px solid ${subCat === puc ? T.gold : "#cbd5e1"}`,
+                    background: subCat === puc ? T.white : "transparent",
+                    color: subCat === puc ? T.navy : T.gray,
+                    fontWeight: 600,
+                    fontSize: "0.85rem",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  {puc}
+                </button>
+              ))}
+            </div>
+            <div style={{ width: 1, background: "#cbd5e1", margin: "0 10px" }} />
+            <div style={{ display: "flex", gap: 8 }}>
+              {["Science Stream", "Commerce Stream"].map((str) => (
+                <button
+                  key={str}
+                  onClick={() => setStream(str)}
+                  style={{
+                    padding: "8px 20px",
+                    borderRadius: 30,
+                    border: `1.5px solid ${stream === str ? T.navy2 : "transparent"}`,
+                    background: stream === str ? T.navy2 : "rgba(15,32,68,0.05)",
+                    color: stream === str ? T.white : T.gray,
+                    fontWeight: 600,
+                    fontSize: "0.85rem",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  {str}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Faculty Card Grid */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill,minmax(240px,1fr))",
-          gap: 28,
+          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+          gap: 32,
+          alignItems: "stretch"
         }}
       >
-        {visible.map((f, i) => (
+        {facultyList.map((f, i) => (
           <div
-            key={f.id}
-            onClick={() => setModal(f)}
-            onMouseEnter={() => setHovered(f.id)}
+            key={`${f.name}-${f.subject}`}
+            onMouseEnter={() => setHovered(`${f.name}-${f.subject}`)}
             onMouseLeave={() => setHovered(null)}
             style={{
               background: T.white,
-              borderRadius: 20,
-              padding: "36px 24px",
+              borderRadius: 24,
+              padding: "40px 28px",
               textAlign: "center",
-              cursor: "pointer",
-              transition: "all .4s cubic-bezier(0.165, 0.84, 0.44, 1)",
-              transform: hovered === f.id ? "translateY(-12px)" : "none",
-              boxShadow:
-                hovered === f.id
-                  ? `0 24px 60px ${T.shadowMd}`
-                  : `0 8px 30px ${T.shadow}`,
-              animation: `fadeInUp .5s ${i * 0.07}s both`,
-              border: `1px solid ${hovered === f.id ? T.gold + "33" : "rgba(15,32,68,0.05)"}`,
+              transition: "all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)",
+              transform: hovered === `${f.name}-${f.subject}` ? "translateY(-10px)" : "none",
+              boxShadow: hovered === `${f.name}-${f.subject}` ? `0 20px 40px ${T.shadowMd}` : `0 10px 30px ${T.shadow}`,
+              border: `1px solid ${hovered === `${f.name}-${f.subject}` ? T.gold + "44" : "rgba(15,32,68,0.05)"}`,
+              display: "flex",
+              flexDirection: "column",
+              animation: `fadeInUp .5s ${i * 0.05}s both`
             }}
           >
-            <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
-              <FacultyAvatar faculty={f} />
+            <div style={{ marginBottom: 20, position: "relative", display: "inline-block", margin: "0 auto 24px" }}>
+              <img 
+                src={f.photo} 
+                alt={f.name} 
+                style={{ 
+                  width: 120, 
+                  height: 120, 
+                  borderRadius: "50%", 
+                  objectFit: "cover",
+                  border: `3px solid ${T.gold}33`,
+                  padding: 4
+                }} 
+              />
+              <div style={{ 
+                position: "absolute", 
+                bottom: 5, 
+                right: 5, 
+                background: T.navy, 
+                color: T.white, 
+                width: 32, 
+                height: 32, 
+                borderRadius: "50%", 
+                display: "grid", 
+                placeItems: "center",
+                fontSize: "1rem",
+                boxShadow: "0 4px 8px rgba(0,0,0,0.2)"
+              }}>🎓</div>
             </div>
-            <h4
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "1.25rem",
-                marginBottom: 6,
-                fontWeight: 700,
-                color: T.navy,
-              }}
-            >
+
+            <h4 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.4rem", color: T.navy, marginBottom: 4, fontWeight: 700 }}>
               {f.name}
             </h4>
-            <div
-              style={{
-                color: T.gold,
-                fontSize: ".8rem",
-                fontWeight: 700,
-                letterSpacing: ".1em",
-                textTransform: "uppercase",
-                marginBottom: 12,
-              }}
-            >
+            <div style={{ color: T.gold, fontWeight: 700, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 12 }}>
               {f.role}
             </div>
-            <div
-              style={{
-                display: "inline-block",
-                background: "#e0f2fe",
-                color: "#0369a1",
-                padding: "3px 10px",
-                borderRadius: 20,
-                fontSize: ".72rem",
-                fontWeight: 600,
-                marginBottom: 12,
-              }}
-            >
-              {f.deptTag}
+
+            <div style={{ 
+              background: "rgba(15,32,68,0.04)", 
+              padding: "8px 16px", 
+              borderRadius: 30, 
+              display: "inline-block", 
+              margin: "0 auto 20px",
+              fontSize: "0.9rem",
+              fontWeight: 700,
+              color: T.navy2
+            }}>
+              Subject: {f.subject}
             </div>
-            <p style={{ color: T.gray, fontSize: ".83rem", lineHeight: 1.65, marginBottom: 14 }}>
-              {f.bio.slice(0, 90)}…
+
+            <div style={{ textAlign: "left", marginBottom: 20, flex: 1 }}>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8, fontSize: "0.85rem" }}>
+                <span style={{ color: T.gray }}>Qualification:</span>
+                <span style={{ fontWeight: 600, color: T.navy }}>{f.qualification}</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8, fontSize: "0.85rem" }}>
+                <span style={{ color: T.gray }}>Experience:</span>
+                <span style={{ fontWeight: 600, color: T.navy }}>{f.experience}</span>
+              </div>
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8, fontSize: "0.85rem" }}>
+                <span style={{ color: T.gray }}>Service:</span>
+                <span style={{ fontWeight: 600, color: T.navy }}>{f.yearsOfService.split(' ')[0]} Yrs</span>
+              </div>
+            </div>
+
+            <p style={{ color: T.gray, fontSize: "0.85rem", lineHeight: 1.6, fontStyle: "italic" }}>
+              "{f.bio}"
             </p>
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-                gap: 5,
-                marginBottom: 16,
-              }}
-            >
-              {f.subjects.map((s) => (
-                <span
-                  key={s}
-                  style={{
-                    background: "#f1f5f9",
-                    color: T.navy,
-                    fontSize: ".7rem",
-                    fontWeight: 500,
-                    padding: "3px 8px",
-                    borderRadius: 4,
-                  }}
-                >
-                  {s}
-                </span>
-              ))}
-            </div>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setModal(f);
-              }}
-              style={{
-                width: "100%",
-                padding: "9px",
-                borderRadius: 8,
-                border: `1.5px solid ${hovered === f.id ? T.navy : "#cbd5e1"}`,
-                background: hovered === f.id ? T.navy : "transparent",
-                color: hovered === f.id ? T.white : T.navy,
-                fontSize: ".82rem",
-                fontWeight: 600,
-                cursor: "pointer",
-                transition: "all .25s",
-              }}
-            >
-              View Full Profile
-            </button>
           </div>
         ))}
       </div>
-
-      {/* Faculty detail modal */}
-      {modal && (
-        <div
-          onClick={() => setModal(null)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(15,32,68,.72)",
-            zIndex: 2000,
-            display: "grid",
-            placeItems: "center",
-            backdropFilter: "blur(6px)",
-            animation: "fadeIn .3s ease",
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              background: T.white,
-              borderRadius: 24,
-              width: "min(760px, 92vw)",
-              maxHeight: "88vh",
-              overflowY: "auto",
-              padding: "48px",
-              position: "relative",
-              boxShadow: `0 30px 90px rgba(15, 32, 68, 0.4)`,
-              animation: "scaleIn .4s cubic-bezier(0.165, 0.84, 0.44, 1)",
-            }}
-          >
-            {/* Close button */}
-            <button
-              onClick={() => setModal(null)}
-              style={{
-                position: "absolute",
-                top: 16,
-                right: 16,
-                width: 34,
-                height: 34,
-                borderRadius: "50%",
-                border: "1.5px solid #cbd5e1",
-                background: T.white,
-                cursor: "pointer",
-                fontSize: ".9rem",
-                color: T.gray,
-                display: "grid",
-                placeItems: "center",
-                transition: "all .2s",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = T.navy;
-                e.currentTarget.style.color = T.white;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = T.white;
-                e.currentTarget.style.color = T.gray;
-              }}
-            >
-              ✕
-            </button>
-
-            {/* Header */}
-            <div
-              style={{ display: "flex", gap: 24, marginBottom: 28, flexWrap: "wrap" }}
-            >
-              <FacultyAvatar faculty={modal} size={96} fontSize="2rem" />
-              <div>
-                <h2
-                  style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "1.5rem",
-                    marginBottom: 4,
-                  }}
-                >
-                  {modal.name}
-                </h2>
-                <div
-                  style={{
-                    color: T.gold,
-                    fontSize: ".8rem",
-                    fontWeight: 700,
-                    letterSpacing: ".1em",
-                    textTransform: "uppercase",
-                    marginBottom: 8,
-                  }}
-                >
-                  {modal.role}
-                </div>
-                <span
-                  style={{
-                    display: "inline-block",
-                    background: "#e0f2fe",
-                    color: "#0369a1",
-                    padding: "4px 12px",
-                    borderRadius: 20,
-                    fontSize: ".76rem",
-                    fontWeight: 600,
-                  }}
-                >
-                  {modal.deptTag}
-                </span>
-              </div>
-            </div>
-
-            {/* Stats row */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3,1fr)",
-                gap: 14,
-                marginBottom: 24,
-              }}
-            >
-              {[
-                ["Years Teaching", modal.stats.years + "+"],
-                ["Publications", modal.stats.papers],
-                ["Students Taught", modal.stats.students.toLocaleString() + "+"],
-              ].map(([lbl, val]) => (
-                <div
-                  key={lbl}
-                  style={{
-                    background: T.light,
-                    borderRadius: 10,
-                    padding: 14,
-                    textAlign: "center",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontFamily: "'Playfair Display', serif",
-                      fontSize: "1.5rem",
-                      color: T.navy,
-                      fontWeight: 700,
-                    }}
-                  >
-                    {val}
-                  </div>
-                  <div style={{ color: T.gray, fontSize: ".72rem", marginTop: 2 }}>{lbl}</div>
-                </div>
-              ))}
-            </div>
-
-            {/* Detail sections */}
-            {[
-              {
-                title: "About",
-                content: (
-                  <p style={{ color: T.gray, fontSize: ".9rem", lineHeight: 1.7 }}>{modal.bio}</p>
-                ),
-              },
-              {
-                title: "Classes Handled",
-                content: (
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                    {modal.classes.map((c) => (
-                      <span
-                        key={c}
-                        style={{
-                          background: T.navy,
-                          color: T.white,
-                          padding: "6px 14px",
-                          borderRadius: 8,
-                          fontSize: ".8rem",
-                        }}
-                      >
-                        {c}
-                      </span>
-                    ))}
-                  </div>
-                ),
-              },
-              {
-                title: "Subjects Taught",
-                content: (
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                    {modal.subjects.map((s) => (
-                      <span
-                        key={s}
-                        style={{
-                          background: "#f1f5f9",
-                          color: T.navy,
-                          padding: "5px 12px",
-                          borderRadius: 6,
-                          fontSize: ".8rem",
-                        }}
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                ),
-              },
-              {
-                title: "Notable Achievements",
-                content: (
-                  <p style={{ color: T.gray, fontSize: ".9rem", lineHeight: 1.7 }}>
-                    {modal.achievements}
-                  </p>
-                ),
-              },
-              {
-                title: "Contact & Office",
-                content: (
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-                    {[
-                      ["✉️", modal.email, `mailto:${modal.email}`],
-                      ["📞", modal.phone, `tel:${modal.phone}`],
-                      ["📍", modal.office, null],
-                    ].map(([icon, val, href]) => (
-                      <a
-                        key={val}
-                        href={href || undefined}
-                        style={{
-                          display: "flex",
-                          gap: 10,
-                          color: T.navy,
-                          fontSize: ".87rem",
-                          textDecoration: "none",
-                          transition: "color .2s",
-                        }}
-                        onMouseEnter={(e) => (e.currentTarget.style.color = T.gold)}
-                        onMouseLeave={(e) => (e.currentTarget.style.color = T.navy)}
-                      >
-                        <span>{icon}</span>
-                        <span>{val}</span>
-                      </a>
-                    ))}
-                  </div>
-                ),
-              },
-            ].map(({ title, content }) => (
-              <div key={title} style={{ marginBottom: 24 }}>
-                <h5
-                  style={{
-                    fontSize: ".72rem",
-                    fontWeight: 700,
-                    letterSpacing: ".14em",
-                    textTransform: "uppercase",
-                    color: T.gray,
-                    marginBottom: 12,
-                    paddingBottom: 6,
-                    borderBottom: `1px solid ${T.light}`,
-                  }}
-                >
-                  {title}
-                </h5>
-                {content}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </section>
   );
 }

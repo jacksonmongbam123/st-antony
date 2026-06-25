@@ -865,8 +865,11 @@ export function VisionMission() {
  * AcademicPerformance — showcasing 20 years of excellence.
  */
 export function AcademicPerformance() {
+  const [category, setCategory] = useState("puc"); // "highSchool" or "puc"
   const [selectedYearIndex, setSelectedYearIndex] = useState(0);
-  const data = ACADEMIC_PERFORMANCE_DATA[selectedYearIndex];
+  
+  const currentDataList = ACADEMIC_PERFORMANCE_DATA[category];
+  const data = currentDataList[selectedYearIndex];
   const [ref, inView] = useInView();
 
   const statCardStyle = {
@@ -877,6 +880,10 @@ export function AcademicPerformance() {
     textAlign: "center",
     transition: "all 0.3s ease",
     border: "1px solid rgba(15,32,68,0.05)",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    height: "100%",
   };
 
   return (
@@ -886,6 +893,44 @@ export function AcademicPerformance() {
         title="Performance History"
         sub="Celebrating two decades of outstanding academic results and student achievements."
       />
+
+      {/* Category Toggle */}
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
+        <div style={{ 
+          background: "rgba(15,32,68,0.05)", 
+          padding: 6, 
+          borderRadius: 40, 
+          display: "flex",
+          gap: 4
+        }}>
+          {[
+            { id: "highSchool", label: "High School" },
+            { id: "puc", label: "PUC / Pre-University" }
+          ].map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => {
+                setCategory(cat.id);
+                setSelectedYearIndex(0);
+              }}
+              style={{
+                padding: "10px 24px",
+                borderRadius: 30,
+                border: "none",
+                background: category === cat.id ? T.white : "transparent",
+                color: category === cat.id ? T.navy : T.gray,
+                fontWeight: 700,
+                fontSize: "0.95rem",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+                boxShadow: category === cat.id ? `0 4px 12px rgba(0,0,0,0.1)` : "none",
+              }}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+      </div>
 
       {/* Year Selector Timeline */}
       <div 
@@ -898,7 +943,7 @@ export function AcademicPerformance() {
           justifyContent: "flex-start",
         }}
       >
-        {ACADEMIC_PERFORMANCE_DATA.map((item, i) => (
+        {currentDataList.map((item, i) => (
           <button
             key={item.year}
             onClick={() => setSelectedYearIndex(i)}
@@ -921,25 +966,30 @@ export function AcademicPerformance() {
         ))}
       </div>
 
-      <div ref={ref} className="mobile-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 40 }}>
+      <div ref={ref} className="mobile-stack" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: 32, alignItems: "stretch" }}>
         {/* Left: Top Scorer Card */}
         <div 
           style={{ 
             opacity: inView ? 1 : 0, 
-            transform: inView ? "none" : "translateX(-30px)", 
-            transition: "all 0.6s ease" 
+            transform: inView ? "none" : "translateY(20px)", 
+            transition: "all 0.6s ease",
+            height: "100%"
           }}
         >
           <div
             style={{
               background: T.white,
               borderRadius: 24,
-              padding: "40px 32px",
+              padding: "48px 32px",
               textAlign: "center",
               boxShadow: `0 20px 50px ${T.shadowMd}`,
               border: `1px solid ${T.gold}22`,
               position: "relative",
               overflow: "hidden",
+              height: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center"
             }}
           >
             <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 8, background: T.gold }}></div>
@@ -979,7 +1029,7 @@ export function AcademicPerformance() {
             <div style={{ display: "flex", justifyContent: "center", gap: 20, marginBottom: 24 }}>
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: "1.5rem", fontWeight: 800, color: T.navy }}>{data.topScorer.marks}</div>
-                <div style={{ fontSize: "0.8rem", color: T.gray, textTransform: "uppercase" }}>Total Marks</div>
+                <div style={{ fontSize: "0.8rem", color: T.gray, textTransform: "uppercase" }}>Marks Obtained</div>
               </div>
               <div style={{ width: 1, background: "rgba(0,0,0,0.1)" }}></div>
               <div style={{ textAlign: "center" }}>
@@ -989,29 +1039,32 @@ export function AcademicPerformance() {
             </div>
             <div style={{ 
               background: "rgba(15,32,68,0.05)", 
-              padding: "12px 20px", 
+              padding: "14px 20px", 
               borderRadius: 12, 
               fontSize: "0.95rem", 
               color: T.navy,
               fontWeight: 600
             }}>
-              Stream: {data.topScorer.stream}
+              {data.topScorer.class}
             </div>
           </div>
         </div>
 
-        {/* Right: Statistics Grid */}
+        {/* Right: Statistics Grid & Table */}
         <div 
           style={{ 
             opacity: inView ? 1 : 0, 
-            transform: inView ? "none" : "translateX(30px)", 
-            transition: "all 0.6s 0.2s ease" 
+            transform: inView ? "none" : "translateY(20px)", 
+            transition: "all 0.6s 0.2s ease",
+            display: "flex",
+            flexDirection: "column",
+            gap: 24
           }}
         >
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 20 }}>
             <div style={{ ...statCardStyle, background: `linear-gradient(135deg, ${T.navy} 0%, ${T.navy}dd 100%)`, color: T.white }}>
-              <div style={{ fontSize: "2.5rem", fontWeight: 800, marginBottom: 4 }}>{data.passPercentage}%</div>
-              <div style={{ fontSize: "0.9rem", opacity: 0.8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Overall Pass</div>
+              <div style={{ fontSize: "2.4rem", fontWeight: 800, marginBottom: 4 }}>{data.passPercentage}%</div>
+              <div style={{ fontSize: "0.85rem", opacity: 0.8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Overall Pass</div>
             </div>
             <div style={statCardStyle}>
               <div style={{ fontSize: "2rem", fontWeight: 800, color: T.navy, marginBottom: 4 }}>{data.totalAppeared}</div>
@@ -1021,30 +1074,26 @@ export function AcademicPerformance() {
               <div style={{ fontSize: "2rem", fontWeight: 800, color: T.gold, marginBottom: 4 }}>{data.distinction}</div>
               <div style={{ fontSize: "0.85rem", color: T.gray, textTransform: "uppercase" }}>Distinctions</div>
             </div>
-            <div style={statCardStyle}>
-              <div style={{ fontSize: "2rem", fontWeight: 800, color: T.navy, marginBottom: 4 }}>{data.firstClass}</div>
-              <div style={{ fontSize: "0.85rem", color: T.gray, textTransform: "uppercase" }}>First Class</div>
-            </div>
           </div>
 
           {/* Detailed Results Table */}
           <div 
             style={{ 
-              marginTop: 30, 
               background: T.white, 
-              borderRadius: 20, 
-              padding: "32px", 
-              boxShadow: `0 10px 30px ${T.shadow}` 
+              borderRadius: 24, 
+              padding: "36px", 
+              boxShadow: `0 10px 30px ${T.shadow}`,
+              flex: 1
             }}
           >
-            <h4 style={{ marginBottom: 20, color: T.navy, fontSize: "1.2rem" }}>Result Breakdown — {data.year}</h4>
+            <h4 style={{ marginBottom: 24, color: T.navy, fontSize: "1.3rem", fontWeight: 700 }}>Result Breakdown — {data.year}</h4>
             <div className="table-scroll">
               <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
                 <thead>
                   <tr style={{ borderBottom: "2px solid rgba(15,32,68,0.05)" }}>
-                    <th style={{ padding: "12px 8px", color: T.gray, fontSize: "0.85rem", textTransform: "uppercase" }}>Category</th>
-                    <th style={{ padding: "12px 8px", color: T.gray, fontSize: "0.85rem", textTransform: "uppercase", textAlign: "right" }}>Count</th>
-                    <th style={{ padding: "12px 8px", color: T.gray, fontSize: "0.85rem", textTransform: "uppercase", textAlign: "right" }}>Percentage</th>
+                    <th style={{ padding: "14px 8px", color: T.gray, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>Category</th>
+                    <th style={{ padding: "14px 8px", color: T.gray, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "right" }}>Count</th>
+                    <th style={{ padding: "14px 8px", color: T.gray, fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", textAlign: "right" }}>Percentage</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1052,16 +1101,15 @@ export function AcademicPerformance() {
                     { label: "Distinction", count: data.distinction, color: T.gold },
                     { label: "First Class", count: data.firstClass, color: T.navy },
                     { label: "Second Class", count: data.secondClass, color: T.gray },
-                    { label: "Pass Class", count: data.passClass, color: T.gray },
                     { label: "Failures", count: data.failure, color: "#ef4444" },
                   ].map((row, idx) => (
                     <tr key={idx} style={{ borderBottom: "1px solid rgba(15,32,68,0.03)" }}>
-                      <td style={{ padding: "14px 8px", fontWeight: 600, color: T.navy }}>
-                        <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: row.color, marginRight: 10 }}></span>
+                      <td style={{ padding: "16px 8px", fontWeight: 600, color: T.navy }}>
+                        <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: row.color, marginRight: 12 }}></span>
                         {row.label}
                       </td>
-                      <td style={{ padding: "14px 8px", textAlign: "right", fontWeight: 700 }}>{row.count}</td>
-                      <td style={{ padding: "14px 8px", textAlign: "right", color: T.gray }}>
+                      <td style={{ padding: "16px 8px", textAlign: "right", fontWeight: 700, color: T.navy }}>{row.count}</td>
+                      <td style={{ padding: "16px 8px", textAlign: "right", color: T.gray, fontWeight: 500 }}>
                         {((row.count / data.totalAppeared) * 100).toFixed(1)}%
                       </td>
                     </tr>

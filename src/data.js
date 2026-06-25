@@ -144,89 +144,67 @@ export const HERO_SLIDES = [
   {
     image:    "./school.jpeg",
     overlay:  "linear-gradient(135deg,rgba(70, 71, 71, 0.78) 0%,rgba(218, 221, 227, 0.55) 100%)",
-    eyebrow:  "Est. 1986 · Ranked #1 in the Region",
+    eyebrow:  "Est. 1986 · High School & PUC",
     title:    ["Shaping Minds,", "Building Futures"],
-    desc:     "St. Antony's Institution nurtures curiosity, fosters excellence, and prepares graduates to lead in a rapidly evolving world.",
+    desc:     "St. Antony's Institution nurtures curiosity and excellence across High School (8th-10th) and Pre-University (PUC) levels.",
     cta:      { label: "Apply Now", href: "admissions" },
     accent:   "#4e7fd4",
   },
   {
     image:    "./Lab3.jpeg",
     overlay:  "linear-gradient(135deg,rgba(13,74,60,0.80) 0%,rgba(220, 225, 224, 0.55) 100%)",
-    eyebrow:  "State-of-the-Art Science Labs",
-    title:    ["Hands-On Learning,", "Real-World Science"],
-    desc:     "Our fully equipped laboratories let students explore biology, chemistry, and physics through practical experimentation.",
+    eyebrow:  "Excellence in Education",
+    title:    ["Holistic Growth,", "Academic Rigor"],
+    desc:     "From foundational high school years to specialized PUC streams, we provide a complete educational journey.",
     cta:      { label: "Meet Our Faculty", href: "faculty" },
     accent:   "#2fa0d8",
-  },
-  {
-    image:    "./lab2.jpeg",
-    overlay:  "linear-gradient(135deg,rgba(18,35,100,0.80) 0%,rgba(212, 215, 221, 0.55) 100%)",
-    eyebrow:  "Technology & Innovation",
-    title:    ["Digital Skills for", "Tomorrow's Leaders"],
-    desc:     "From computer labs to AI basics, we prepare every student with the digital literacy needed to succeed in a modern world.",
-    cta:      { label: "See Achievements", href: "achievements" },
-    accent:   "#2aad7a",
-  },
-  {
-    image:    "./Lab.jpeg",
-    overlay:  "linear-gradient(135deg,rgba(58,26,106,0.80) 0%,rgba(218, 216, 219, 0.5) 100%)",
-    eyebrow:  "Sports · Culture · Innovation",
-    title:    ["Champions On", "Every Field"],
-    desc:     "Our students don't just excel in classrooms — they shine in sports arenas, cultural stages, and innovation labs.",
-    cta:      { label: "Apply Now", href: "admissions" },
-    accent:   "#a855f7",
   },
 ];
 
 // ── ADMISSIONS ─────────────────────────────────────────────
 export const ADMISSION_DATA = [
   {
-    icon: "🏛️", bg: "#eff6ff",
-    title: "Admission Process",
-    subtitle: "Step-by-step guide to join St. Antony's",
+    icon: "🏫", bg: "#eff6ff",
+    title: "High School Admission",
+    subtitle: "Classes 8th, 9th, and 10th Standard",
     rows: [
-      { label: "Application Window", value: "Mar 1 – Jun 30, 2026" },
-      { label: "Entrance Exam",      value: "CET 2026 · Jul 15" },
-      { label: "Merit Counselling",  value: "Aug 1 – Aug 20, 2026" },
-      { label: "Classes Begin",      value: "Sep 1, 2026" },
-      { label: "Mode",               value: "Online + Offline" },
+      { label: "Application Starts", value: "March 1st, 2026" },
+      { label: "Eligibility",        value: "Previous class pass" },
+      { label: "Entrance Test",      value: "Aptitude Based" },
+      { label: "Medium",             value: "English / Kannada" },
     ],
   },
   {
-    icon: "💰", bg: "#f0fdf4",
+    icon: "🏛️", bg: "#f0fdf4",
+    title: "PUC Admission",
+    subtitle: "1st PUC & 2nd PUC (Class 11 & 12)",
+    rows: [
+      { label: "Science Streams",    value: "PCMB, PCMC" },
+      { label: "Commerce Streams",   value: "EBAC, HEBA" },
+      { label: "Arts Streams",       value: "HEPS" },
+      { label: "SSLC Cut-off",       value: "Min 60% aggregate" },
+    ],
+  },
+  {
+    icon: "💰", bg: "#fffbeb",
     title: "Fee Structure",
-    subtitle: "Transparent annual fee breakup per stream",
+    subtitle: "Competitive and transparent pricing",
     rows: [
-      { label: "Science (PCM/PCB)",  value: "₹48,000 / yr", hi: true },
-      { label: "Commerce (w/ Math)", value: "₹38,000 / yr", hi: true },
-      { label: "Arts / Humanities",  value: "₹28,000 / yr", hi: true },
-      { label: "Lab & Activity Fee", value: "₹4,500 / yr" },
-      { label: "Scholarship Waiver", value: "Up to 100%" },
-    ],
-  },
-  {
-    icon: "✅", bg: "#fffbeb",
-    title: "Eligibility Criteria",
-    subtitle: "Minimum requirements for admission",
-    rows: [
-      { label: "Class 10 Marks",  value: "≥ 60% aggregate" },
-      { label: "Science Stream",  value: "PCM/PCB — Min 65%" },
-      { label: "Commerce Stream", value: "Math score ≥ 55%" },
-      { label: "Arts Stream",     value: "Any background" },
-      { label: "Age Limit",       value: "15 – 18 years" },
+      { label: "High School",        value: "₹22,000 / yr" },
+      { label: "PUC Science",        value: "₹48,000 / yr" },
+      { label: "PUC Commerce/Arts",  value: "₹35,000 / yr" },
+      { label: "Scholarships",       value: "Merit-based available" },
     ],
   },
   {
     icon: "🎓", bg: "#faf5ff",
-    title: "Programmes Offered",
-    subtitle: "Streams and specialisations available",
+    title: "Programmes",
+    subtitle: "Diverse educational paths",
     rows: [
-      { label: "Streams",       value: "Science · Commerce · Arts" },
-      { label: "Vocational",    value: "IT · Fashion · Tourism" },
-      { label: "Sports Quota",  value: "5% seats reserved" },
-      { label: "NRI Quota",     value: "Available (FCRA)" },
-      { label: "Accreditation", value: "NAAC A++ · ISO 9001" },
+      { label: "Academic",           value: "KSEEB & PUE Board" },
+      { label: "Co-Curricular",      value: "Sports, Arts, Music" },
+      { label: "Infrastructure",     value: "Modern Labs & Library" },
+      { label: "Hostel",             value: "Available for Boys/Girls" },
     ],
   },
 ];
@@ -234,69 +212,22 @@ export const ADMISSION_DATA = [
 // ── CLASS & SUBJECTS ───────────────────────────────────────
 export const CLASS_DATA = [
   {
-    label: "Class XI – Science",
+    label: "High School (8th-10th)",
     rows: [
-      { subject: "Physics",       code: "SCI-301", periods: 5, teacher: "Dr. Rajan Mehta",      emoji: "👨‍🏫" },
-      { subject: "Chemistry",     code: "SCI-302", periods: 5, teacher: "Ms. Priya Nair",        emoji: "👩‍🔬" },
-      { subject: "Mathematics",   code: "SCI-303", periods: 6, teacher: "Mr. Aarav Singh",       emoji: "👨‍💻" },
-      { subject: "Biology",       code: "SCI-304", periods: 4, teacher: "Dr. Sunita Rao",        emoji: "👩‍🏫" },
-      { subject: "English",       code: "LNG-101", periods: 4, teacher: "Ms. Clara Fernandes",   emoji: "👩‍🎓" },
-      { subject: "Computer Sci.", code: "IT-201",  periods: 3, teacher: "Prof. Ananya Krishnan", emoji: "👩‍💻" },
+      { subject: "Mathematics",   code: "HS-MTH", periods: 6, teacher: "Mr. Ramesh K.",      emoji: "📐" },
+      { subject: "Science",       code: "HS-SCI", periods: 6, teacher: "Ms. Savitha M.",     emoji: "🧪" },
+      { subject: "Social Science", code: "HS-SOC", periods: 5, teacher: "Mr. Prakash G.",     emoji: "🌍" },
+      { subject: "English",       code: "HS-ENG", periods: 5, teacher: "Ms. Mary D.",        emoji: "📖" },
+      { subject: "Kannada/Hindi", code: "HS-LAN", periods: 4, teacher: "Mr. Shivu L.",       emoji: "🗣️" },
     ],
   },
   {
-    label: "Class XII – Science",
+    label: "PUC Science",
     rows: [
-      { subject: "Physics",       code: "SCI-401", periods: 5, teacher: "Dr. Rajan Mehta",      emoji: "👨‍🏫" },
-      { subject: "Chemistry",     code: "SCI-402", periods: 5, teacher: "Ms. Priya Nair",        emoji: "👩‍🔬" },
-      { subject: "Mathematics",   code: "SCI-403", periods: 6, teacher: "Mr. Aarav Singh",       emoji: "👨‍💻" },
-      { subject: "Biology",       code: "SCI-404", periods: 4, teacher: "Dr. Sunita Rao",        emoji: "👩‍🏫" },
-      { subject: "English",       code: "LNG-102", periods: 4, teacher: "Ms. Clara Fernandes",   emoji: "👩‍🎓" },
-      { subject: "Comp. Science", code: "IT-202",  periods: 3, teacher: "Prof. Ananya Krishnan", emoji: "👩‍💻" },
-    ],
-  },
-  {
-    label: "Class XI – Commerce",
-    rows: [
-      { subject: "Accountancy",  code: "COM-301", periods: 5, teacher: "Mr. Vikram Joshi",     emoji: "👨‍💼" },
-      { subject: "Business St.", code: "COM-302", periods: 5, teacher: "Ms. Rekha Pillai",     emoji: "👩‍💼" },
-      { subject: "Economics",    code: "COM-303", periods: 4, teacher: "Dr. Kiran Bose",       emoji: "👨‍🏫" },
-      { subject: "Mathematics",  code: "COM-304", periods: 4, teacher: "Mr. Aarav Singh",      emoji: "👨‍💻" },
-      { subject: "English",      code: "LNG-101", periods: 4, teacher: "Ms. Clara Fernandes",  emoji: "👩‍🎓" },
-      { subject: "Informatics",  code: "IT-203",  periods: 2, teacher: "Prof. Ananya Krishnan",emoji: "👩‍💻" },
-    ],
-  },
-  {
-    label: "Class XII – Commerce",
-    rows: [
-      { subject: "Accountancy",  code: "COM-401", periods: 5, teacher: "Mr. Vikram Joshi",     emoji: "👨‍💼" },
-      { subject: "Business St.", code: "COM-402", periods: 5, teacher: "Ms. Rekha Pillai",     emoji: "👩‍💼" },
-      { subject: "Economics",    code: "COM-403", periods: 4, teacher: "Dr. Kiran Bose",       emoji: "👨‍🏫" },
-      { subject: "Mathematics",  code: "COM-404", periods: 4, teacher: "Mr. Aarav Singh",      emoji: "👨‍💻" },
-      { subject: "English",      code: "LNG-102", periods: 4, teacher: "Ms. Clara Fernandes",  emoji: "👩‍🎓" },
-      { subject: "Informatics",  code: "IT-204",  periods: 2, teacher: "Prof. Ananya Krishnan",emoji: "👩‍💻" },
-    ],
-  },
-  {
-    label: "Class XI – Arts",
-    rows: [
-      { subject: "History",        code: "ART-301", periods: 4, teacher: "Mr. Samuel D'Souza",  emoji: "👨‍🎨" },
-      { subject: "Political Sci.", code: "ART-302", periods: 4, teacher: "Ms. Meena Thomas",    emoji: "👩‍🏫" },
-      { subject: "Geography",      code: "ART-303", periods: 4, teacher: "Dr. Harish Kumar",    emoji: "👨‍🏫" },
-      { subject: "Sociology",      code: "ART-304", periods: 4, teacher: "Ms. Lakshmi Rao",     emoji: "👩‍🎓" },
-      { subject: "English",        code: "LNG-101", periods: 4, teacher: "Ms. Clara Fernandes", emoji: "👩‍🎓" },
-      { subject: "Fine Arts",      code: "ART-305", periods: 3, teacher: "Mr. Samuel D'Souza",  emoji: "👨‍🎨" },
-    ],
-  },
-  {
-    label: "Class XII – Arts",
-    rows: [
-      { subject: "History",        code: "ART-401", periods: 4, teacher: "Mr. Samuel D'Souza",  emoji: "👨‍🎨" },
-      { subject: "Political Sci.", code: "ART-402", periods: 4, teacher: "Ms. Meena Thomas",    emoji: "👩‍🏫" },
-      { subject: "Geography",      code: "ART-403", periods: 4, teacher: "Dr. Harish Kumar",    emoji: "👨‍🏫" },
-      { subject: "Sociology",      code: "ART-404", periods: 4, teacher: "Ms. Lakshmi Rao",     emoji: "👩‍🎓" },
-      { subject: "English",        code: "LNG-102", periods: 4, teacher: "Ms. Clara Fernandes", emoji: "👩‍🎓" },
-      { subject: "Fine Arts",      code: "ART-405", periods: 3, teacher: "Mr. Samuel D'Souza",  emoji: "👨‍🎨" },
+      { subject: "Physics",       code: "PU-PHY", periods: 5, teacher: "Dr. Rajan Mehta",      emoji: "👨‍🏫" },
+      { subject: "Chemistry",     code: "PU-CHE", periods: 5, teacher: "Ms. Priya Nair",        emoji: "👩‍🔬" },
+      { subject: "Mathematics",   code: "PU-MAT", periods: 6, teacher: "Mr. Aarav Singh",       emoji: "👨‍💻" },
+      { subject: "Biology/CS",    code: "PU-BIO", periods: 4, teacher: "Dr. Sunita Rao",        emoji: "👩‍🏫" },
     ],
   },
 ];
@@ -304,55 +235,19 @@ export const CLASS_DATA = [
 // ── ACHIEVEMENTS ───────────────────────────────────────────
 export const ACHIEVEMENT_DATA = [
   {
+    id: "academic", label: "🎓 Academic",
+    slides: [
+      { medal: "🥇", year: "2024", title: "100% Result in SSLC", color: "#1a4a7a",
+        desc: "Our 10th Standard students achieved a perfect 100% pass rate for the 5th consecutive year." },
+      { medal: "🥈", year: "2024", title: "Top PUC Ranks", color: "#1a3a6a",
+        desc: "St. Antony's secured 12 distinctions in the 2nd PUC State Board Examinations." },
+    ],
+  },
+  {
     id: "sports", label: "🏆 Sports",
     slides: [
-      { medal: "🥇", year: "2025 · National", title: "Inter-University Cricket Champions", color: "#1a4a7a",
-        desc: "Our cricket team clinched the national title for the third consecutive year with an unbeaten run of 12 matches." },
-      { medal: "🥈", year: "2024 · State",    title: "Basketball State Runners-up",        color: "#1a3a6a",
-        desc: "Women's basketball team reached the state finals, defeating 18 colleges en route." },
-      { medal: "🏅", year: "2024 · National", title: "Athletics Gold Medalist",            color: "#0d4a3c",
-        desc: "Priya Sharma won gold in the 400m sprint at the National Inter-University Games, clocking 52.3 seconds." },
-      { medal: "🥇", year: "2023 · State",    title: "Football State Champions",           color: "#3a1a6a",
-        desc: "Men's football team swept through the state tournament with a perfect unbeaten record across 10 games." },
-    ],
-  },
-  {
-    id: "education", label: "📚 Education",
-    slides: [
-      { medal: "🎓", year: "2025 · NAAC",    title: "A++ Accreditation",         color: "#1a4a7a",
-        desc: "St. Antony's received the highest NAAC grade for the second successive cycle with a score of 3.72/4." },
-      { medal: "🔬", year: "2024 · DST",     title: "₹5 Cr Research Grant",      color: "#0d4a3c",
-        desc: "DST awarded a multi-year grant for our AI & Sustainable Energy research cluster, covering 8 PhD scholars." },
-      { medal: "🏫", year: "2024 · Ranking", title: "#3 in State Rankings",      color: "#3a1a6a",
-        desc: "India Today ranked us among the top 3 colleges in the state for academic outcomes and placement records." },
-      { medal: "📖", year: "2023 · Olympiad", title: "National Science Olympiad", color: "#1a3a6a",
-        desc: "Students swept 4 gold medals at the National Science Olympiad finals held in New Delhi." },
-    ],
-  },
-  {
-    id: "cultural", label: "🎭 Cultural",
-    slides: [
-      { medal: "🎭", year: "2025 · National", title: "Best Drama Troupe",         color: "#1a4a7a",
-        desc: "Our theatre group won Best Production at the National Inter-College Drama Festival in Mumbai." },
-      { medal: "🎵", year: "2024 · Regional", title: "Music Ensemble Gold",       color: "#3a1a6a",
-        desc: "Apex Symphonia took home gold at the Regional Classical Music Competition — fourth year running." },
-      { medal: "🎨", year: "2024 · National", title: "Fine Arts Exhibition",      color: "#0d4a3c",
-        desc: "Student artworks displayed at the National Gallery of Modern Art, Delhi — a first for the institution." },
-      { medal: "💃", year: "2023 · State",    title: "Classical Dance Champions", color: "#1a3a6a",
-        desc: "State-level Bharatanatyam competition champions for the 5th consecutive year." },
-    ],
-  },
-  {
-    id: "events", label: "📅 Events",
-    slides: [
-      { medal: "🌍", year: "Aug 2026 · Upcoming", title: "TechFest 2026",         color: "#1a4a7a",
-        desc: "Annual technology festival hosting 5,000+ participants across 40+ events, hackathons, and exhibitions." },
-      { medal: "🎪", year: "Oct 2026 · Upcoming", title: "Cultural Fest 'Utsav'", color: "#0d4a3c",
-        desc: "Three-day pan-India cultural festival featuring performances, competitions, and art exhibitions." },
-      { medal: "🤝", year: "Jan 2026 · Past",     title: "Industry Conclave",     color: "#3a1a6a",
-        desc: "200+ industry leaders and 1,500 students connected at our flagship placement and networking conclave." },
-      { medal: "🎓", year: "May 2026 · Past",     title: "Convocation 2026",      color: "#1a3a6a",
-        desc: "2,400 graduates received degrees. Chief Guest: Padma Bhushan Dr. S. Nair, Chairman of ISRO." },
+      { medal: "🥇", year: "2024", title: "District Level Kabaddi", color: "#0d4a3c",
+        desc: "High School boys' team won the gold at the District Level Kabaddi Championship." },
     ],
   },
 ];
@@ -360,228 +255,150 @@ export const ACHIEVEMENT_DATA = [
 // ── FACULTY ────────────────────────────────────────────────
 export const FACULTY_DATA = [
   {
-    id: 1, name: "Dr. Rajan Mehta", degree: "PhD", role: "Head of Sciences",
-    dept: "Science", deptTag: "Science Dept.", avatarInitials: "RM", avatarColor: "#2563eb",
-    subjects: ["Physics", "Applied Physics"],
-    classes: ["Class XI Sci", "Class XII Sci"],
-    bio: "20+ years shaping future scientists. Specialist in Applied Physics and Quantum Computing research with 40+ peer-reviewed publications in international journals.",
+    id: 1, name: "Dr. Rajan Mehta", degree: "PhD", role: "Head of PUC Sciences",
+    dept: "PUC", deptTag: "PUC Dept.", avatarInitials: "RM", avatarColor: "#2563eb",
+    subjects: ["Physics"],
+    classes: ["1st PUC", "2nd PUC"],
+    bio: "20+ years experience in Pre-University education.",
     stats: { years: 22, papers: 42, students: 1800 },
     email: "r.mehta@stantonys.edu.in", phone: "+91 98450 11001",
     office: "Science Block, Room 304",
-    achievements: "DRDO Research Fellowship (2019), Best Educator Award — Karnataka (2022), IIT Collaboration Grant Recipient",
+    achievements: "Best Educator Award — Karnataka (2022)",
   },
   {
-    id: 2, name: "Prof. Ananya Krishnan", degree: "PhD", role: "Head of Computer Science",
-    dept: "Computer Science", deptTag: "CS Dept.", avatarInitials: "AK", avatarColor: "#7c3aed",
-    subjects: ["Computer Science", "Informatics", "AI Basics", "Python"],
-    classes: ["Class XI Sci", "Class XII Sci", "Class XI Com", "Class XII Com"],
-    bio: "AI & Machine Learning researcher. Guided 200+ students to leading tech roles at Google, Microsoft, and top-tier startups globally.",
-    stats: { years: 14, papers: 28, students: 2100 },
-    email: "a.krishnan@stantonys.edu.in", phone: "+91 98450 11002",
-    office: "CS Block, Room 101",
-    achievements: "Google Faculty Research Award (2023), Best Paper — IEEE ICSE 2021, Women in Tech Leadership Award 2022",
-  },
-  {
-    id: 3, name: "Mr. Samuel D'Souza", degree: "MA", role: "Head of Arts & Humanities",
-    dept: "Arts", deptTag: "Arts Dept.", avatarInitials: "SD", avatarColor: "#dc2626",
-    subjects: ["Fine Arts", "History", "Cultural Studies"],
-    classes: ["Class XI Arts", "Class XII Arts"],
-    bio: "Award-winning educator and practising artist. Leads our cultural programmes, theatre group, and fine arts curriculum with over 18 years of experience.",
-    stats: { years: 18, papers: 9, students: 1400 },
-    email: "s.dsouza@stantonys.edu.in", phone: "+91 98450 11003",
-    office: "Arts Block, Room 205",
-    achievements: "Karnataka Rajyotsava Award (2021), Best Theatre Director — National Drama Fest 2024, Lalit Kala Akademi Fellow",
-  },
-  {
-    id: 4, name: "Mr. Vikram Joshi", degree: "MBA", role: "Senior Lecturer — Commerce",
-    dept: "Commerce", deptTag: "Commerce Dept.", avatarInitials: "VJ", avatarColor: "#059669",
-    subjects: ["Accountancy", "Cost Accounting"],
-    classes: ["Class XI Com", "Class XII Com"],
-    bio: "Former CFO turned educator with deep expertise in financial accounting, taxation, and business strategy. Mentored 15 CA rank holders.",
-    stats: { years: 12, papers: 6, students: 1100 },
-    email: "v.joshi@stantonys.edu.in", phone: "+91 98450 11004",
-    office: "Commerce Block, Room 112",
-    achievements: "ICAI Best Educator Recognition (2023), 15 CA Rank Holders Mentored, Published CA Study Material (2022)",
-  },
-  {
-    id: 5, name: "Ms. Priya Nair", degree: "MSc", role: "Lecturer — Chemistry",
-    dept: "Science", deptTag: "Science Dept.", avatarInitials: "PN", avatarColor: "#0891b2",
-    subjects: ["Chemistry", "Organic Chemistry", "Lab Work"],
-    classes: ["Class XI Sci", "Class XII Sci"],
-    bio: "Passionate chemistry educator specialising in making complex organic reactions intuitive through hands-on lab methodologies and visual learning.",
-    stats: { years: 9, papers: 11, students: 870 },
-    email: "p.nair@stantonys.edu.in", phone: "+91 98450 11005",
-    office: "Science Block, Chem Lab 2",
-    achievements: "Best Lab Educator Award 2023, CSIR Project Collaborator, National Chemistry Olympiad Trainer",
-  },
-  {
-    id: 6, name: "Mr. Aarav Singh", degree: "MTech", role: "Lecturer — Mathematics",
-    dept: "Science", deptTag: "Science & Commerce", avatarInitials: "AS", avatarColor: "#ea580c",
-    subjects: ["Mathematics", "Statistics", "Calculus"],
-    classes: ["Class XI Sci", "Class XII Sci", "Class XI Com", "Class XII Com"],
-    bio: "Ex-ISRO scientist turned mathematics educator. Makes calculus and statistics accessible through real-world engineering and data problems.",
-    stats: { years: 7, papers: 8, students: 980 },
-    email: "a.singh@stantonys.edu.in", phone: "+91 98450 11006",
-    office: "Science Block, Room 201",
-    achievements: "ISRO Young Scientist Award (2017), JEE Advanced Rank Holder Training — 100% success rate, TEDx Speaker 2024",
-  },
-  {
-    id: 7, name: "Dr. Sunita Rao", degree: "PhD", role: "Lecturer — Biology",
-    dept: "Science", deptTag: "Science Dept.", avatarInitials: "SR", avatarColor: "#16a34a",
-    subjects: ["Biology", "Botany", "Zoology", "Genetics"],
-    classes: ["Class XI Sci", "Class XII Sci"],
-    bio: "Researcher-turned-teacher with specialisation in molecular biology and genetics. Has co-authored a widely used Class XII Biology textbook.",
-    stats: { years: 16, papers: 31, students: 1250 },
-    email: "s.rao@stantonys.edu.in", phone: "+91 98450 11007",
-    office: "Science Block, Bio Lab 1",
-    achievements: "NCERT Textbook Author (2020), NEET Top Scorer Mentor, DBT Research Fellowship Recipient",
-  },
-  {
-    id: 8, name: "Ms. Clara Fernandes", degree: "MA", role: "Lecturer — English",
-    dept: "Arts", deptTag: "Languages Dept.", avatarInitials: "CF", avatarColor: "#be185d",
-    subjects: ["English Literature", "English Language", "Creative Writing"],
-    classes: ["Class XI Sci", "Class XII Sci", "Class XI Com", "Class XII Com", "Class XI Arts", "Class XII Arts"],
-    bio: "Published author and linguist who believes language shapes thought. Runs the college's award-winning literary magazine and debate club.",
-    stats: { years: 11, papers: 5, students: 2600 },
-    email: "c.fernandes@stantonys.edu.in", phone: "+91 98450 11008",
-    office: "Arts Block, Room 108",
-    achievements: "Sahitya Akademi Young Writer Grant (2021), Best English Faculty — State Award 2023, Published novel 'The Paper Boats'",
-  },
-  {
-    id: 9, name: "Ms. Rekha Pillai", degree: "MBA", role: "Lecturer — Business Studies",
-    dept: "Commerce", deptTag: "Commerce Dept.", avatarInitials: "RP", avatarColor: "#d97706",
-    subjects: ["Business Studies", "Entrepreneurship", "Marketing"],
-    classes: ["Class XI Com", "Class XII Com"],
-    bio: "Former marketing director at a Fortune 500 firm. Brings real corporate experience into the classroom through case studies and live projects.",
-    stats: { years: 6, papers: 4, students: 640 },
-    email: "r.pillai@stantonys.edu.in", phone: "+91 98450 11009",
-    office: "Commerce Block, Room 204",
-    achievements: "Best Startup Mentor — NASSCOM 2024, Guest Lecturer at IIM Bangalore, 3 student startups funded under mentorship",
+    id: 2, name: "Ms. Savitha M.", degree: "MSc, BEd", role: "High School Science Head",
+    dept: "High School", deptTag: "HS Dept.", avatarInitials: "SM", avatarColor: "#0891b2",
+    subjects: ["Science"],
+    classes: ["8th Std", "9th Std", "10th Std"],
+    bio: "Expert in foundational science for high school students.",
+    stats: { years: 12, papers: 3, students: 1200 },
+    email: "savitha.m@stantonys.edu.in", phone: "+91 98450 11005",
+    office: "HS Block, Room 102",
+    achievements: "District Best Teacher 2023",
   },
 ];
 
 // ── ACADEMIC PERFORMANCE ──────────────────────────────────
-export const ACADEMIC_PERFORMANCE_DATA = [
-  {
-    year: "2024-2025",
-    passPercentage: 99.2,
-    totalAppeared: 450,
-    totalPassed: 446,
-    distinction: 185,
-    firstClass: 210,
-    secondClass: 45,
-    passClass: 6,
-    failure: 4,
-    topScorer: {
-      name: "Aditi Sharma",
-      marks: "594/600",
-      percentage: "99.0%",
-      rank: "State Rank 1",
-      stream: "Science (PCMB)",
-      photo: "https://i.pravatar.cc/150?u=aditi"
-    }
-  },
-  {
-    year: "2023-2024",
-    passPercentage: 98.5,
-    totalAppeared: 420,
-    totalPassed: 414,
-    distinction: 160,
-    firstClass: 200,
-    secondClass: 48,
-    passClass: 6,
-    failure: 6,
-    topScorer: {
-      name: "Rahul Verma",
-      marks: "588/600",
-      percentage: "98.0%",
-      rank: "State Rank 3",
-      stream: "Commerce",
-      photo: "https://i.pravatar.cc/150?u=rahul"
-    }
-  },
-  {
-    year: "2022-2023",
-    passPercentage: 97.8,
-    totalAppeared: 400,
-    totalPassed: 391,
-    distinction: 145,
-    firstClass: 190,
-    secondClass: 50,
-    passClass: 6,
-    failure: 9,
-    topScorer: {
-      name: "Sneha Kapur",
-      marks: "582/600",
-      percentage: "97.0%",
-      rank: "District Rank 1",
-      stream: "Science (PCMC)",
-      photo: "https://i.pravatar.cc/150?u=sneha"
-    }
-  },
-  {
-    year: "2021-2022",
-    passPercentage: 100,
-    totalAppeared: 380,
-    totalPassed: 380,
-    distinction: 140,
-    firstClass: 185,
-    secondClass: 45,
-    passClass: 10,
-    failure: 0,
-    topScorer: {
-      name: "Vikram Singh",
-      marks: "591/600",
-      percentage: "98.5%",
-      rank: "State Rank 2",
-      stream: "Science (PCMB)",
-      photo: "https://i.pravatar.cc/150?u=vikram"
-    }
-  },
-  {
-    year: "2020-2021",
-    passPercentage: 96.5,
-    totalAppeared: 360,
-    totalPassed: 347,
-    distinction: 120,
-    firstClass: 170,
-    secondClass: 47,
-    passClass: 10,
-    failure: 13,
-    topScorer: {
-      name: "Ananya Iyer",
-      marks: "576/600",
-      percentage: "96.0%",
-      rank: "District Rank 2",
-      stream: "Arts",
-      photo: "https://i.pravatar.cc/150?u=ananya"
-    }
-  },
-  // Data for previous years (simulated for the 20-year requirement)
-  ...Array.from({ length: 15 }, (_, i) => {
-    const startYear = 2019 - i;
-    const endYear = 2020 - i;
-    const basePass = 92 + Math.random() * 6;
-    const total = 300 + Math.floor(Math.random() * 100);
-    const passed = Math.floor(total * (basePass / 100));
-    return {
-      year: `${startYear}-${endYear}`,
-      passPercentage: parseFloat(basePass.toFixed(1)),
-      totalAppeared: total,
-      totalPassed: passed,
-      distinction: Math.floor(passed * 0.3),
-      firstClass: Math.floor(passed * 0.45),
-      secondClass: Math.floor(passed * 0.2),
-      passClass: Math.floor(passed * 0.05),
-      failure: total - passed,
+export const ACADEMIC_PERFORMANCE_DATA = {
+  highSchool: [
+    {
+      year: "2024-2025",
+      passPercentage: 100,
+      totalAppeared: 120,
+      totalPassed: 120,
+      distinction: 45,
+      firstClass: 60,
+      secondClass: 15,
+      failure: 0,
       topScorer: {
-        name: `Alumnus ${startYear}`,
-        marks: `${560 + Math.floor(Math.random() * 30)}/600`,
-        percentage: `${(93 + Math.random() * 5).toFixed(1)}%`,
-        rank: "Top Performer",
-        stream: i % 2 === 0 ? "Science" : "Commerce",
-        photo: `https://i.pravatar.cc/150?u=alumnus${startYear}`
+        name: "Kiran Kumar",
+        marks: "618/625",
+        percentage: "98.8%",
+        rank: "District Rank 2",
+        class: "10th Standard",
+        photo: "https://i.pravatar.cc/150?u=kiran"
       }
-    };
-  })
-];
+    },
+    {
+      year: "2023-2024",
+      passPercentage: 99.1,
+      totalAppeared: 115,
+      totalPassed: 114,
+      distinction: 40,
+      firstClass: 58,
+      secondClass: 16,
+      failure: 1,
+      topScorer: {
+        name: "Deepa R.",
+        marks: "612/625",
+        percentage: "97.9%",
+        rank: "School Topper",
+        class: "10th Standard",
+        photo: "https://i.pravatar.cc/150?u=deepa"
+      }
+    }
+  ],
+  puc: [
+    {
+      year: "2024-2025",
+      passPercentage: 99.2,
+      totalAppeared: 450,
+      totalPassed: 446,
+      distinction: 185,
+      firstClass: 210,
+      secondClass: 45,
+      failure: 4,
+      topScorer: {
+        name: "Aditi Sharma",
+        marks: "594/600",
+        percentage: "99.0%",
+        rank: "State Rank 1",
+        class: "2nd PUC (Science)",
+        photo: "https://i.pravatar.cc/150?u=aditi"
+      }
+    },
+    {
+      year: "2023-2024",
+      passPercentage: 98.5,
+      totalAppeared: 420,
+      totalPassed: 414,
+      distinction: 160,
+      firstClass: 200,
+      secondClass: 48,
+      failure: 6,
+      topScorer: {
+        name: "Rahul Verma",
+        marks: "588/600",
+        percentage: "98.0%",
+        rank: "State Rank 3",
+        class: "2nd PUC (Commerce)",
+        photo: "https://i.pravatar.cc/150?u=rahul"
+      }
+    }
+  ]
+};
+// Fill in simulated data for 20 years for both categories
+const years = Array.from({ length: 18 }, (_, i) => {
+  const startYear = 2022 - i;
+  const endYear = 2023 - i;
+  return `${startYear}-${endYear}`;
+});
+
+years.forEach(year => {
+  ACADEMIC_PERFORMANCE_DATA.highSchool.push({
+    year,
+    passPercentage: 95 + Math.random() * 5,
+    totalAppeared: 100,
+    totalPassed: 95 + Math.floor(Math.random() * 5),
+    distinction: 20,
+    firstClass: 50,
+    secondClass: 25,
+    failure: 5,
+    topScorer: {
+      name: `Alumnus ${year}`,
+      marks: "600/625",
+      percentage: "96%",
+      rank: "Topper",
+      class: "10th Standard",
+      photo: `https://i.pravatar.cc/150?u=alumnus${year}`
+    }
+  });
+  ACADEMIC_PERFORMANCE_DATA.puc.push({
+    year,
+    passPercentage: 94 + Math.random() * 6,
+    totalAppeared: 350,
+    totalPassed: 330 + Math.floor(Math.random() * 20),
+    distinction: 100,
+    firstClass: 180,
+    secondClass: 50,
+    failure: 20,
+    topScorer: {
+      name: `Alumnus ${year}`,
+      marks: "570/600",
+      percentage: "95%",
+      rank: "Topper",
+      class: "2nd PUC",
+      photo: `https://i.pravatar.cc/150?u=alumnus_puc${year}`
+    }
+  });
+});

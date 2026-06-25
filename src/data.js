@@ -132,6 +132,7 @@ export const GLOBAL_CSS = `
 export const NAV_LINKS = [
   { label: "Home",         href: "hero" },
   { label: "About",        href: "vision" },
+  { label: "Performance",  href: "academic-performance" },
   { label: "Admissions",   href: "admissions" },
   { label: "Achievements", href: "achievements" },
   { label: "Faculty",      href: "faculty" },
@@ -457,4 +458,130 @@ export const FACULTY_DATA = [
     office: "Commerce Block, Room 204",
     achievements: "Best Startup Mentor — NASSCOM 2024, Guest Lecturer at IIM Bangalore, 3 student startups funded under mentorship",
   },
+];
+
+// ── ACADEMIC PERFORMANCE ──────────────────────────────────
+export const ACADEMIC_PERFORMANCE_DATA = [
+  {
+    year: "2024-2025",
+    passPercentage: 99.2,
+    totalAppeared: 450,
+    totalPassed: 446,
+    distinction: 185,
+    firstClass: 210,
+    secondClass: 45,
+    passClass: 6,
+    failure: 4,
+    topScorer: {
+      name: "Aditi Sharma",
+      marks: "594/600",
+      percentage: "99.0%",
+      rank: "State Rank 1",
+      stream: "Science (PCMB)",
+      photo: "https://i.pravatar.cc/150?u=aditi"
+    }
+  },
+  {
+    year: "2023-2024",
+    passPercentage: 98.5,
+    totalAppeared: 420,
+    totalPassed: 414,
+    distinction: 160,
+    firstClass: 200,
+    secondClass: 48,
+    passClass: 6,
+    failure: 6,
+    topScorer: {
+      name: "Rahul Verma",
+      marks: "588/600",
+      percentage: "98.0%",
+      rank: "State Rank 3",
+      stream: "Commerce",
+      photo: "https://i.pravatar.cc/150?u=rahul"
+    }
+  },
+  {
+    year: "2022-2023",
+    passPercentage: 97.8,
+    totalAppeared: 400,
+    totalPassed: 391,
+    distinction: 145,
+    firstClass: 190,
+    secondClass: 50,
+    passClass: 6,
+    failure: 9,
+    topScorer: {
+      name: "Sneha Kapur",
+      marks: "582/600",
+      percentage: "97.0%",
+      rank: "District Rank 1",
+      stream: "Science (PCMC)",
+      photo: "https://i.pravatar.cc/150?u=sneha"
+    }
+  },
+  {
+    year: "2021-2022",
+    passPercentage: 100,
+    totalAppeared: 380,
+    totalPassed: 380,
+    distinction: 140,
+    firstClass: 185,
+    secondClass: 45,
+    passClass: 10,
+    failure: 0,
+    topScorer: {
+      name: "Vikram Singh",
+      marks: "591/600",
+      percentage: "98.5%",
+      rank: "State Rank 2",
+      stream: "Science (PCMB)",
+      photo: "https://i.pravatar.cc/150?u=vikram"
+    }
+  },
+  {
+    year: "2020-2021",
+    passPercentage: 96.5,
+    totalAppeared: 360,
+    totalPassed: 347,
+    distinction: 120,
+    firstClass: 170,
+    secondClass: 47,
+    passClass: 10,
+    failure: 13,
+    topScorer: {
+      name: "Ananya Iyer",
+      marks: "576/600",
+      percentage: "96.0%",
+      rank: "District Rank 2",
+      stream: "Arts",
+      photo: "https://i.pravatar.cc/150?u=ananya"
+    }
+  },
+  // Data for previous years (simulated for the 20-year requirement)
+  ...Array.from({ length: 15 }, (_, i) => {
+    const startYear = 2019 - i;
+    const endYear = 2020 - i;
+    const basePass = 92 + Math.random() * 6;
+    const total = 300 + Math.floor(Math.random() * 100);
+    const passed = Math.floor(total * (basePass / 100));
+    return {
+      year: `${startYear}-${endYear}`,
+      passPercentage: parseFloat(basePass.toFixed(1)),
+      totalAppeared: total,
+      totalPassed: passed,
+      distinction: Math.floor(passed * 0.3),
+      firstClass: Math.floor(passed * 0.45),
+      secondClass: Math.floor(passed * 0.2),
+      passClass: Math.floor(passed * 0.05),
+      failure: total - passed,
+      topScorer: {
+        name: `Alumnus ${startYear}`,
+        marks: `${560 + Math.floor(Math.random() * 30)}/600`,
+        percentage: `${(93 + Math.random() * 5).toFixed(1)}%`,
+        rank: "Top Performer",
+        stream: i % 2 === 0 ? "Science" : "Commerce",
+        photo: `https://i.pravatar.cc/150?u=alumnus${startYear}`
+      }
+    };
+  })
 ];

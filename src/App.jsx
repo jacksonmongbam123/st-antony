@@ -17,6 +17,7 @@ import {
   Navbar,
   Hero,
   VisionMission,
+  AcademicPerformance,
   Admissions,
   Achievements,
   Faculty,
@@ -38,6 +39,7 @@ export default function App() {
       <Navbar />
       <Hero />
       <VisionMission />
+      <AcademicPerformance />
       <Admissions />
       <Achievements />
       <Faculty />

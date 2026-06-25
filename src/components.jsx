@@ -1405,10 +1405,18 @@ export function Admissions() {
  * Auto-advances every 6 seconds.
  */
 export function Achievements() {
-  const [activeTab, setActiveTab] = useState(0);
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeTab, setActiveTab] = useState(1); // Set default to Education as in screenshot
+  const [activeSlide, setActiveSlide] = useState(2); // Set default to slide 3 (#3 in State Rankings)
+  const [activeImg, setActiveImg] = useState(2); // Set default to image index 2
   const [animKey, setAnimKey] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
   const timerRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const cat = ACHIEVEMENT_DATA[activeTab];
 
@@ -1416,6 +1424,7 @@ export function Achievements() {
     (n) => {
       const next = (n + cat.slides.length) % cat.slides.length;
       setActiveSlide(next);
+      setActiveImg(0);
       setAnimKey((k) => k + 1);
     },
     [cat.slides.length]
@@ -1423,21 +1432,25 @@ export function Achievements() {
 
   // Reset slide index when category changes
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveSlide(0);
+    setActiveImg(0);
     setAnimKey((k) => k + 1);
   }, [activeTab]);
 
   // Auto-advance timer
   useEffect(() => {
-    timerRef.current = setInterval(() => goSlide(activeSlide + 1), 6000);
+    timerRef.current = setInterval(() => goSlide(activeSlide + 1), 8000);
     return () => clearInterval(timerRef.current);
   }, [activeSlide, goSlide]);
 
   const slide = cat.slides[activeSlide];
 
   return (
-    <section id="achievements" style={{ background: T.navy, padding: "80px 7%" }}>
+    <section id="achievements" style={{ background: T.navy, padding: isDesktop ? "80px 7%" : "60px 4%", position: "relative", overflow: "hidden" }}>
+      {/* Background ambient glow effect */}
+      <div style={{ position: "absolute", top: 0, right: 0, width: 320, height: 320, background: "rgba(201, 150, 58, 0.05)", borderRadius: "50%", filter: "blur(100px)", pointerEvents: "none" }} />
+      <div style={{ position: "absolute", bottom: 0, left: 0, width: 320, height: 320, background: "rgba(30, 58, 110, 0.2)", borderRadius: "50%", filter: "blur(100px)", pointerEvents: "none" }} />
+
       <SectionHeader
         dark
         eyebrow="Our Pride"
@@ -1446,7 +1459,7 @@ export function Achievements() {
       />
 
       {/* Category tabs */}
-      <div style={{ display: "flex", gap: 8, marginBottom: 40, flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 10, marginBottom: 40, flexWrap: "wrap", position: "relative", zIndex: 2 }}>
         {ACHIEVEMENT_DATA.map((c, i) => (
           <button
             key={i}
@@ -1457,23 +1470,24 @@ export function Achievements() {
             style={{
               padding: "10px 22px",
               borderRadius: 30,
-              border: `1.5px solid ${i === activeTab ? T.gold : "rgba(255,255,255,.2)"}`,
+              border: `1.5px solid ${i === activeTab ? T.gold : "rgba(255,255,255,.15)"}`,
               background: i === activeTab ? T.gold : "transparent",
               color: i === activeTab ? T.navy : "rgba(255,255,255,.7)",
               fontSize: ".85rem",
               fontWeight: 500,
               cursor: "pointer",
-              transition: "all .25s",
+              transition: "all .3s ease",
+              boxShadow: i === activeTab ? "0 4px 12px rgba(201,150,58,0.2)" : "none",
             }}
             onMouseEnter={(e) => {
               if (i !== activeTab) {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,.5)";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,.4)";
                 e.currentTarget.style.color = T.white;
               }
             }}
             onMouseLeave={(e) => {
               if (i !== activeTab) {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,.2)";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,.15)";
                 e.currentTarget.style.color = "rgba(255,255,255,.7)";
               }
             }}
@@ -1487,191 +1501,308 @@ export function Achievements() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "48px 1fr 48px",
-          gap: 16,
+          gridTemplateColumns: isDesktop ? "48px 1fr 48px" : "1fr",
+          gap: isDesktop ? 24 : 16,
           alignItems: "center",
+          position: "relative",
+          zIndex: 2,
         }}
       >
-        {/* Prev */}
-        <button
-          onClick={() => {
-            clearInterval(timerRef.current);
-            goSlide(activeSlide - 1);
-          }}
-          style={{
-            width: 46,
-            height: 46,
-            borderRadius: "50%",
-            border: "1.5px solid rgba(255,255,255,.25)",
-            background: "rgba(15,32,68,.6)",
-            color: T.white,
-            cursor: "pointer",
-            fontSize: "1.1rem",
-            display: "grid",
-            placeItems: "center",
-            transition: "all .2s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = T.gold;
-            e.currentTarget.style.color = T.gold;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = "rgba(255,255,255,.25)";
-            e.currentTarget.style.color = T.white;
-          }}
-        >
-          ←
-        </button>
+        {/* Prev Button (Desktop) */}
+        {isDesktop && (
+          <button
+            onClick={() => {
+              clearInterval(timerRef.current);
+              goSlide(activeSlide - 1);
+            }}
+            style={{
+              width: 46,
+              height: 46,
+              borderRadius: "50%",
+              border: "1.5px solid rgba(255,255,255,.2)",
+              background: "rgba(15,32,68,.6)",
+              color: T.white,
+              cursor: "pointer",
+              fontSize: "1.1rem",
+              display: "grid",
+              placeItems: "center",
+              transition: "all .2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = T.gold;
+              e.currentTarget.style.color = T.gold;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "rgba(255,255,255,.2)";
+              e.currentTarget.style.color = T.white;
+            }}
+          >
+            ←
+          </button>
+        )}
 
         {/* Slide card — key forces remount & re-triggers animation */}
         <div
           key={`${activeTab}-${animKey}`}
           style={{
-            background: `linear-gradient(135deg, ${slide.color}, ${slide.color}dd)`,
-            borderRadius: 16,
+            background: "#132247",
+            borderRadius: 20,
             overflow: "hidden",
-            minHeight: 320,
+            minHeight: isDesktop ? 400 : "auto",
             border: "1px solid rgba(255,255,255,.08)",
             animation: "scaleIn .45s ease both",
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
+            gridTemplateColumns: isDesktop ? "1fr 1fr" : "1fr",
             boxShadow: "0 20px 60px rgba(0,0,0,.3)",
           }}
         >
-          {/* Left — medal + progress */}
+          {/* Left — Image Gallery */}
           <div
             style={{
-              background: "linear-gradient(135deg, rgba(0,0,0,.2), rgba(0,0,0,.05))",
+              position: "relative",
+              height: isDesktop ? "100%" : 240,
+              background: "#0b1320",
+              overflow: "hidden",
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "40px 28px",
-              gap: 16,
+              justifyContent: "space-between",
             }}
           >
+            {slide.images && slide.images.length > 0 ? (
+              <div style={{ position: "absolute", inset: 0 }}>
+                <img
+                  src={slide.images[activeImg]}
+                  alt={`${slide.title} ${activeImg + 1}`}
+                  referrerPolicy="no-referrer"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "all 0.6s ease",
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.1) 60%, transparent 100%)",
+                    pointerEvents: "none",
+                  }}
+                />
+              </div>
+            ) : (
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(0,0,0,.2), rgba(0,0,0,.05))" }} />
+            )}
+
+            {/* Slide title / image indicator text in corner */}
             <div
               style={{
-                fontSize: "4rem",
-                filter: "drop-shadow(0 4px 12px rgba(0,0,0,.3))",
-                animation: "fadeInUp .5s .1s both",
+                position: "absolute",
+                top: 12,
+                left: 16,
+                background: "rgba(0,0,0,0.4)",
+                backdropFilter: "blur(4px)",
+                padding: "4px 10px",
+                borderRadius: 4,
+                fontSize: "10px",
+                color: "rgba(255,255,255,0.6)",
+                fontFamily: "monospace",
+                letterSpacing: "0.05em",
+                pointerEvents: "none",
+                zIndex: 10,
               }}
             >
-              {slide.medal}
+              {slide.title} {activeImg + 1}
             </div>
-            <div
-              style={{
-                color: T.goldLt,
-                fontSize: ".72rem",
-                fontWeight: 700,
-                letterSpacing: ".14em",
-                textTransform: "uppercase",
-                animation: "fadeInUp .5s .2s both",
-              }}
-            >
-              {slide.year}
-            </div>
-            {/* Gold progress bar */}
-            <div
-              style={{
-                width: "60%",
-                height: 3,
-                background: "rgba(255,255,255,.15)",
-                borderRadius: 2,
-                overflow: "hidden",
-                marginTop: 8,
-              }}
-            >
+
+            {/* Inner dots for Image Gallery */}
+            {slide.images && slide.images.length > 1 && (
               <div
                 style={{
-                  height: "100%",
-                  background: T.gold,
-                  borderRadius: 2,
-                  width: `${((activeSlide + 1) / cat.slides.length) * 100}%`,
-                  transition: "width .5s ease",
+                  position: "absolute",
+                  bottom: 16,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  display: "flex",
+                  gap: 6,
+                  zIndex: 20,
                 }}
-              />
-            </div>
-            <div
-              style={{
-                color: "rgba(255,255,255,.45)",
-                fontSize: ".72rem",
-                letterSpacing: ".14em",
-              }}
-            >
-              {activeSlide + 1} / {cat.slides.length}
-            </div>
+              >
+                {slide.images.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setActiveImg(idx);
+                    }}
+                    style={{
+                      width: 8,
+                      height: 8,
+                      borderRadius: "50%",
+                      padding: 0,
+                      border: "none",
+                      background: idx === activeImg ? "#ffffff" : "rgba(255,255,255,0.4)",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                    }}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Right — title + description */}
           <div
             style={{
-              padding: "48px 44px",
+              padding: isDesktop ? "48px 44px" : "32px 24px",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
+              justifyContent: "space-between",
+              background: "#132247",
             }}
           >
-            <h4
+            <div>
+              {/* Medal / Emoji Icon header */}
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+                <span style={{ fontSize: "2.5rem", filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.25))" }}>
+                  {slide.medal}
+                </span>
+                <div
+                  style={{
+                    color: T.goldLt,
+                    fontSize: ".75rem",
+                    fontWeight: 700,
+                    letterSpacing: ".14em",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {slide.year} · {slide.tag}
+                </div>
+              </div>
+
+              <h4
+                style={{
+                  color: T.white,
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: isDesktop ? "2rem" : "1.6rem",
+                  marginBottom: 16,
+                  lineHeight: 1.2,
+                  fontWeight: 700,
+                }}
+              >
+                {slide.title}
+              </h4>
+              
+              <p
+                style={{
+                  color: "rgba(255,255,255,.85)",
+                  fontSize: ".95rem",
+                  lineHeight: 1.7,
+                  fontWeight: 300,
+                }}
+              >
+                {slide.desc}
+              </p>
+            </div>
+
+            {/* Slide Count Indicator (e.g. 3 / 5) */}
+            <div
               style={{
-                color: T.white,
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "1.8rem",
-                marginBottom: 18,
-                lineHeight: 1.2,
-                fontWeight: 700,
-                animation: "fadeInUp .5s .25s both",
+                color: "rgba(255,255,255,.4)",
+                fontSize: ".75rem",
+                letterSpacing: ".14em",
+                marginTop: 32,
+                fontFamily: "monospace",
               }}
             >
-              {slide.title}
-            </h4>
-            <p
-              style={{
-                color: "rgba(255,255,255,.85)",
-                fontSize: "1rem",
-                lineHeight: 1.7,
-                animation: "fadeInUp .5s .35s both",
-              }}
-            >
-              {slide.desc}
-            </p>
+              {activeSlide + 1} / {cat.slides.length}
+            </div>
           </div>
         </div>
 
-        {/* Next */}
-        <button
-          onClick={() => {
-            clearInterval(timerRef.current);
-            goSlide(activeSlide + 1);
-          }}
-          style={{
-            width: 46,
-            height: 46,
-            borderRadius: "50%",
-            border: "1.5px solid rgba(255,255,255,.25)",
-            background: "rgba(15,32,68,.6)",
-            color: T.white,
-            cursor: "pointer",
-            fontSize: "1.1rem",
-            display: "grid",
-            placeItems: "center",
-            transition: "all .2s",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = T.gold;
-            e.currentTarget.style.color = T.gold;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = "rgba(255,255,255,.25)";
-            e.currentTarget.style.color = T.white;
-          }}
-        >
-          →
-        </button>
+        {/* Next Button (Desktop) */}
+        {isDesktop && (
+          <button
+            onClick={() => {
+              clearInterval(timerRef.current);
+              goSlide(activeSlide + 1);
+            }}
+            style={{
+              width: 46,
+              height: 46,
+              borderRadius: "50%",
+              border: "1.5px solid rgba(255,255,255,.2)",
+              background: "rgba(15,32,68,.6)",
+              color: T.white,
+              cursor: "pointer",
+              fontSize: "1.1rem",
+              display: "grid",
+              placeItems: "center",
+              transition: "all .2s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = T.gold;
+              e.currentTarget.style.color = T.gold;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "rgba(255,255,255,.2)";
+              e.currentTarget.style.color = T.white;
+            }}
+          >
+            →
+          </button>
+        )}
+
+        {/* Mobile Next/Prev buttons row */}
+        {!isDesktop && (
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 16, marginTop: 8 }}>
+            <button
+              onClick={() => {
+                clearInterval(timerRef.current);
+                goSlide(activeSlide - 1);
+              }}
+              style={{
+                flex: 1,
+                padding: "12px",
+                borderRadius: 12,
+                border: "1.5px solid rgba(255,255,255,.2)",
+                background: "rgba(15,32,68,.6)",
+                color: T.white,
+                fontSize: "1rem",
+                fontWeight: 500,
+                cursor: "pointer",
+              }}
+            >
+              ← Previous
+            </button>
+            <button
+              onClick={() => {
+                clearInterval(timerRef.current);
+                goSlide(activeSlide + 1);
+              }}
+              style={{
+                flex: 1,
+                padding: "12px",
+                borderRadius: 12,
+                border: "1.5px solid rgba(255,255,255,.2)",
+                background: "rgba(15,32,68,.6)",
+                color: T.white,
+                fontSize: "1rem",
+                fontWeight: 500,
+                cursor: "pointer",
+              }}
+            >
+              Next →
+            </button>
+          </div>
+        )}
       </div>
 
-      {/* Slide dots */}
-      <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 24 }}>
+      {/* Slide Dots (representing outer carousel pages) */}
+      <div style={{ display: "flex", justifyContent: "center", gap: 8, marginTop: 24, position: "relative", zIndex: 2 }}>
         {cat.slides.map((_, i) => (
           <button
             key={i}

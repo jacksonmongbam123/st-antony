@@ -271,21 +271,164 @@ export const CLASS_DATA = [
 // ── ACHIEVEMENTS ───────────────────────────────────────────
 export const ACHIEVEMENT_DATA = [
   {
-    id: "academic", label: "🎓 Academic",
+    id: "sports",
+    label: "🏆 Sports",
     slides: [
-      { medal: "🥇", year: "2024", title: "100% Result in SSLC", color: "#1a4a7a",
-        desc: "Our 10th Standard students achieved a perfect 100% pass rate for the 5th consecutive year." },
-      { medal: "🥈", year: "2024", title: "Top PUC Ranks", color: "#1a3a6a",
-        desc: "St. Antony's secured 12 distinctions in the 2nd PUC State Board Examinations." },
-    ],
+      {
+        medal: "🏆",
+        year: "2024",
+        tag: "KABADDI",
+        title: "District Level Kabaddi Gold",
+        desc: "High School boys' team won the gold at the District Level Kabaddi Championship, showcasing brilliant teamwork.",
+        color: "#16223f",
+        images: [
+          "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=600&q=80",
+        ]
+      },
+      {
+        medal: "🏃",
+        year: "2024",
+        tag: "ATHLETICS",
+        title: "State Athletics Championship",
+        desc: "St. Antony's students secured 3 gold medals in track and field events at the State Athletics Meet.",
+        color: "#132247",
+        images: [
+          "https://images.unsplash.com/photo-1502224562085-639556652f33?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=600&q=80",
+        ]
+      }
+    ]
   },
   {
-    id: "sports", label: "🏆 Sports",
+    id: "education",
+    label: "📚 Education",
     slides: [
-      { medal: "🥇", year: "2024", title: "District Level Kabaddi", color: "#0d4a3c",
-        desc: "High School boys' team won the gold at the District Level Kabaddi Championship." },
-    ],
+      {
+        medal: "🎓",
+        year: "2024",
+        tag: "ACADEMICS",
+        title: "100% Pass in SSLC Board",
+        desc: "Our 10th Standard students achieved a perfect 100% pass rate for the 5th consecutive year.",
+        color: "#16223f",
+        images: [
+          "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80",
+        ]
+      },
+      {
+        medal: "📜",
+        year: "2024",
+        tag: "DISTINCTIONS",
+        title: "Top PUC Board Ranks",
+        desc: "St. Antony's secured 12 distinctions in the 2nd PUC State Board Examinations.",
+        color: "#132247",
+        images: [
+          "https://images.unsplash.com/photo-1518655061766-48f23af0a636?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80",
+        ]
+      },
+      {
+        medal: "🏫",
+        year: "2024",
+        tag: "RANKING",
+        title: "#3 in State Rankings",
+        desc: "India Today ranked us among the top 3 colleges in the state for academic outcomes and placement records.",
+        color: "#0f2044",
+        images: [
+          "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80",
+        ]
+      },
+      {
+        medal: "💡",
+        year: "2023",
+        tag: "SCHOLARSHIP",
+        title: "National Merit Scholarship",
+        desc: "Three of our science stream students were awarded the prestigious National Merit Scholarship.",
+        color: "#16223f",
+        images: [
+          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80",
+        ]
+      },
+      {
+        medal: "🔬",
+        year: "2024",
+        tag: "SCIENCE",
+        title: "State Science Fair Winner",
+        desc: "Our high school physics project won first prize at the Karnataka State Science Congress.",
+        color: "#132247",
+        images: [
+          "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=600&q=80",
+        ]
+      }
+    ]
   },
+  {
+    id: "cultural",
+    label: "🎭 Cultural",
+    slides: [
+      {
+        medal: "🎭",
+        year: "2024",
+        tag: "DRAMA",
+        title: "State Level Drama Gold",
+        desc: "St. Antony's theatre group won the prestigious 'Best Play' award at the State Level Youth Festival.",
+        color: "#16223f",
+        images: [
+          "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=600&q=80",
+        ]
+      },
+      {
+        medal: "🎤",
+        year: "2024",
+        tag: "MUSIC",
+        title: "Classical Vocal Championship",
+        desc: "Anjali Sharma of 2nd PUC won the gold medal in classical vocal solo competition.",
+        color: "#132247",
+        images: [
+          "https://images.unsplash.com/photo-1516280440614-37939bbacd6a?auto=format&fit=crop&w=600&q=80",
+        ]
+      }
+    ]
+  },
+  {
+    id: "events",
+    label: "📅 Events",
+    slides: [
+      {
+        medal: "🎉",
+        year: "2024",
+        tag: "ANNUAL DAY",
+        title: "40th Annual Day Celebration",
+        desc: "A grand celebration of our four-decade milestone with spectacular cultural showcases by over 500 students.",
+        color: "#16223f",
+        images: [
+          "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80",
+        ]
+      },
+      {
+        medal: "🏢",
+        year: "2024",
+        tag: "LABORATORIES",
+        title: "New Science Block",
+        desc: "Inaugurated our state-of-the-art laboratory wing featuring advanced equipment for physics, chemistry, and biology.",
+        color: "#132247",
+        images: [
+          "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1532187863486-abf9d39d66e8?auto=format&fit=crop&w=600&q=80",
+        ]
+      }
+    ]
+  }
 ];
 
 // ── FACULTY ────────────────────────────────────────────────

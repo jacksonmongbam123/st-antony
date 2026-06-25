@@ -935,22 +935,22 @@ export function AcademicPerformance() {
         ))}
       </div>
 
-      <div ref={ref} className="mobile-stack equal-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: "clamp(20px, 5vw, 32px)", alignItems: "stretch" }}>
+      <div ref={ref} className="mobile-stack equal-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1.5fr", gap: "clamp(20px, 5vw, 32px)", alignItems: "stretch", width: "100%", maxWidth: "100%", overflow: "hidden" }}>
         {/* Left: Top Scorer Card */}
         <div 
           style={{ 
             opacity: inView ? 1 : 0, 
             transform: inView ? "none" : "translateY(20px)", 
             transition: "all 0.6s ease",
-            height: "100%"
+            height: "100%",
+            minWidth: 0
           }}
         >
           <div
+            className="scorer-card"
             style={{
               background: T.white,
               borderRadius: 24,
-              padding: "48px 32px",
-              textAlign: "center",
               boxShadow: `0 20px 50px ${T.shadowMd}`,
               border: `1px solid ${T.gold}22`,
               position: "relative",
@@ -958,7 +958,8 @@ export function AcademicPerformance() {
               height: "100%",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center"
+              justifyContent: "center",
+              alignItems: "center"
             }}
           >
             <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 8, background: T.gold }}></div>
@@ -991,16 +992,16 @@ export function AcademicPerformance() {
                 boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
               }}>🏆</div>
             </div>
-            <h3 style={{ fontSize: "1.8rem", color: T.navy, marginBottom: 8 }}>{data.topScorer.name}</h3>
-            <div style={{ color: T.gold, fontWeight: 700, fontSize: "1.1rem", marginBottom: 16, letterSpacing: "0.05em" }}>
+            <h3 style={{ fontSize: "1.8rem", color: T.navy, marginBottom: 8, textAlign: "center" }}>{data.topScorer.name}</h3>
+            <div style={{ color: T.gold, fontWeight: 700, fontSize: "1.1rem", marginBottom: 16, letterSpacing: "0.05em", textAlign: "center" }}>
               {data.topScorer.rank}
             </div>
-            <div style={{ display: "flex", justifyContent: "center", gap: 20, marginBottom: 24 }}>
+            <div style={{ display: "flex", justifyContent: "center", gap: "clamp(12px, 4vw, 20px)", marginBottom: 24, width: "100%", flexWrap: "wrap" }}>
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: "1.5rem", fontWeight: 800, color: T.navy }}>{data.topScorer.marks}</div>
                 <div style={{ fontSize: "0.8rem", color: T.gray, textTransform: "uppercase" }}>Marks Obtained</div>
               </div>
-              <div style={{ width: 1, background: "rgba(0,0,0,0.1)" }}></div>
+              <div style={{ width: 1, background: "rgba(0,0,0,0.1)", display: "block" }}></div>
               <div style={{ textAlign: "center" }}>
                 <div style={{ fontSize: "1.5rem", fontWeight: 800, color: T.navy }}>{data.topScorer.percentage}</div>
                 <div style={{ fontSize: "0.8rem", color: T.gray, textTransform: "uppercase" }}>Percentage</div>
@@ -1012,7 +1013,10 @@ export function AcademicPerformance() {
               borderRadius: 12, 
               fontSize: "0.95rem", 
               color: T.navy,
-              fontWeight: 600
+              fontWeight: 600,
+              width: "100%",
+              maxWidth: "240px",
+              textAlign: "center"
             }}>
               {data.topScorer.class}
             </div>
@@ -1027,10 +1031,11 @@ export function AcademicPerformance() {
             transition: "all 0.6s 0.2s ease",
             display: "flex",
             flexDirection: "column",
-            gap: 24
+            gap: 24,
+            minWidth: 0
           }}
         >
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 20 }}>
+          <div className="stats-grid" style={{ width: "100%" }}>
             <div style={{ ...statCardStyle, background: `linear-gradient(135deg, ${T.navy} 0%, ${T.navy}dd 100%)`, color: T.white }}>
               <div style={{ fontSize: "2.4rem", fontWeight: 800, marginBottom: 4 }}>{data.passPercentage}%</div>
               <div style={{ fontSize: "0.85rem", opacity: 0.8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Overall Pass</div>
@@ -1047,12 +1052,15 @@ export function AcademicPerformance() {
 
           {/* Detailed Results Table */}
           <div 
+            className="table-card"
             style={{ 
               background: T.white, 
               borderRadius: 24, 
-              padding: "36px", 
               boxShadow: `0 10px 30px ${T.shadow}`,
-              flex: 1
+              flex: 1,
+              width: "100%",
+              maxWidth: "100%",
+              overflow: "hidden"
             }}
           >
             <h4 style={{ marginBottom: 24, color: T.navy, fontSize: "1.3rem", fontWeight: 700 }}>Result Breakdown — {data.year}</h4>

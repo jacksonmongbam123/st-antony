@@ -119,6 +119,21 @@ export const GLOBAL_CSS = `
     #hero { margin-top: 60px !important; height: calc(100vh - 60px) !important; min-height: 560px !important; }
     .mobile-nav-overlay { top: 60px !important; max-height: calc(100vh - 60px) !important; }
 
+    /* Academic Performance Custom Classes */
+    .scorer-card {
+      padding: 48px 32px;
+      transition: all 0.3s ease;
+    }
+    .table-card {
+      padding: 36px;
+      transition: all 0.3s ease;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
     /* Typography scaling */
     h1 { font-size: clamp(2.2rem, 8vw, 3rem) !important; }
     h2 { font-size: clamp(1.8rem, 6vw, 2.2rem) !important; }
@@ -132,6 +147,16 @@ export const GLOBAL_CSS = `
     section { padding: 40px 16px !important; }
     .mobile-padding-x { padding-left: 16px !important; padding-right: 16px !important; }
     .table-scroll { margin: 0 -16px; padding: 0 16px; width: calc(100% + 32px); }
+    .scorer-card {
+      padding: 24px 16px !important;
+    }
+    .table-card {
+      padding: 24px 16px !important;
+    }
+    .stats-grid {
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)) !important;
+      gap: 12px !important;
+    }
   }
 
   /* Grid helper for equal height cards */

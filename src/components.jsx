@@ -1500,46 +1500,47 @@ export function Achievements() {
       {/* Carousel row */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: isDesktop ? "48px 1fr 48px" : "1fr",
-          gap: isDesktop ? 24 : 16,
-          alignItems: "center",
           position: "relative",
           zIndex: 2,
+          width: "100%",
         }}
       >
-        {/* Prev Button (Desktop) */}
-        {isDesktop && (
-          <button
-            onClick={() => {
-              clearInterval(timerRef.current);
-              goSlide(activeSlide - 1);
-            }}
-            style={{
-              width: 46,
-              height: 46,
-              borderRadius: "50%",
-              border: "1.5px solid rgba(255,255,255,.2)",
-              background: "rgba(15,32,68,.6)",
-              color: T.white,
-              cursor: "pointer",
-              fontSize: "1.1rem",
-              display: "grid",
-              placeItems: "center",
-              transition: "all .2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = T.gold;
-              e.currentTarget.style.color = T.gold;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255,255,255,.2)";
-              e.currentTarget.style.color = T.white;
-            }}
-          >
-            ←
-          </button>
-        )}
+        {/* Prev Button */}
+        <button
+          onClick={() => {
+            clearInterval(timerRef.current);
+            goSlide(activeSlide - 1);
+          }}
+          style={{
+            position: "absolute",
+            left: isDesktop ? -28 : 12,
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: isDesktop ? 46 : 40,
+            height: isDesktop ? 40 : 40, // Let's keep it round 40x40 on mobile
+            borderRadius: "50%",
+            border: "1.5px solid rgba(255,255,255,.2)",
+            background: "rgba(10,21,45,.85)",
+            color: T.white,
+            cursor: "pointer",
+            fontSize: "1.1rem",
+            display: "grid",
+            placeItems: "center",
+            transition: "all .3s ease",
+            zIndex: 10,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = T.gold;
+            e.currentTarget.style.color = T.gold;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "rgba(255,255,255,.2)";
+            e.currentTarget.style.color = T.white;
+          }}
+        >
+          ←
+        </button>
 
         {/* Slide card — key forces remount & re-triggers animation */}
         <div
@@ -1723,82 +1724,42 @@ export function Achievements() {
           </div>
         </div>
 
-        {/* Next Button (Desktop) */}
-        {isDesktop && (
-          <button
-            onClick={() => {
-              clearInterval(timerRef.current);
-              goSlide(activeSlide + 1);
-            }}
-            style={{
-              width: 46,
-              height: 46,
-              borderRadius: "50%",
-              border: "1.5px solid rgba(255,255,255,.2)",
-              background: "rgba(15,32,68,.6)",
-              color: T.white,
-              cursor: "pointer",
-              fontSize: "1.1rem",
-              display: "grid",
-              placeItems: "center",
-              transition: "all .2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = T.gold;
-              e.currentTarget.style.color = T.gold;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255,255,255,.2)";
-              e.currentTarget.style.color = T.white;
-            }}
-          >
-            →
-          </button>
-        )}
-
-        {/* Mobile Next/Prev buttons row */}
-        {!isDesktop && (
-          <div style={{ display: "flex", justifyContent: "space-between", gap: 16, marginTop: 8 }}>
-            <button
-              onClick={() => {
-                clearInterval(timerRef.current);
-                goSlide(activeSlide - 1);
-              }}
-              style={{
-                flex: 1,
-                padding: "12px",
-                borderRadius: 12,
-                border: "1.5px solid rgba(255,255,255,.2)",
-                background: "rgba(15,32,68,.6)",
-                color: T.white,
-                fontSize: "1rem",
-                fontWeight: 500,
-                cursor: "pointer",
-              }}
-            >
-              ← Previous
-            </button>
-            <button
-              onClick={() => {
-                clearInterval(timerRef.current);
-                goSlide(activeSlide + 1);
-              }}
-              style={{
-                flex: 1,
-                padding: "12px",
-                borderRadius: 12,
-                border: "1.5px solid rgba(255,255,255,.2)",
-                background: "rgba(15,32,68,.6)",
-                color: T.white,
-                fontSize: "1rem",
-                fontWeight: 500,
-                cursor: "pointer",
-              }}
-            >
-              Next →
-            </button>
-          </div>
-        )}
+        {/* Next Button */}
+        <button
+          onClick={() => {
+            clearInterval(timerRef.current);
+            goSlide(activeSlide + 1);
+          }}
+          style={{
+            position: "absolute",
+            right: isDesktop ? -28 : 12,
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: isDesktop ? 46 : 40,
+            height: isDesktop ? 40 : 40,
+            borderRadius: "50%",
+            border: "1.5px solid rgba(255,255,255,.2)",
+            background: "rgba(10,21,45,.85)",
+            color: T.white,
+            cursor: "pointer",
+            fontSize: "1.1rem",
+            display: "grid",
+            placeItems: "center",
+            transition: "all .3s ease",
+            zIndex: 10,
+            boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = T.gold;
+            e.currentTarget.style.color = T.gold;
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = "rgba(255,255,255,.2)";
+            e.currentTarget.style.color = T.white;
+          }}
+        >
+          →
+        </button>
       </div>
 
       {/* Slide Dots (representing outer carousel pages) */}

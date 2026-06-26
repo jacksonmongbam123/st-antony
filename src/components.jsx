@@ -127,15 +127,16 @@ export function Navbar() {
       left: 0,
       width: "100%",
       zIndex: 1e3,
-      background: scrolled ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,1)",
-      borderBottom: `2px solid ${scrolled ? T.gold + "33" : T.gold + "22"}`,
+      background: scrolled ? "rgba(238, 242, 246, 0.85)" : "rgba(238, 242, 246, 0.6)",
+      borderBottom: `1px solid ${scrolled ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.4)"}`,
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
       padding: "0 clamp(16px, 5%, 40px)",
       height: "clamp(56px, 12vw, 68px)",
-      boxShadow: scrolled ? "0 4px 20px rgba(15,32,68,.12)" : "0 2px 8px rgba(15,32,68,.06)",
-      backdropFilter: scrolled ? "blur(12px)" : "none",
+      boxShadow: scrolled ? "10px 10px 20px #cbd5e0, -10px -10px 20px #ffffff" : "none",
+      backdropFilter: "blur(16px)",
+      WebkitBackdropFilter: "blur(16px)",
       transition: "all .35s ease",
       overflow: "hidden"
     }}
@@ -301,7 +302,9 @@ export function Navbar() {
       top: 68,
       left: 0,
       right: 0,
-      background: T.white,
+      background: "rgba(238, 242, 246, 0.95)",
+      backdropFilter: "blur(20px)",
+      WebkitBackdropFilter: "blur(20px)",
       zIndex: 999,
       display: "flex",
       flexDirection: "column",
@@ -312,7 +315,8 @@ export function Navbar() {
       transform: mobileOpen ? "translateY(0)" : "translateY(-100%)",
       pointerEvents: mobileOpen ? "all" : "none",
       transition: "all .3s ease",
-      boxShadow: mobileOpen ? "0 8px 32px rgba(15,32,68,.15)" : "none"
+      boxShadow: mobileOpen ? "0 10px 30px rgba(100,116,139,0.15)" : "none",
+      borderBottom: "1px solid rgba(255,255,255,0.6)"
     }}
   >
           {
@@ -678,14 +682,14 @@ function VisionCard({ card, index }) {
         <span
     style={{
       display: "inline-block",
-      background: T.gold,
+      background: "rgba(71, 85, 105, 0.1)",
       color: T.navy,
       fontSize: ".7rem",
       fontWeight: 700,
       letterSpacing: ".1em",
       textTransform: "uppercase",
       padding: "4px 10px",
-      borderRadius: 4,
+      borderRadius: 6,
       marginBottom: 12
     }}
   >
@@ -710,14 +714,14 @@ export function VisionMission() {
   const CARDS = [
     {
       tag: "Vision",
-      bg: "linear-gradient(135deg,#0f2044,#2d5a9e)",
+      bg: "linear-gradient(135deg, #1e293b 0%, #475569 100%)",
       icon: "\u{1F52D}",
       title: "A Beacon of Learning",
       body: "To be a globally recognised institution that empowers every student to realise their highest potential \u2014 academically, personally, and professionally \u2014 contributing meaningfully to society."
     },
     {
       tag: "Mission",
-      bg: "linear-gradient(135deg,#7c2d12,#c2410c)",
+      bg: "linear-gradient(135deg, #334155 0%, #64748b 100%)",
       icon: "\u{1F3AF}",
       title: "Education With Purpose",
       body: "We are committed to delivering transformative education through innovative pedagogy, inclusive communities, and deep industry partnerships \u2014 creating graduates who lead with knowledge, integrity, and compassion."
@@ -811,7 +815,7 @@ export function AcademicPerformance() {
       borderRadius: 30,
       border: "none",
       background: selectedYearIndex === i ? `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)` : `linear-gradient(135deg, #ffffff 0%, ${T.light} 100%)`,
-      color: selectedYearIndex === i ? T.navy : T.gray,
+      color: selectedYearIndex === i ? T.white : T.gray,
       fontWeight: 700,
       fontSize: "0.9rem",
       cursor: "pointer",
@@ -969,11 +973,12 @@ export function AcademicPerformance() {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      height: "100%"
+      height: "100%",
+      color: T.white
     }}
   >
-              <div style={{ fontSize: "2rem", fontWeight: 800, color: T.navy, marginBottom: 4 }}>{data.distinction}</div>
-              <div style={{ fontSize: "0.85rem", color: T.gray, textTransform: "uppercase" }}>Distinctions</div>
+              <div style={{ fontSize: "2rem", fontWeight: 800, color: T.white, marginBottom: 4 }}>{data.distinction}</div>
+              <div style={{ fontSize: "0.85rem", color: "rgba(255,255,255,0.8)", textTransform: "uppercase" }}>Distinctions</div>
             </div>
           </div>
 
@@ -1211,7 +1216,7 @@ export function Admissions() {
     style={{
       background: T.white,
       borderRadius: 12,
-      boxShadow: "0 4px 24px rgba(15,32,68,.10)",
+      boxShadow: "10px 10px 20px #cbd5e0, -10px -10px 20px #ffffff",
       overflowX: "auto",
       overflowY: "hidden",
       animation: "fadeIn .35s ease",
@@ -1244,7 +1249,7 @@ export function Admissions() {
       background: i % 2 === 0 ? T.white : "#f8fafc",
       transition: "background .2s"
     }}
-    onMouseEnter={(e) => e.currentTarget.style.background = "#eff6ff"}
+    onMouseEnter={(e) => e.currentTarget.style.background = "#f1f5f9"}
     onMouseLeave={(e) => e.currentTarget.style.background = i % 2 === 0 ? T.white : "#f8fafc"}
   >
                   <td style={{ padding: "13px 18px", fontWeight: 600, color: T.gold }}>
@@ -1412,7 +1417,7 @@ export function Achievements() {
       // Let's keep it round 40x40 on mobile
       borderRadius: "50%",
       border: "1.5px solid rgba(255,255,255,.2)",
-      background: "rgba(10,21,45,.85)",
+      background: "rgba(15, 23, 42, 0.85)",
       color: T.white,
       cursor: "pointer",
       fontSize: "1.1rem",
@@ -1440,7 +1445,7 @@ export function Achievements() {
         <div
     key={`${activeTab}-${animKey}`}
     style={{
-      background: "#132247",
+      background: T.navy2,
       borderRadius: 20,
       overflow: "hidden",
       border: "1px solid rgba(255,255,255,.08)",
@@ -1556,7 +1561,7 @@ export function Achievements() {
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
-      background: "#132247"
+      background: T.navy2
     }}
   >
             <div>
@@ -1639,7 +1644,7 @@ export function Achievements() {
       height: isDesktop ? 40 : 40,
       borderRadius: "50%",
       border: "1.5px solid rgba(255,255,255,.2)",
-      background: "rgba(10,21,45,.85)",
+      background: "rgba(15, 23, 42, 0.85)",
       color: T.white,
       cursor: "pointer",
       fontSize: "1.1rem",
@@ -1768,7 +1773,7 @@ export function Faculty() {
     /* Main Category Selector */
   }
       <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
-        <div style={{ background: "rgba(15,32,68,0.05)", padding: 6, borderRadius: 40, display: "flex", gap: 4 }}>
+        <div style={{ background: "rgba(100, 116, 139, 0.08)", padding: 6, borderRadius: 40, display: "flex", gap: 4 }}>
           {[
     { id: "highSchool", label: "High School" },
     { id: "puc", label: "PUC / College" }
@@ -1841,7 +1846,7 @@ export function Faculty() {
       padding: "8px 20px",
       borderRadius: 30,
       border: `1.5px solid ${stream === str ? T.navy2 : "transparent"}`,
-      background: stream === str ? T.navy2 : "rgba(15,32,68,0.05)",
+      background: stream === str ? T.navy2 : "rgba(100, 116, 139, 0.08)",
       color: stream === str ? T.white : T.gray,
       fontWeight: 600,
       fontSize: "0.85rem",
@@ -1915,7 +1920,7 @@ export function Faculty() {
             </div>
 
             <div style={{
-    background: "rgba(15,32,68,0.04)",
+    background: "rgba(100, 116, 139, 0.08)",
     padding: "8px 16px",
     borderRadius: 30,
     display: "inline-block",
@@ -2300,7 +2305,7 @@ export function ContactUs() {
     color: T.navy,
     background: "#ffffff",
     outline: "none",
-    boxShadow: "inset 4px 4px 10px rgba(15, 32, 68, 0.08), inset -4px -4px 10px #ffffff, 1px 1px 4px rgba(255, 255, 255, 0.8)",
+    boxShadow: "inset 4px 4px 8px #cbd5e0, inset -4px -4px 8px #ffffff",
     boxSizing: "border-box",
     textAlign: "left"
   });
@@ -2626,7 +2631,7 @@ export function Footer() {
   return <footer
     id="footer"
     style={{
-      background: "#08152e",
+      background: T.navy,
       color: "rgba(255,255,255,.7)",
       padding: "clamp(40px, 10vw, 80px) clamp(20px, 7%, 40px) clamp(24px, 5vw, 40px)",
       borderTop: `1px solid rgba(255,255,255,0.05)`

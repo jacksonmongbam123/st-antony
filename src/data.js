@@ -16,16 +16,24 @@ export const T = {
   red:    "#c0392b",
   shadow: "rgba(15, 32, 68, 0.08)",
   shadowMd: "rgba(15, 32, 68, 0.12)",
-  radius: 20, // Claymorphism uses larger, softer border-radius
-  radiusLg: 32, // Softer edges
-  // Claymorphic shadow values for direct use in inline styles
-  clayLight: "12px 12px 24px rgba(15, 32, 68, 0.08), -12px -12px 24px #ffffff, inset 4px 4px 12px rgba(255, 255, 255, 0.9), inset -4px -4px 12px rgba(15, 32, 68, 0.06)",
-  clayCream: "12px 12px 24px rgba(15, 32, 68, 0.08), -12px -12px 24px #ffffff, inset 4px 4px 12px rgba(255, 255, 255, 0.9), inset -4px -4px 12px rgba(15, 32, 68, 0.06)",
-  clayNavy: "12px 12px 24px rgba(15, 32, 68, 0.15), inset 4px 4px 12px rgba(255, 255, 255, 0.2), inset -4px -4px 12px rgba(0, 0, 0, 0.3)",
-  clayGold: "12px 12px 24px rgba(201, 150, 58, 0.25), inset 4px 4px 12px rgba(255, 255, 255, 0.4), inset -4px -4px 12px rgba(0, 0, 0, 0.2)",
-  clayBtnLight: "4px 4px 10px rgba(15, 32, 68, 0.12), inset 2px 2px 6px rgba(255, 255, 255, 0.6), inset -2px -2px 6px rgba(15, 32, 68, 0.05)",
-  clayBtnGold: "4px 4px 10px rgba(201, 150, 58, 0.2), inset 2px 2px 6px rgba(255, 255, 255, 0.4), inset -2px -2px 6px rgba(0, 0, 0, 0.15)",
-  clayBtnNavy: "4px 4px 10px rgba(15, 32, 68, 0.15), inset 2px 2px 6px rgba(255, 255, 255, 0.2), inset -2px -2px 6px rgba(0, 0, 0, 0.3)",
+  radius: 24, // Neumorphism uses elegant, soft, rounded corners
+  radiusLg: 32,
+  // Neumorphic shadow values for direct use in inline styles
+  clayLight: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  clayCream: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  clayNavy: "10px 10px 20px #060d1b, -10px -10px 20px #18336d",
+  clayGold: "10px 10px 20px #98712c, -10px -10px 20px #fbdf88",
+  clayBtnLight: "5px 5px 10px #e2dcd2, -5px -5px 10px #ffffff",
+  clayBtnGold: "5px 5px 10px #98712c, -5px -5px 10px #fbdf88",
+  clayBtnNavy: "5px 5px 10px #060d1b, -5px -5px 10px #18336d",
+  // True Neumorphic styled variables
+  neuLight: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  neuCream: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  neuNavy: "10px 10px 20px #060d1b, -10px -10px 20px #18336d",
+  neuGold: "10px 10px 20px #98712c, -10px -10px 20px #fbdf88",
+  neuBtnLight: "5px 5px 10px #e2dcd2, -5px -5px 10px #ffffff",
+  neuBtnGold: "5px 5px 10px #98712c, -5px -5px 10px #fbdf88",
+  neuBtnNavy: "5px 5px 10px #060d1b, -5px -5px 10px #18336d",
 };
 
 // ── GLOBAL CSS (injected once in App) ──────────────────────
@@ -64,111 +72,98 @@ export const GLOBAL_CSS = `
     50%       { box-shadow: 0 0 0 10px rgba(201,150,58,0); }
   }
 
-  /* Claymorphism CSS Classes */
-  .clay-card-light {
-    background: #ffffff;
-    border-radius: 28px;
-    box-shadow: 12px 12px 24px rgba(15, 32, 68, 0.06), 
-                -12px -12px 24px #ffffff,
-                inset 5px 5px 12px rgba(255, 255, 255, 0.95),
-                inset -5px -5px 12px rgba(15, 32, 68, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .clay-card-light:hover {
-    transform: translateY(-6px);
-    box-shadow: 16px 20px 32px rgba(15, 32, 68, 0.1), 
-                -12px -12px 24px #ffffff,
-                inset 6px 6px 14px rgba(255, 255, 255, 0.95),
-                inset -6px -6px 14px rgba(15, 32, 68, 0.04);
-  }
-
-  .clay-card-cream {
+  /* Neumorphism CSS Classes */
+  .clay-card-light, .neu-card-light {
     background: #f8f5ef;
-    border-radius: 28px;
-    box-shadow: 12px 12px 24px rgba(15, 32, 68, 0.06), 
-                -12px -12px 24px #ffffff,
-                inset 5px 5px 12px rgba(255, 255, 255, 0.95),
-                inset -5px -5px 12px rgba(15, 32, 68, 0.05);
+    border-radius: 24px;
+    box-shadow: 10px 10px 20px #e2dcd2, 
+                -10px -10px 20px #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.6);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .clay-card-cream:hover {
-    transform: translateY(-6px);
-    box-shadow: 16px 20px 32px rgba(15, 32, 68, 0.1), 
-                -12px -12px 24px #ffffff,
-                inset 6px 6px 14px rgba(255, 255, 255, 0.95),
-                inset -6px -6px 14px rgba(15, 32, 68, 0.04);
+  .clay-card-light:hover, .neu-card-light:hover {
+    transform: translateY(-4px);
+    box-shadow: 14px 14px 28px #d6cfc3, 
+                -14px -14px 28px #ffffff;
   }
 
-  .clay-card-navy {
-    background: linear-gradient(135deg, #1e3a6e 0%, #0f2044 100%);
-    border-radius: 28px;
-    box-shadow: 12px 12px 28px rgba(15, 32, 68, 0.15),
-                inset 5px 5px 12px rgba(255, 255, 255, 0.2),
-                inset -5px -5px 12px rgba(0, 0, 0, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+  .clay-card-cream, .neu-card-cream {
+    background: #f8f5ef;
+    border-radius: 24px;
+    box-shadow: 10px 10px 20px #e2dcd2, 
+                -10px -10px 20px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .clay-card-navy:hover {
-    transform: translateY(-6px);
-    box-shadow: 16px 20px 36px rgba(15, 32, 68, 0.22),
-                inset 6px 6px 14px rgba(255, 255, 255, 0.25),
-                inset -6px -6px 14px rgba(0, 0, 0, 0.3);
+  .clay-card-cream:hover, .neu-card-cream:hover {
+    transform: translateY(-4px);
+    box-shadow: 14px 14px 28px #d6cfc3, 
+                -14px -14px 28px #ffffff;
   }
 
-  .clay-card-gold {
-    background: linear-gradient(135deg, #f0c96e 0%, #c9963a 100%);
-    border-radius: 28px;
-    box-shadow: 12px 12px 28px rgba(201, 150, 58, 0.25),
-                inset 5px 5px 12px rgba(255, 255, 255, 0.45),
-                inset -5px -5px 12px rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+  .clay-card-navy, .neu-card-navy {
+    background: #0f2044;
+    border-radius: 24px;
+    box-shadow: 10px 10px 20px #060d1b, 
+                -10px -10px 20px #18336d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .clay-card-gold:hover {
-    transform: translateY(-6px);
-    box-shadow: 16px 20px 36px rgba(201, 150, 58, 0.35),
-                inset 6px 6px 14px rgba(255, 255, 255, 0.5),
-                inset -6px -6px 14px rgba(0, 0, 0, 0.2);
+  .clay-card-navy:hover, .neu-card-navy:hover {
+    transform: translateY(-4px);
+    box-shadow: 14px 14px 28px #040811, 
+                -14px -14px 28px #204491;
   }
 
-  .clay-btn {
+  .clay-card-gold, .neu-card-gold {
+    background: #c9963a;
+    border-radius: 24px;
+    box-shadow: 10px 10px 20px #98712c, 
+                -10px -10px 20px #fbdf88;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .clay-card-gold:hover, .neu-card-gold:hover {
+    transform: translateY(-4px);
+    box-shadow: 14px 14px 28px #805f25, 
+                -14px -14px 28px #ffe59b;
+  }
+
+  .clay-btn, .neu-btn {
+    background: #f8f5ef;
+    color: #0f2044;
     border-radius: 20px;
-    box-shadow: 4px 4px 10px rgba(15, 32, 68, 0.12),
-                inset 2px 2px 6px rgba(255, 255, 255, 0.5),
-                inset -2px -2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 5px 5px 10px #e2dcd2, 
+                -5px -5px 10px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .clay-btn:hover {
+  .clay-btn:hover, .neu-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 6px 8px 14px rgba(15, 32, 68, 0.16),
-                inset 3px 3px 8px rgba(255, 255, 255, 0.6),
-                inset -2px -2px 6px rgba(0, 0, 0, 0.12);
+    box-shadow: 7px 7px 14px #d6cfc3, 
+                -7px -7px 14px #ffffff;
   }
-  .clay-btn:active {
-    box-shadow: 1px 1px 4px rgba(15, 32, 68, 0.12),
-                inset 4px 4px 10px rgba(0, 0, 0, 0.2),
-                inset -2px -2px 6px rgba(255, 255, 255, 0.3);
-    transform: translateY(1px) scale(0.97);
+  .clay-btn:active, .neu-btn:active {
+    box-shadow: inset 4px 4px 8px #d6cfc3, 
+                inset -4px -4px 8px #ffffff;
+    transform: translateY(1px) scale(0.98);
   }
 
-  /* Inset clay style for form inputs, search bars, timeline tracks */
-  .clay-input {
-    background: #ffffff !important;
+  /* Inset neumorphic style for form inputs, search bars, timeline tracks */
+  .clay-input, .neu-input {
+    background: #f8f5ef !important;
     border-radius: 16px;
-    border: 2px solid rgba(15, 32, 68, 0.03) !important;
-    box-shadow: inset 4px 4px 10px rgba(15, 32, 68, 0.08),
-                inset -4px -4px 10px #ffffff,
-                1px 1px 4px rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid rgba(15, 32, 68, 0.05) !important;
+    box-shadow: inset 4px 4px 8px #e2dcd2,
+                inset -4px -4px 8px #ffffff !important;
     transition: all 0.25s ease;
     outline: none;
   }
-  .clay-input:focus {
+  .clay-input:focus, .neu-input:focus {
     border-color: #c9963a !important;
-    box-shadow: inset 2px 2px 6px rgba(15, 32, 68, 0.04),
-                inset -2px -2px 6px #ffffff,
-                0 0 12px rgba(201, 150, 58, 0.15) !important;
+    box-shadow: inset 2px 2px 4px #e2dcd2,
+                inset -2px -2px 4px #ffffff,
+                0 0 10px rgba(201, 150, 58, 0.15) !important;
   }
 
   .skeleton {

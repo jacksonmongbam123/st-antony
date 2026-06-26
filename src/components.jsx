@@ -250,7 +250,7 @@ export function Navbar() {
         {/* Right — login + hamburger */}
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <button
-            className="desktop-only clay-btn"
+            className="desktop-only neu-btn"
             onClick={() =>
               alert("🔐 Login portal launching soon!\nContact: admissions@stantonys.edu.in")
             }
@@ -262,7 +262,7 @@ export function Navbar() {
               fontSize: ".84rem",
               fontWeight: 700,
               cursor: "pointer",
-              boxShadow: T.clayBtnGold,
+              boxShadow: T.neuBtnGold,
               whiteSpace: "nowrap",
             }}
           >
@@ -390,7 +390,7 @@ export function Navbar() {
                 alert("🔐 Login portal launching soon!\nContact: admissions@stantonys.edu.in");
                 setMobileOpen(false);
               }}
-              className="clay-btn"
+              className="neu-btn"
               style={{
                 background: `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)`,
                 color: T.navy,
@@ -400,7 +400,7 @@ export function Navbar() {
                 fontWeight: 700,
                 cursor: "pointer",
                 width: "100%",
-                boxShadow: T.clayBtnGold,
+                boxShadow: T.neuBtnGold,
               }}
             >
               Login
@@ -573,7 +573,7 @@ export function Hero() {
             onClick={() =>
               document.getElementById(slide.cta.href)?.scrollIntoView({ behavior: "smooth" })
             }
-            className="clay-btn"
+            className="neu-btn"
             style={{
               background: `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)`,
               color: T.navy,
@@ -584,7 +584,7 @@ export function Hero() {
               cursor: "pointer",
               whiteSpace: "nowrap",
               animation: "fadeInUp .7s .5s both",
-              boxShadow: T.clayBtnGold,
+              boxShadow: T.neuBtnGold,
             }}
           >
             {slide.cta.label} →
@@ -708,7 +708,7 @@ function VisionCard({ card, index }) {
   return (
     <div
       ref={ref}
-      className="clay-card-light"
+      className="neu-card-light"
       style={{
         overflow: "hidden",
         opacity: inView ? 1 : 0,
@@ -829,7 +829,7 @@ export function AcademicPerformance() {
                 setCategory(cat.id);
                 setSelectedYearIndex(0);
               }}
-              className={category === cat.id ? "clay-btn" : ""}
+              className={category === cat.id ? "neu-btn" : ""}
               style={{
                 padding: "10px 24px",
                 borderRadius: 30,
@@ -839,7 +839,7 @@ export function AcademicPerformance() {
                 fontWeight: 700,
                 fontSize: "0.95rem",
                 cursor: "pointer",
-                boxShadow: category === cat.id ? T.clayBtnLight : "none",
+                boxShadow: category === cat.id ? T.neuBtnLight : "none",
               }}
             >
               {cat.label}
@@ -863,7 +863,7 @@ export function AcademicPerformance() {
           <button
             key={item.year}
             onClick={() => setSelectedYearIndex(i)}
-            className="clay-btn"
+            className="neu-btn"
             style={{
               padding: "10px 20px",
               borderRadius: 30,
@@ -876,7 +876,7 @@ export function AcademicPerformance() {
               fontSize: "0.9rem",
               cursor: "pointer",
               whiteSpace: "nowrap",
-              boxShadow: selectedYearIndex === i ? T.clayBtnGold : T.clayBtnLight,
+              boxShadow: selectedYearIndex === i ? T.neuBtnGold : T.neuBtnLight,
             }}
           >
             {item.year}
@@ -896,7 +896,7 @@ export function AcademicPerformance() {
           }}
         >
           <div
-            className="scorer-card clay-card-light"
+            className="scorer-card neu-card-light"
             style={{
               position: "relative",
               overflow: "hidden",
@@ -905,7 +905,7 @@ export function AcademicPerformance() {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              boxShadow: T.clayLight,
+              boxShadow: T.neuLight,
               border: "1px solid rgba(255, 255, 255, 0.7)"
             }}
           >
@@ -956,7 +956,7 @@ export function AcademicPerformance() {
               </div>
             </div>
             <div 
-              className="clay-input"
+              className="neu-input"
               style={{ 
                 padding: "14px 20px", 
                 borderRadius: 16, 
@@ -987,12 +987,12 @@ export function AcademicPerformance() {
         >
           <div className="stats-grid" style={{ width: "100%" }}>
             <div 
-              className="clay-card-navy"
+              className="neu-card-navy"
               style={{ 
                 padding: "24px", 
                 color: T.white, 
                 textAlign: "center",
-                boxShadow: T.clayNavy,
+                boxShadow: T.neuNavy,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -1003,11 +1003,11 @@ export function AcademicPerformance() {
               <div style={{ fontSize: "0.85rem", opacity: 0.8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Overall Pass</div>
             </div>
             <div 
-              className="clay-card-light"
+              className="neu-card-light"
               style={{ 
                 padding: "24px", 
                 textAlign: "center",
-                boxShadow: T.clayLight,
+                boxShadow: T.neuLight,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -1018,11 +1018,11 @@ export function AcademicPerformance() {
               <div style={{ fontSize: "0.85rem", color: T.gray, textTransform: "uppercase" }}>Students Appeared</div>
             </div>
             <div 
-              className="clay-card-gold"
+              className="neu-card-gold"
               style={{ 
                 padding: "24px", 
                 textAlign: "center",
-                boxShadow: T.clayGold,
+                boxShadow: T.neuGold,
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
@@ -1036,10 +1036,10 @@ export function AcademicPerformance() {
 
           {/* Detailed Results Table */}
           <div 
-            className="table-card clay-card-light"
+            className="table-card neu-card-light"
             style={{ 
               borderRadius: 24, 
-              boxShadow: T.clayLight,
+              boxShadow: T.neuLight,
               flex: 1,
               width: "100%",
               maxWidth: "100%",
@@ -1117,7 +1117,7 @@ export function Admissions() {
         {ADMISSION_DATA.map((d, i) => (
           <div
             key={i}
-            className="clay-card-light"
+            className="neu-card-light"
             style={{
               overflow: "hidden",
             }}
@@ -1965,7 +1965,7 @@ export function Faculty() {
         {facultyList.map((f, i) => (
           <div
             key={`${f.name}-${f.subject}`}
-            className="clay-card-light"
+            className="neu-card-light"
             style={{
               padding: "clamp(24px, 5vw, 40px) clamp(20px, 4vw, 28px)",
               textAlign: "center",
@@ -2416,14 +2416,14 @@ export function ContactUs() {
       />
 
       <div
-        className="mobile-stack clay-card-light"
+        className="mobile-stack neu-card-light"
         style={{
           maxWidth: "min(820px, 95vw)",
           margin: "0 auto",
           overflow: "hidden",
           display: "grid",
           gridTemplateColumns: "1fr 1.6fr",
-          boxShadow: T.clayLight,
+          boxShadow: T.neuLight,
           border: "1px solid rgba(255, 255, 255, 0.7)"
         }}
       >
@@ -2616,7 +2616,7 @@ export function ContactUs() {
           {/* Submit */}
           <button
             type="submit"
-            className="clay-btn"
+            className="neu-btn"
             style={{
               background: `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)`,
               color: T.navy,
@@ -2628,7 +2628,7 @@ export function ContactUs() {
               letterSpacing: ".03em",
               marginTop: 4,
               alignSelf: "flex-start",
-              boxShadow: T.clayBtnGold,
+              boxShadow: T.neuBtnGold,
             }}
           >
             Send Message →

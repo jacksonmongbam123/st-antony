@@ -16,24 +16,24 @@ export const T = {
   red:    "#c0392b",
   shadow: "rgba(15, 32, 68, 0.08)",
   shadowMd: "rgba(15, 32, 68, 0.12)",
-  radius: 12, // NeoPOP uses crisp geometric corners
-  radiusLg: 16,
-  // NeoPOP style hard-edged solid shadows
-  clayLight: "6px 6px 0px #0f2044",
-  clayCream: "6px 6px 0px #0f2044",
-  clayNavy: "6px 6px 0px #c9963a",
-  clayGold: "6px 6px 0px #0f2044",
-  clayBtnLight: "4px 4px 0px #0f2044",
-  clayBtnGold: "4px 4px 0px #0f2044",
-  clayBtnNavy: "4px 4px 0px #c9963a",
-  // True NeoPOP styled variables
-  neuLight: "6px 6px 0px #0f2044",
-  neuCream: "6px 6px 0px #0f2044",
-  neuNavy: "6px 6px 0px #c9963a",
-  neuGold: "6px 6px 0px #0f2044",
-  neuBtnLight: "4px 4px 0px #0f2044",
-  neuBtnGold: "4px 4px 0px #0f2044",
-  neuBtnNavy: "4px 4px 0px #c9963a",
+  radius: 20, // Neumorphism uses larger, softer border radius
+  radiusLg: 24,
+  // Neumorphic Soft UI styled variables
+  clayLight: "10px 10px 20px #cfd8e3, -10px -10px 20px #ffffff",
+  clayCream: "10px 10px 20px #ded7c9, -10px -10px 20px #ffffff",
+  clayNavy: "10px 10px 20px #060e1f, -10px -10px 20px #1a3465",
+  clayGold: "10px 10px 20px #a1711e, -10px -10px 20px #ebd19b",
+  clayBtnLight: "6px 6px 12px #cfd8e3, -6px -6px 12px #ffffff",
+  clayBtnGold: "6px 6px 12px #a1711e, -6px -6px 12px #ebd19b",
+  clayBtnNavy: "6px 6px 12px #060e1f, -6px -6px 12px #1a3465",
+  // True Neumorphic soft shadows
+  neuLight: "10px 10px 20px #cfd8e3, -10px -10px 20px #ffffff",
+  neuCream: "10px 10px 20px #ded7c9, -10px -10px 20px #ffffff",
+  neuNavy: "10px 10px 20px #060e1f, -10px -10px 20px #1a3465",
+  neuGold: "10px 10px 20px #a1711e, -10px -10px 20px #ebd19b",
+  neuBtnLight: "6px 6px 12px #cfd8e3, -6px -6px 12px #ffffff",
+  neuBtnGold: "6px 6px 12px #a1711e, -6px -6px 12px #ebd19b",
+  neuBtnNavy: "6px 6px 12px #060e1f, -6px -6px 12px #1a3465",
 };
 
 // ── GLOBAL CSS (injected once in App) ──────────────────────
@@ -41,7 +41,7 @@ export const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
-  body { font-family: 'Inter', sans-serif; background: #f8f5ef; color: #0f2044; overflow-x: hidden; max-width: 100vw; position: relative; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #0f2044; overflow-x: hidden; max-width: 100vw; position: relative; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   #root { overflow-x: hidden; max-width: 100vw; }
 
   h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
@@ -72,87 +72,93 @@ export const GLOBAL_CSS = `
     50%       { box-shadow: 0 0 0 10px rgba(201,150,58,0); }
   }
 
-  /* NeoPOP CSS Classes */
+  /* Neumorphic CSS Classes (Soft UI) */
   .clay-card-light, .neu-card-light {
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 6px 6px 0px #0f2044;
-    border: 3px solid #0f2044;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #eef2f7;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px #cfd8e3, -10px -10px 20px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .clay-card-light:hover, .neu-card-light:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px #0f2044;
+    transform: translateY(-2px);
+    box-shadow: 14px 14px 28px #cfd8e3, -14px -14px 28px #ffffff;
   }
 
   .clay-card-cream, .neu-card-cream {
-    background: #f8f5ef;
-    border-radius: 12px;
-    box-shadow: 6px 6px 0px #0f2044;
-    border: 3px solid #0f2044;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #f3efe6;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px #ded7c9, -10px -10px 20px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .clay-card-cream:hover, .neu-card-cream:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px #0f2044;
+    transform: translateY(-2px);
+    box-shadow: 14px 14px 28px #ded7c9, -14px -14px 28px #ffffff;
   }
 
   .clay-card-navy, .neu-card-navy {
     background: #0f2044;
     color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 6px 6px 0px #c9963a;
-    border: 3px solid #c9963a;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px #060e1f, -10px -10px 20px #1a3465;
+    border: 1px solid rgba(26, 52, 101, 0.4);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .clay-card-navy:hover, .neu-card-navy:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px #c9963a;
+    transform: translateY(-2px);
+    box-shadow: 14px 14px 28px #060e1f, -14px -14px 28px #1a3465;
   }
 
   .clay-card-gold, .neu-card-gold {
     background: #c9963a;
-    border-radius: 12px;
-    box-shadow: 6px 6px 0px #0f2044;
-    border: 3px solid #0f2044;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px #a1711e, -10px -10px 20px #ebd19b;
+    border: 1px solid rgba(235, 209, 155, 0.4);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
   .clay-card-gold:hover, .neu-card-gold:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px #0f2044;
+    transform: translateY(-2px);
+    box-shadow: 14px 14px 28px #a1711e, -14px -14px 28px #ebd19b;
   }
 
   .clay-btn, .neu-btn {
-    background: #ffffff;
+    background: #eef2f7;
     color: #0f2044;
-    border-radius: 10px;
-    box-shadow: 4px 4px 0px #0f2044;
-    border: 2.5px solid #0f2044;
-    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 14px;
+    box-shadow: 6px 6px 12px #cfd8e3, -6px -6px 12px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
   }
   .clay-btn:hover, .neu-btn:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 5px 5px 0px #0f2044;
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 16px #cfd8e3, -8px -8px 16px #ffffff;
+    color: #c9963a;
   }
   .clay-btn:active, .neu-btn:active {
-    box-shadow: 1px 1px 0px #0f2044;
-    transform: translate(3px, 3px);
+    transform: translateY(1px);
+    box-shadow: inset 4px 4px 8px #cfd8e3, inset -4px -4px 8px #ffffff;
   }
 
-  /* Inset NeoPOP style for form inputs, search bars, timeline tracks */
+  /* Inset Neumorphic style for form inputs, search bars, timeline tracks */
   .clay-input, .neu-input {
-    background: #ffffff !important;
-    border-radius: 10px;
-    border: 2.5px solid #0f2044 !important;
-    box-shadow: 3px 3px 0px rgba(15, 32, 68, 0.1) !important;
-    transition: all 0.15s ease;
+    background: #eef2f7 !important;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    box-shadow: inset 4px 4px 8px #cfd8e3, inset -4px -4px 8px #ffffff !important;
+    transition: all 0.25s ease;
     outline: none;
     color: #0f2044 !important;
   }
   .clay-input:focus, .neu-input:focus {
     border-color: #c9963a !important;
-    box-shadow: 4px 4px 0px #0f2044 !important;
+    box-shadow: inset 5px 5px 10px #cfd8e3, inset -5px -5px 10px #ffffff !important;
   }
 
   .skeleton {

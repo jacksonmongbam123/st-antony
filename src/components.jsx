@@ -34,7 +34,7 @@ import cImg from './assets/school.jpeg';
  * SectionHeader — animated eyebrow + title + gold rule + subtitle.
  * Accepts `dark` for white-on-navy variant, `center` for centred layout.
  */
-export function SectionHeader({ eyebrow, title, sub, dark, center }) {
+export function SectionHeader({ eyebrow = "", title = "", sub = "", dark = false, center = false }: { eyebrow?: any, title?: any, sub?: any, dark?: any, center?: any }) {
   const [ref, inView] = useInView();
   return (
     <div ref={ref} style={{ marginBottom: 40, textAlign: center ? "center" : "left" }}>
@@ -573,18 +573,21 @@ export function Hero() {
             onClick={() =>
               document.getElementById(slide.cta.href)?.scrollIntoView({ behavior: "smooth" })
             }
-            className="neu-btn"
             style={{
-              background: `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)`,
+              background: "#eef2f7",
               color: T.navy,
-              border: "none",
-              padding: "clamp(12px, 3vw, 16px) clamp(24px, 6vw, 40px)",
+              border: "1px solid rgba(255, 255, 255, 0.8)",
+              padding: "16px 40px",
               fontWeight: 700,
-              fontSize: "clamp(0.9rem, 1.2vw, 1rem)",
+              fontSize: "0.95rem",
+              borderRadius: "30px",
               cursor: "pointer",
               whiteSpace: "nowrap",
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
               animation: "fadeInUp .7s .5s both",
-              boxShadow: T.neuBtnGold,
+              boxShadow: "6px 6px 15px rgba(15, 32, 68, 0.15), -6px -6px 15px rgba(255, 255, 255, 0.3)",
+              transition: "all 0.25s ease",
             }}
           >
             {slide.cta.label} →
@@ -703,35 +706,48 @@ export function Hero() {
 /**
  * VisionMission — two cards with scroll-reveal + lift-on-hover.
  */
-function VisionCard({ card, index }) {
+function VisionCard({ card, index }: { card: any, index: any, key?: any }) {
   const [ref, inView] = useInView();
   return (
     <div
       ref={ref}
       className="neu-card-light"
       style={{
-        overflow: "hidden",
         opacity: inView ? 1 : 0,
         transform: inView ? "none" : "translateY(24px)",
         transitionDelay: `${index * 0.15}s`,
+        padding: "24px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "16px",
       }}
     >
-      <div style={{ height: 180, background: card.bg, display: "grid", placeItems: "center" }}>
+      <div 
+        style={{ 
+          height: 180, 
+          background: "#eef2f7", 
+          borderRadius: "20px",
+          boxShadow: "inset 4px 4px 8px #cfd8e3, inset -4px -4px 8px #ffffff",
+          display: "grid", 
+          placeItems: "center" 
+        }}
+      >
         <span style={{ fontSize: "3.5rem" }}>{card.icon}</span>
       </div>
-      <div style={{ padding: "24px 28px" }}>
+      <div style={{ padding: "4px 8px" }}>
         <span
           style={{
             display: "inline-block",
-            background: T.gold,
-            color: T.navy,
-            fontSize: ".7rem",
+            background: "#ebf8ff",
+            color: "#2b6cb0",
+            fontSize: ".75rem",
             fontWeight: 700,
-            letterSpacing: ".1em",
+            letterSpacing: ".05em",
             textTransform: "uppercase",
-            padding: "4px 10px",
-            borderRadius: 4,
-            marginBottom: 12,
+            padding: "6px 14px",
+            borderRadius: 20,
+            marginBottom: 14,
+            boxShadow: "inset 1px 1px 3px rgba(15, 32, 68, 0.05), inset -1px -1px 3px #ffffff",
           }}
         >
           {card.tag}
@@ -739,7 +755,7 @@ function VisionCard({ card, index }) {
         <h3
           style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "1.6rem",
+            fontSize: "1.75rem",
             marginBottom: 12,
             fontWeight: 700,
             color: T.navy,
@@ -772,7 +788,7 @@ export function VisionMission() {
   ];
 
   return (
-    <section id="vision" style={{ background: T.white, padding: "80px 7% 40px" }}>
+    <section id="vision" style={{ background: "#eef2f7", padding: "80px 7% 40px" }}>
       <SectionHeader eyebrow="Who We Are" title="Vision & Mission" />
       <div
         style={{
@@ -801,7 +817,7 @@ export function AcademicPerformance() {
   const [ref, inView] = useInView();
 
   return (
-    <section id="academic-performance" style={{ background: T.cream, padding: "80px 7%" }}>
+    <section id="academic-performance" style={{ background: "#eef2f7", padding: "80px 7%" }}>
       <SectionHeader
         eyebrow="Academic Excellence"
         title="Performance History"
@@ -811,13 +827,13 @@ export function AcademicPerformance() {
       {/* Category Toggle */}
       <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
         <div style={{ 
-          background: "#ffffff", 
-          padding: 6, 
+          background: "#eef2f7", 
+          padding: 8, 
           borderRadius: 40, 
           display: "flex",
           gap: 4,
-          boxShadow: "inset 4px 4px 10px rgba(15,32,68,0.08), inset -4px -4px 10px #ffffff",
-          border: "2px solid rgba(15,32,68,0.02)"
+          boxShadow: "inset 4px 4px 8px #cfd8e3, inset -4px -4px 8px #ffffff",
+          border: "1px solid rgba(255, 255, 255, 0.5)"
         }}>
           {[
             { id: "highSchool", label: "High School" },
@@ -829,17 +845,19 @@ export function AcademicPerformance() {
                 setCategory(cat.id);
                 setSelectedYearIndex(0);
               }}
-              className={category === cat.id ? "neu-btn" : ""}
               style={{
-                padding: "10px 24px",
+                padding: "12px 28px",
                 borderRadius: 30,
-                border: "none",
-                background: category === cat.id ? `linear-gradient(135deg, #ffffff 0%, ${T.light} 100%)` : "transparent",
-                color: category === cat.id ? T.navy : T.gray,
+                border: "1px solid transparent",
+                background: category === cat.id ? "#eef2f7" : "transparent",
+                color: category === cat.id ? T.navy2 : T.gray,
                 fontWeight: 700,
-                fontSize: "0.95rem",
+                fontSize: "0.85rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
                 cursor: "pointer",
-                boxShadow: category === cat.id ? T.neuBtnLight : "none",
+                boxShadow: category === cat.id ? "4px 4px 8px #cfd8e3, -4px -4px 8px #ffffff" : "none",
+                transition: "all 0.25s ease",
               }}
             >
               {cat.label}
@@ -863,20 +881,20 @@ export function AcademicPerformance() {
           <button
             key={item.year}
             onClick={() => setSelectedYearIndex(i)}
-            className="neu-btn"
             style={{
-              padding: "10px 20px",
+              padding: "12px 24px",
               borderRadius: 30,
-              border: "none",
-              background: selectedYearIndex === i 
-                ? `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)` 
-                : `linear-gradient(135deg, #ffffff 0%, ${T.light} 100%)`,
-              color: selectedYearIndex === i ? T.navy : T.gray,
+              border: "1px solid rgba(255, 255, 255, 0.8)",
+              background: "#eef2f7",
+              color: selectedYearIndex === i ? "#2b6cb0" : T.gray,
               fontWeight: 700,
-              fontSize: "0.9rem",
+              fontSize: "0.85rem",
               cursor: "pointer",
               whiteSpace: "nowrap",
-              boxShadow: selectedYearIndex === i ? T.neuBtnGold : T.neuBtnLight,
+              boxShadow: selectedYearIndex === i 
+                ? "5px 5px 10px #cfd8e3, -5px -5px 10px #ffffff" 
+                : "2px 2px 5px #cfd8e3, -2px -2px 5px #ffffff",
+              transition: "all 0.2s ease",
             }}
           >
             {item.year}
@@ -918,10 +936,10 @@ export function AcademicPerformance() {
                   height: 140, 
                   borderRadius: "50%", 
                   objectFit: "cover",
-                  border: `4px solid ${T.gold}`,
-                  padding: 4,
+                  border: `6px solid #ffffff`,
+                  padding: 0,
                   background: T.white,
-                  boxShadow: "inset 2px 2px 6px rgba(0,0,0,0.15), 2px 4px 10px rgba(15,32,68,0.12)"
+                  boxShadow: "4px 4px 10px rgba(15,32,68,0.15), -4px -4px 10px #ffffff"
                 }} 
               />
               <div style={{ 
@@ -1097,7 +1115,7 @@ export function Admissions() {
   }, []);
 
   return (
-    <section id="admissions" style={{ background: T.light, padding: "80px 7%" }}>
+    <section id="admissions" style={{ background: "#eef2f7", padding: "80px 7%" }}>
       <SectionHeader
         eyebrow="Join Us"
         title="Admissions 2026"
@@ -1161,12 +1179,13 @@ export function Admissions() {
                       width: 56,
                       height: 56,
                       borderRadius: 14,
-                      background: d.bg,
+                      background: "#eef2f7",
                       display: "grid",
                       placeItems: "center",
                       fontSize: "1.8rem",
                       flexShrink: 0,
-                      boxShadow: `0 4px 12px ${d.bg}aa`,
+                      boxShadow: "inset 3px 3px 6px #cfd8e3, inset -3px -3px 6px #ffffff",
+                      border: "1px solid rgba(255, 255, 255, 0.4)",
                     }}
                   >
                     {d.icon}
@@ -1205,8 +1224,8 @@ export function Admissions() {
                       </span>
                       <span
                         style={{
-                          color: r.hi ? T.gold : T.navy,
-                          fontSize: r.hi ? ".95rem" : ".9rem",
+                          color: (r as any).hi ? T.gold : T.navy,
+                          fontSize: (r as any).hi ? ".95rem" : ".9rem",
                           fontWeight: 700,
                           textAlign: "right",
                         }}
@@ -1248,21 +1267,25 @@ export function Admissions() {
         </h3>
 
         {/* Class tabs */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 28 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: 28 }}>
           {CLASS_DATA.map((c, i) => (
             <button
               key={i}
               onClick={() => setActiveClass(i)}
               style={{
-                padding: "9px 18px",
+                padding: "12px 24px",
                 borderRadius: 30,
-                border: `1.5px solid ${activeClass === i ? T.navy : "#cbd5e1"}`,
-                background: activeClass === i ? T.navy : T.white,
-                color: activeClass === i ? T.white : T.navy,
-                fontSize: ".83rem",
-                fontWeight: 500,
+                border: "1px solid rgba(255, 255, 255, 0.8)",
+                background: "#eef2f7",
+                color: activeClass === i ? "#2b6cb0" : T.gray,
+                fontWeight: 700,
+                fontSize: "0.85rem",
                 cursor: "pointer",
-                transition: "all .25s",
+                whiteSpace: "nowrap",
+                boxShadow: activeClass === i 
+                  ? "5px 5px 10px #cfd8e3, -5px -5px 10px #ffffff" 
+                  : "2px 2px 5px #cfd8e3, -2px -2px 5px #ffffff",
+                transition: "all 0.2s ease",
               }}
             >
               {c.label}
@@ -1272,30 +1295,29 @@ export function Admissions() {
 
         {/* Subject table */}
         <div
-          className="table-scroll"
+          className="table-scroll neu-card-light"
           style={{
-            background: T.white,
-            borderRadius: 12,
-            boxShadow: "0 4px 24px rgba(15,32,68,.10)",
             overflowX: "auto",
             overflowY: "hidden",
             animation: "fadeIn .35s ease",
             maxWidth: "100%",
+            background: "#eef2f7",
+            padding: 12,
           }}
         >
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead style={{ background: T.navy }}>
+            <thead style={{ background: "rgba(15, 32, 68, 0.04)", borderRadius: 12 }}>
               <tr>
                 {["Subject", "Code", "Periods/Week", "Teacher In-Charge"].map((h) => (
                   <th
                     key={h}
                     style={{
-                      color: T.white,
+                      color: T.navy,
                       fontSize: ".8rem",
-                      fontWeight: 600,
+                      fontWeight: 700,
                       letterSpacing: ".06em",
                       textTransform: "uppercase",
-                      padding: "14px 18px",
+                      padding: "16px 18px",
                       textAlign: "left",
                     }}
                   >
@@ -1309,31 +1331,33 @@ export function Admissions() {
                 <tr
                   key={i}
                   style={{
-                    background: i % 2 === 0 ? T.white : "#f8fafc",
+                    background: i % 2 === 0 ? "rgba(255, 255, 255, 0.25)" : "transparent",
                     transition: "background .2s",
+                    borderBottom: "1px solid rgba(15, 32, 68, 0.04)",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "#eff6ff")}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255, 255, 255, 0.6)")}
                   onMouseLeave={(e) =>
-                    (e.currentTarget.style.background = i % 2 === 0 ? T.white : "#f8fafc")
+                    (e.currentTarget.style.background = i % 2 === 0 ? "rgba(255, 255, 255, 0.25)" : "transparent")
                   }
                 >
-                  <td style={{ padding: "13px 18px", fontWeight: 600, color: T.gold }}>
+                  <td style={{ padding: "16px 18px", fontWeight: 700, color: T.gold }}>
                     {r.subject}
                   </td>
-                  <td style={{ padding: "13px 18px", fontSize: ".88rem", color: T.navy }}>
+                  <td style={{ padding: "16px 18px", fontSize: ".88rem", color: T.navy, fontWeight: 500 }}>
                     {r.code}
                   </td>
                   <td
                     style={{
-                      padding: "13px 18px",
+                      padding: "16px 18px",
                       fontSize: ".88rem",
                       color: T.navy,
                       textAlign: "center",
+                      fontWeight: 500,
                     }}
                   >
                     {r.periods}
                   </td>
-                  <td style={{ padding: "13px 18px" }}>
+                  <td style={{ padding: "16px 18px" }}>
                     <div
                       style={{
                         display: "flex",
@@ -1348,7 +1372,8 @@ export function Admissions() {
                           width: 28,
                           height: 28,
                           borderRadius: "50%",
-                          background: `linear-gradient(135deg,${T.navy},#3b5fa0)`,
+                          background: "#eef2f7",
+                          boxShadow: "inset 1px 1px 3px #cfd8e3, inset -1px -1px 3px #ffffff",
                           display: "grid",
                           placeItems: "center",
                           fontSize: ".8rem",
@@ -1357,7 +1382,7 @@ export function Admissions() {
                       >
                         {r.emoji}
                       </div>
-                      {r.teacher}
+                      <span style={{ fontWeight: 600 }}>{r.teacher}</span>
                     </div>
                   </td>
                 </tr>
@@ -1848,7 +1873,7 @@ export function Faculty() {
   const facultyList = getFacultyList();
 
   return (
-    <section id="faculty" style={{ background: T.cream, padding: "80px 7%" }}>
+    <section id="faculty" style={{ background: "#eef2f7", padding: "80px 7%" }}>
       <SectionHeader
         eyebrow="Our Educators"
         title="Faculty Information"
@@ -1857,7 +1882,15 @@ export function Faculty() {
 
       {/* Main Category Selector */}
       <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
-        <div style={{ background: "rgba(15,32,68,0.05)", padding: 6, borderRadius: 40, display: "flex", gap: 4 }}>
+        <div style={{ 
+          background: "#eef2f7", 
+          padding: 8, 
+          borderRadius: 40, 
+          display: "flex",
+          gap: 4,
+          boxShadow: "inset 4px 4px 8px #cfd8e3, inset -4px -4px 8px #ffffff",
+          border: "1px solid rgba(255, 255, 255, 0.5)"
+        }}>
           {[
             { id: "highSchool", label: "High School" },
             { id: "puc", label: "PUC / College" }
@@ -1866,15 +1899,18 @@ export function Faculty() {
               key={cat.id}
               onClick={() => handleMainCatChange(cat.id)}
               style={{
-                padding: "10px 24px",
+                padding: "12px 28px",
                 borderRadius: 30,
-                border: "none",
-                background: mainCat === cat.id ? T.navy : "transparent",
-                color: mainCat === cat.id ? T.white : T.gray,
+                border: "1px solid transparent",
+                background: mainCat === cat.id ? "#eef2f7" : "transparent",
+                color: mainCat === cat.id ? T.navy2 : T.gray,
                 fontWeight: 700,
-                fontSize: "0.95rem",
+                fontSize: "0.85rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.05em",
                 cursor: "pointer",
-                transition: "all 0.3s ease",
+                boxShadow: mainCat === cat.id ? "4px 4px 8px #cfd8e3, -4px -4px 8px #ffffff" : "none",
+                transition: "all 0.25s ease",
               }}
             >
               {cat.label}
@@ -1891,15 +1927,19 @@ export function Faculty() {
               key={std}
               onClick={() => setSubCat(std)}
               style={{
-                padding: "8px 20px",
+                padding: "12px 24px",
                 borderRadius: 30,
-                border: `1.5px solid ${subCat === std ? T.gold : "#cbd5e1"}`,
-                background: subCat === std ? T.white : "transparent",
-                color: subCat === std ? T.navy : T.gray,
-                fontWeight: 600,
+                border: "1px solid rgba(255, 255, 255, 0.8)",
+                background: "#eef2f7",
+                color: subCat === std ? "#2b6cb0" : T.gray,
+                fontWeight: 700,
                 fontSize: "0.85rem",
                 cursor: "pointer",
-                transition: "all 0.3s ease",
+                whiteSpace: "nowrap",
+                boxShadow: subCat === std 
+                  ? "5px 5px 10px #cfd8e3, -5px -5px 10px #ffffff" 
+                  : "2px 2px 5px #cfd8e3, -2px -2px 5px #ffffff",
+                transition: "all 0.2s ease",
               }}
             >
               {std}
@@ -1913,37 +1953,45 @@ export function Faculty() {
                   key={puc}
                   onClick={() => setSubCat(puc)}
                   style={{
-                    padding: "8px 20px",
+                    padding: "12px 24px",
                     borderRadius: 30,
-                    border: `1.5px solid ${subCat === puc ? T.gold : "#cbd5e1"}`,
-                    background: subCat === puc ? T.white : "transparent",
-                    color: subCat === puc ? T.navy : T.gray,
-                    fontWeight: 600,
+                    border: "1px solid rgba(255, 255, 255, 0.8)",
+                    background: "#eef2f7",
+                    color: subCat === puc ? "#2b6cb0" : T.gray,
+                    fontWeight: 700,
                     fontSize: "0.85rem",
                     cursor: "pointer",
-                    transition: "all 0.3s ease",
+                    whiteSpace: "nowrap",
+                    boxShadow: subCat === puc 
+                      ? "5px 5px 10px #cfd8e3, -5px -5px 10px #ffffff" 
+                      : "2px 2px 5px #cfd8e3, -2px -2px 5px #ffffff",
+                    transition: "all 0.2s ease",
                   }}
                 >
                   {puc}
                 </button>
               ))}
             </div>
-            <div style={{ width: 1, background: "#cbd5e1", margin: "0 10px" }} />
+            <div style={{ width: 1, background: "rgba(15, 32, 68, 0.1)", margin: "0 10px" }} />
             <div style={{ display: "flex", gap: 8 }}>
               {["Science Stream", "Commerce Stream"].map((str) => (
                 <button
                   key={str}
                   onClick={() => setStream(str)}
                   style={{
-                    padding: "8px 20px",
+                    padding: "12px 24px",
                     borderRadius: 30,
-                    border: `1.5px solid ${stream === str ? T.navy2 : "transparent"}`,
-                    background: stream === str ? T.navy2 : "rgba(15,32,68,0.05)",
-                    color: stream === str ? T.white : T.gray,
-                    fontWeight: 600,
+                    border: "1px solid rgba(255, 255, 255, 0.8)",
+                    background: "#eef2f7",
+                    color: stream === str ? "#2b6cb0" : T.gray,
+                    fontWeight: 700,
                     fontSize: "0.85rem",
                     cursor: "pointer",
-                    transition: "all 0.3s ease",
+                    whiteSpace: "nowrap",
+                    boxShadow: stream === str 
+                      ? "5px 5px 10px #cfd8e3, -5px -5px 10px #ffffff" 
+                      : "2px 2px 5px #cfd8e3, -2px -2px 5px #ffffff",
+                    transition: "all 0.2s ease",
                   }}
                 >
                   {str}
@@ -1985,8 +2033,9 @@ export function Faculty() {
                   height: "clamp(80px, 20vw, 120px)", 
                   borderRadius: "50%", 
                   objectFit: "cover",
-                  border: `3px solid ${T.gold}33`,
-                  padding: 4
+                  border: "6px solid #ffffff",
+                  padding: 0,
+                  boxShadow: "4px 4px 10px rgba(15,32,68,0.15), -4px -4px 10px #ffffff"
                 }} 
               />
               <div style={{ 
@@ -2347,12 +2396,12 @@ export function ContactUs() {
     name: "", email: "", phone: "", subject: "", enquiryType: "", message: "",
   });
   const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors]       = useState({});
+  const [errors, setErrors]       = useState<any>({});
 
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   const validate = () => {
-    const e = {};
+    const e: any = {};
     if (!form.name.trim())    e.name    = "Name is required";
     if (!form.email.trim())   e.email   = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = "Enter a valid email";
@@ -2402,7 +2451,7 @@ export function ContactUs() {
       ref={ref}
       className="mobile-padding-x"
       style={{
-        background: T.cream,
+        background: "#eef2f7",
         padding: "88px 7%",
         opacity:   inView ? 1 : 0,
         transform: inView ? "none" : "translateY(32px)",
@@ -2887,6 +2936,218 @@ export function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+/**
+ * GithubSyncPanel — Collapsible neumorphic panel that allows pushing design & code changes back to GitHub.
+ */
+export function GithubSyncPanel() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [token, setToken] = useState("");
+  const [owner, setOwner] = useState("jacksonmongbam123");
+  const [repo, setRepo] = useState("st-antony");
+  const [branch, setBranch] = useState("main");
+  const [message, setMessage] = useState("feat: update to beautiful Neumorphism Soft UI design");
+  
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [result, setResult] = useState<any>(null);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleSync = async (e: any) => {
+    e.preventDefault();
+    if (!token) {
+      setStatus("error");
+      setErrorMsg("Please enter your GitHub Personal Access Token.");
+      return;
+    }
+    setStatus("loading");
+    try {
+      const response = await fetch("/api/commit-to-github", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token, owner, repo, branch, message }),
+      });
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setStatus("success");
+        setResult(data);
+      } else {
+        setStatus("error");
+        setErrorMsg(data.error || "Failed to commit changes.");
+      }
+    } catch (err: any) {
+      setStatus("error");
+      setErrorMsg(err.message || "Network error occurred.");
+    }
+  };
+
+  return (
+    <div style={{ position: "fixed", bottom: 24, left: 24, zIndex: 9999, fontFamily: "'Inter', sans-serif" }}>
+      {/* Floating Toggle Button */}
+      <button
+        className="neu-btn"
+        style={{
+          width: 56,
+          height: 56,
+          borderRadius: "50%",
+          display: "grid",
+          placeItems: "center",
+          fontSize: "1.6rem",
+          cursor: "pointer",
+          border: "none",
+        }}
+        onClick={() => setIsOpen(!isOpen)}
+        title="GitHub Sync Portal"
+      >
+        {isOpen ? "✕" : "🐙"}
+      </button>
+
+      {/* Slide-out / Pop-up Panel */}
+      {isOpen && (
+        <div
+          className="neu-card-light"
+          style={{
+            position: "absolute",
+            bottom: 72,
+            left: 0,
+            width: "clamp(300px, 90vw, 420px)",
+            padding: 24,
+            maxHeight: "calc(100vh - 120px)",
+            overflowY: "auto",
+            display: "flex",
+            flexDirection: "column",
+            gap: 16,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 12, borderBottom: `1px solid rgba(15, 32, 68, 0.1)`, paddingBottom: 12 }}>
+            <span style={{ fontSize: "1.8rem" }}>⚙️</span>
+            <div>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.25rem", color: T.navy, margin: 0, fontWeight: 700 }}>
+                GitHub Sync Portal
+              </h3>
+              <p style={{ fontSize: "0.78rem", color: T.gray, margin: 0 }}>Push Soft Neumorphic layout to your repo</p>
+            </div>
+          </div>
+
+          {status === "success" ? (
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, textAlign: "center", padding: "16px 0" }}>
+              <div style={{ fontSize: "3rem" }}>✅</div>
+              <h4 style={{ color: "green", fontWeight: 700, margin: 0 }}>Sync Succeeded!</h4>
+              <p style={{ fontSize: "0.85rem", color: T.navy }}>
+                Your Neumorphic design upgrades have been pushed successfully to branch <strong>{result?.branch}</strong>.
+              </p>
+              <a
+                href={result?.commitUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="neu-btn"
+                style={{ padding: "10px 16px", textDecoration: "none", fontSize: "0.85rem", marginTop: 8 }}
+              >
+                View Commit on GitHub ↗
+              </a>
+              <button
+                className="neu-btn"
+                style={{ padding: "8px 12px", fontSize: "0.8rem", background: "none", border: "none" }}
+                onClick={() => setStatus("idle")}
+              >
+                Back to Settings
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSync} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <label style={{ fontSize: "0.8rem", fontWeight: 600, color: T.navy }}>GitHub Access Token (PAT)</label>
+                <input
+                  type="password"
+                  value={token}
+                  onChange={(e: any) => setToken(e.target.value)}
+                  placeholder="ghp_xxxxxxxxxxxx"
+                  className="neu-input"
+                  style={{ padding: "10px 12px", fontSize: "0.85rem", width: "100%" }}
+                  required
+                />
+                <span style={{ fontSize: "0.7rem", color: T.gray }}>
+                  Requires 'repo' permission to write code.
+                </span>
+              </div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                  <label style={{ fontSize: "0.8rem", fontWeight: 600, color: T.navy }}>Owner</label>
+                  <input
+                    type="text"
+                    value={owner}
+                    onChange={(e: any) => setOwner(e.target.value)}
+                    className="neu-input"
+                    style={{ padding: "10px 12px", fontSize: "0.85rem" }}
+                    required
+                  />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                  <label style={{ fontSize: "0.8rem", fontWeight: 600, color: T.navy }}>Repo</label>
+                  <input
+                    type="text"
+                    value={repo}
+                    onChange={(e: any) => setRepo(e.target.value)}
+                    className="neu-input"
+                    style={{ padding: "10px 12px", fontSize: "0.85rem" }}
+                    required
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <label style={{ fontSize: "0.8rem", fontWeight: 600, color: T.navy }}>Branch</label>
+                <input
+                  type="text"
+                  value={branch}
+                  onChange={(e: any) => setBranch(e.target.value)}
+                  className="neu-input"
+                  style={{ padding: "10px 12px", fontSize: "0.85rem" }}
+                  required
+                />
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <label style={{ fontSize: "0.8rem", fontWeight: 600, color: T.navy }}>Commit Message</label>
+                <textarea
+                  value={message}
+                  onChange={(e: any) => setMessage(e.target.value)}
+                  className="neu-input"
+                  style={{ padding: "10px 12px", fontSize: "0.85rem", resize: "none", height: 60 }}
+                  required
+                />
+              </div>
+
+              {status === "error" && (
+                <div className="neu-card-light" style={{ padding: 12, background: "#fdf2f2", borderColor: "#f5c6cb", color: "#721c24", fontSize: "0.8rem" }}>
+                  <strong>Error:</strong> {errorMsg}
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="neu-btn"
+                style={{
+                  padding: "12px 16px",
+                  fontSize: "0.9rem",
+                  color: T.white,
+                  background: T.navy,
+                  marginTop: 8,
+                  opacity: status === "loading" ? 0.7 : 1,
+                  pointerEvents: status === "loading" ? "none" : "auto",
+                }}
+              >
+                {status === "loading" ? "⚡ Pushing commits..." : "🚀 Push to GitHub"}
+              </button>
+            </form>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 

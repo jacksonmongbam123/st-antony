@@ -906,7 +906,6 @@ export function AcademicPerformance() {
               justifyContent: "center",
               alignItems: "center",
               boxShadow: T.neuLight,
-              border: "1px solid rgba(255, 255, 255, 0.7)"
             }}
           >
             <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 8, background: `linear-gradient(90deg, ${T.goldLt}, ${T.gold})` }}></div>
@@ -2426,7 +2425,6 @@ export function ContactUs() {
           display: "grid",
           gridTemplateColumns: "1fr 1.6fr",
           boxShadow: T.neuLight,
-          border: "1px solid rgba(255, 255, 255, 0.7)"
         }}
       >
         {/* ── Left info panel ── */}

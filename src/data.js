@@ -16,24 +16,24 @@ export const T = {
   red:    "#c0392b",
   shadow: "rgba(15, 32, 68, 0.08)",
   shadowMd: "rgba(15, 32, 68, 0.12)",
-  radius: 24, // Neumorphism uses elegant, soft, rounded corners
-  radiusLg: 32,
-  // Neumorphic shadow values for direct use in inline styles
-  clayLight: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
-  clayCream: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
-  clayNavy: "10px 10px 20px #060d1b, -10px -10px 20px #18336d",
-  clayGold: "10px 10px 20px #98712c, -10px -10px 20px #fbdf88",
-  clayBtnLight: "5px 5px 10px #e2dcd2, -5px -5px 10px #ffffff",
-  clayBtnGold: "5px 5px 10px #98712c, -5px -5px 10px #fbdf88",
-  clayBtnNavy: "5px 5px 10px #060d1b, -5px -5px 10px #18336d",
-  // True Neumorphic styled variables
-  neuLight: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
-  neuCream: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
-  neuNavy: "10px 10px 20px #060d1b, -10px -10px 20px #18336d",
-  neuGold: "10px 10px 20px #98712c, -10px -10px 20px #fbdf88",
-  neuBtnLight: "5px 5px 10px #e2dcd2, -5px -5px 10px #ffffff",
-  neuBtnGold: "5px 5px 10px #98712c, -5px -5px 10px #fbdf88",
-  neuBtnNavy: "5px 5px 10px #060d1b, -5px -5px 10px #18336d",
+  radius: 12, // NeoPOP uses crisp geometric corners
+  radiusLg: 16,
+  // NeoPOP style hard-edged solid shadows
+  clayLight: "6px 6px 0px #0f2044",
+  clayCream: "6px 6px 0px #0f2044",
+  clayNavy: "6px 6px 0px #c9963a",
+  clayGold: "6px 6px 0px #0f2044",
+  clayBtnLight: "4px 4px 0px #0f2044",
+  clayBtnGold: "4px 4px 0px #0f2044",
+  clayBtnNavy: "4px 4px 0px #c9963a",
+  // True NeoPOP styled variables
+  neuLight: "6px 6px 0px #0f2044",
+  neuCream: "6px 6px 0px #0f2044",
+  neuNavy: "6px 6px 0px #c9963a",
+  neuGold: "6px 6px 0px #0f2044",
+  neuBtnLight: "4px 4px 0px #0f2044",
+  neuBtnGold: "4px 4px 0px #0f2044",
+  neuBtnNavy: "4px 4px 0px #c9963a",
 };
 
 // ── GLOBAL CSS (injected once in App) ──────────────────────
@@ -72,98 +72,87 @@ export const GLOBAL_CSS = `
     50%       { box-shadow: 0 0 0 10px rgba(201,150,58,0); }
   }
 
-  /* Neumorphism CSS Classes */
+  /* NeoPOP CSS Classes */
   .clay-card-light, .neu-card-light {
-    background: #f8f5ef;
-    border-radius: 24px;
-    box-shadow: 10px 10px 20px #e2dcd2, 
-                -10px -10px 20px #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 6px 6px 0px #0f2044;
+    border: 3px solid #0f2044;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-light:hover, .neu-card-light:hover {
-    transform: translateY(-4px);
-    box-shadow: 14px 14px 28px #d6cfc3, 
-                -14px -14px 28px #ffffff;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #0f2044;
   }
 
   .clay-card-cream, .neu-card-cream {
     background: #f8f5ef;
-    border-radius: 24px;
-    box-shadow: 10px 10px 20px #e2dcd2, 
-                -10px -10px 20px #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    box-shadow: 6px 6px 0px #0f2044;
+    border: 3px solid #0f2044;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-cream:hover, .neu-card-cream:hover {
-    transform: translateY(-4px);
-    box-shadow: 14px 14px 28px #d6cfc3, 
-                -14px -14px 28px #ffffff;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #0f2044;
   }
 
   .clay-card-navy, .neu-card-navy {
     background: #0f2044;
-    border-radius: 24px;
-    box-shadow: 10px 10px 20px #060d1b, 
-                -10px -10px 20px #18336d;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 6px 6px 0px #c9963a;
+    border: 3px solid #c9963a;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-navy:hover, .neu-card-navy:hover {
-    transform: translateY(-4px);
-    box-shadow: 14px 14px 28px #040811, 
-                -14px -14px 28px #204491;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #c9963a;
   }
 
   .clay-card-gold, .neu-card-gold {
     background: #c9963a;
-    border-radius: 24px;
-    box-shadow: 10px 10px 20px #98712c, 
-                -10px -10px 20px #fbdf88;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px;
+    box-shadow: 6px 6px 0px #0f2044;
+    border: 3px solid #0f2044;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-gold:hover, .neu-card-gold:hover {
-    transform: translateY(-4px);
-    box-shadow: 14px 14px 28px #805f25, 
-                -14px -14px 28px #ffe59b;
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px #0f2044;
   }
 
   .clay-btn, .neu-btn {
-    background: #f8f5ef;
+    background: #ffffff;
     color: #0f2044;
-    border-radius: 20px;
-    box-shadow: 5px 5px 10px #e2dcd2, 
-                -5px -5px 10px #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+    box-shadow: 4px 4px 0px #0f2044;
+    border: 2.5px solid #0f2044;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 700;
   }
   .clay-btn:hover, .neu-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 7px 7px 14px #d6cfc3, 
-                -7px -7px 14px #ffffff;
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px 0px #0f2044;
   }
   .clay-btn:active, .neu-btn:active {
-    box-shadow: inset 4px 4px 8px #d6cfc3, 
-                inset -4px -4px 8px #ffffff;
-    transform: translateY(1px) scale(0.98);
+    box-shadow: 1px 1px 0px #0f2044;
+    transform: translate(3px, 3px);
   }
 
-  /* Inset neumorphic style for form inputs, search bars, timeline tracks */
+  /* Inset NeoPOP style for form inputs, search bars, timeline tracks */
   .clay-input, .neu-input {
-    background: #f8f5ef !important;
-    border-radius: 16px;
-    border: 1px solid rgba(15, 32, 68, 0.05) !important;
-    box-shadow: inset 4px 4px 8px #e2dcd2,
-                inset -4px -4px 8px #ffffff !important;
-    transition: all 0.25s ease;
+    background: #ffffff !important;
+    border-radius: 10px;
+    border: 2.5px solid #0f2044 !important;
+    box-shadow: 3px 3px 0px rgba(15, 32, 68, 0.1) !important;
+    transition: all 0.15s ease;
     outline: none;
+    color: #0f2044 !important;
   }
   .clay-input:focus, .neu-input:focus {
     border-color: #c9963a !important;
-    box-shadow: inset 2px 2px 4px #e2dcd2,
-                inset -2px -2px 4px #ffffff,
-                0 0 10px rgba(201, 150, 58, 0.15) !important;
+    box-shadow: 4px 4px 0px #0f2044 !important;
   }
 
   .skeleton {

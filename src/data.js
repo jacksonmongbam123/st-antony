@@ -10,31 +10,31 @@ export const T = {
   red: "#c0392b",
   shadow: "rgba(15, 32, 68, 0.08)",
   shadowMd: "rgba(15, 32, 68, 0.12)",
-  radius: 20,
-  // Neumorphism uses larger, softer border radius
-  radiusLg: 24,
-  // Neumorphic Soft UI styled variables
-  clayLight: "10px 10px 20px #cfd8e3, -10px -10px 20px #ffffff",
-  clayCream: "10px 10px 20px #ded7c9, -10px -10px 20px #ffffff",
-  clayNavy: "10px 10px 20px #060e1f, -10px -10px 20px #1a3465",
-  clayGold: "10px 10px 20px #a1711e, -10px -10px 20px #ebd19b",
-  clayBtnLight: "6px 6px 12px #cfd8e3, -6px -6px 12px #ffffff",
-  clayBtnGold: "6px 6px 12px #a1711e, -6px -6px 12px #ebd19b",
-  clayBtnNavy: "6px 6px 12px #060e1f, -6px -6px 12px #1a3465",
-  // True Neumorphic soft shadows
-  neuLight: "10px 10px 20px #cfd8e3, -10px -10px 20px #ffffff",
-  neuCream: "10px 10px 20px #ded7c9, -10px -10px 20px #ffffff",
-  neuNavy: "10px 10px 20px #060e1f, -10px -10px 20px #1a3465",
-  neuGold: "10px 10px 20px #a1711e, -10px -10px 20px #ebd19b",
-  neuBtnLight: "6px 6px 12px #cfd8e3, -6px -6px 12px #ffffff",
-  neuBtnGold: "6px 6px 12px #a1711e, -6px -6px 12px #ebd19b",
-  neuBtnNavy: "6px 6px 12px #060e1f, -6px -6px 12px #1a3465"
+  radius: 24,
+  // Neumorphism uses elegant, soft, rounded corners
+  radiusLg: 32,
+  // Neumorphic shadow values for direct use in inline styles
+  clayLight: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  clayCream: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  clayNavy: "10px 10px 20px #060d1b, -10px -10px 20px #18336d",
+  clayGold: "10px 10px 20px #98712c, -10px -10px 20px #fbdf88",
+  clayBtnLight: "5px 5px 10px #e2dcd2, -5px -5px 10px #ffffff",
+  clayBtnGold: "5px 5px 10px #98712c, -5px -5px 10px #fbdf88",
+  clayBtnNavy: "5px 5px 10px #060d1b, -5px -5px 10px #18336d",
+  // True Neumorphic styled variables
+  neuLight: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  neuCream: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  neuNavy: "10px 10px 20px #060d1b, -10px -10px 20px #18336d",
+  neuGold: "10px 10px 20px #98712c, -10px -10px 20px #fbdf88",
+  neuBtnLight: "5px 5px 10px #e2dcd2, -5px -5px 10px #ffffff",
+  neuBtnGold: "5px 5px 10px #98712c, -5px -5px 10px #fbdf88",
+  neuBtnNavy: "5px 5px 10px #060d1b, -5px -5px 10px #18336d"
 };
 export const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
-  body { font-family: 'Inter', sans-serif; background: #eef2f7; color: #0f2044; overflow-x: hidden; max-width: 100vw; position: relative; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', sans-serif; background: #f8f5ef; color: #0f2044; overflow-x: hidden; max-width: 100vw; position: relative; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   #root { overflow-x: hidden; max-width: 100vw; }
 
   h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
@@ -65,93 +65,98 @@ export const GLOBAL_CSS = `
     50%       { box-shadow: 0 0 0 10px rgba(201,150,58,0); }
   }
 
-  /* Neumorphic CSS Classes (Soft UI) */
+  /* Neumorphism CSS Classes */
   .clay-card-light, .neu-card-light {
-    background: #eef2f7;
-    border-radius: 20px;
-    box-shadow: 10px 10px 20px #cfd8e3, -10px -10px 20px #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background: #f8f5ef;
+    border-radius: 24px;
+    box-shadow: 10px 10px 20px #e2dcd2, 
+                -10px -10px 20px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-light:hover, .neu-card-light:hover {
-    transform: translateY(-2px);
-    box-shadow: 14px 14px 28px #cfd8e3, -14px -14px 28px #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 14px 14px 28px #d6cfc3, 
+                -14px -14px 28px #ffffff;
   }
 
   .clay-card-cream, .neu-card-cream {
-    background: #f3efe6;
-    border-radius: 20px;
-    box-shadow: 10px 10px 20px #ded7c9, -10px -10px 20px #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background: #f8f5ef;
+    border-radius: 24px;
+    box-shadow: 10px 10px 20px #e2dcd2, 
+                -10px -10px 20px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-cream:hover, .neu-card-cream:hover {
-    transform: translateY(-2px);
-    box-shadow: 14px 14px 28px #ded7c9, -14px -14px 28px #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 14px 14px 28px #d6cfc3, 
+                -14px -14px 28px #ffffff;
   }
 
   .clay-card-navy, .neu-card-navy {
     background: #0f2044;
-    color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 10px 10px 20px #060e1f, -10px -10px 20px #1a3465;
-    border: 1px solid rgba(26, 52, 101, 0.4);
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-radius: 24px;
+    box-shadow: 10px 10px 20px #060d1b, 
+                -10px -10px 20px #18336d;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-navy:hover, .neu-card-navy:hover {
-    transform: translateY(-2px);
-    box-shadow: 14px 14px 28px #060e1f, -14px -14px 28px #1a3465;
+    transform: translateY(-4px);
+    box-shadow: 14px 14px 28px #040811, 
+                -14px -14px 28px #204491;
   }
 
   .clay-card-gold, .neu-card-gold {
     background: #c9963a;
-    border-radius: 20px;
-    box-shadow: 10px 10px 20px #a1711e, -10px -10px 20px #ebd19b;
-    border: 1px solid rgba(235, 209, 155, 0.4);
-    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    border-radius: 24px;
+    box-shadow: 10px 10px 20px #98712c, 
+                -10px -10px 20px #fbdf88;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-gold:hover, .neu-card-gold:hover {
-    transform: translateY(-2px);
-    box-shadow: 14px 14px 28px #a1711e, -14px -14px 28px #ebd19b;
+    transform: translateY(-4px);
+    box-shadow: 14px 14px 28px #805f25, 
+                -14px -14px 28px #ffe59b;
   }
 
   .clay-btn, .neu-btn {
-    background: #eef2f7;
+    background: #f8f5ef;
     color: #0f2044;
-    border-radius: 14px;
-    box-shadow: 6px 6px 12px #cfd8e3, -6px -6px 12px #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-    font-weight: 700;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #e2dcd2, 
+                -5px -5px 10px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-btn:hover, .neu-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 8px 8px 16px #cfd8e3, -8px -8px 16px #ffffff;
-    color: #c9963a;
+    box-shadow: 7px 7px 14px #d6cfc3, 
+                -7px -7px 14px #ffffff;
   }
   .clay-btn:active, .neu-btn:active {
-    transform: translateY(1px);
-    box-shadow: inset 4px 4px 8px #cfd8e3, inset -4px -4px 8px #ffffff;
+    box-shadow: inset 4px 4px 8px #d6cfc3, 
+                inset -4px -4px 8px #ffffff;
+    transform: translateY(1px) scale(0.98);
   }
 
-  /* Inset Neumorphic style for form inputs, search bars, timeline tracks */
+  /* Inset neumorphic style for form inputs, search bars, timeline tracks */
   .clay-input, .neu-input {
-    background: #eef2f7 !important;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.5) !important;
-    box-shadow: inset 4px 4px 8px #cfd8e3, inset -4px -4px 8px #ffffff !important;
+    background: #f8f5ef !important;
+    border-radius: 16px;
+    border: 1px solid rgba(15, 32, 68, 0.05) !important;
+    box-shadow: inset 4px 4px 8px #e2dcd2,
+                inset -4px -4px 8px #ffffff !important;
     transition: all 0.25s ease;
     outline: none;
-    color: #0f2044 !important;
   }
   .clay-input:focus, .neu-input:focus {
     border-color: #c9963a !important;
-    box-shadow: inset 5px 5px 10px #cfd8e3, inset -5px -5px 10px #ffffff !important;
+    box-shadow: inset 2px 2px 4px #e2dcd2,
+                inset -2px -2px 4px #ffffff,
+                0 0 10px rgba(201, 150, 58, 0.15) !important;
   }
 
   .skeleton {

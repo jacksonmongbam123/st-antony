@@ -999,7 +999,7 @@ export function AcademicPerformance() {
                 height: "100%"
               }}
             >
-              <div style={{ fontSize: "2.4rem", fontWeight: 800, marginBottom: 4 }}>{data.passPercentage}%</div>
+              <div style={{ fontSize: "2.4rem", fontWeight: 800, marginBottom: 4 }}>{Math.floor(data.passPercentage)}%</div>
               <div style={{ fontSize: "0.85rem", opacity: 0.8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Overall Pass</div>
             </div>
             <div 

@@ -250,30 +250,20 @@ export function Navbar() {
         {/* Right — login + hamburger */}
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <button
-            className="desktop-only"
+            className="desktop-only clay-btn"
             onClick={() =>
               alert("🔐 Login portal launching soon!\nContact: admissions@stantonys.edu.in")
             }
             style={{
-              background: T.gold,
+              background: `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)`,
               color: T.navy,
               border: "none",
-              padding: "8px 16px",
-              borderRadius: 6,
+              padding: "10px 22px",
               fontSize: ".84rem",
               fontWeight: 700,
               cursor: "pointer",
-              transition: "all .2s",
-              boxShadow: `0 2px 8px ${T.gold}44`,
+              boxShadow: T.clayBtnGold,
               whiteSpace: "nowrap",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = T.goldLt;
-              e.currentTarget.style.transform = "translateY(-1px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = T.gold;
-              e.currentTarget.style.transform = "none";
             }}
           >
             Login
@@ -400,26 +390,17 @@ export function Navbar() {
                 alert("🔐 Login portal launching soon!\nContact: admissions@stantonys.edu.in");
                 setMobileOpen(false);
               }}
+              className="clay-btn"
               style={{
-                background: T.gold,
+                background: `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)`,
                 color: T.navy,
                 border: "none",
                 padding: "12px 24px",
-                borderRadius: 6,
                 fontSize: ".95rem",
                 fontWeight: 700,
                 cursor: "pointer",
                 width: "100%",
-                transition: "all .2s",
-                boxShadow: `0 2px 8px ${T.gold}44`,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = T.goldLt;
-                e.currentTarget.style.transform = "translateY(-1px)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = T.gold;
-                e.currentTarget.style.transform = "none";
+                boxShadow: T.clayBtnGold,
               }}
             >
               Login
@@ -592,29 +573,18 @@ export function Hero() {
             onClick={() =>
               document.getElementById(slide.cta.href)?.scrollIntoView({ behavior: "smooth" })
             }
+            className="clay-btn"
             style={{
-              background: T.gold,
+              background: `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)`,
               color: T.navy,
               border: "none",
               padding: "clamp(12px, 3vw, 16px) clamp(24px, 6vw, 40px)",
-              borderRadius: 10,
               fontWeight: 700,
               fontSize: "clamp(0.9rem, 1.2vw, 1rem)",
               cursor: "pointer",
               whiteSpace: "nowrap",
               animation: "fadeInUp .7s .5s both",
-              transition: "all .3s ease",
-              boxShadow: `0 6px 20px ${T.gold}44`,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = T.goldLt;
-              e.currentTarget.style.transform = "translateY(-3px)";
-              e.currentTarget.style.boxShadow = `0 10px 25px ${T.gold}66`;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = T.gold;
-              e.currentTarget.style.transform = "none";
-              e.currentTarget.style.boxShadow = `0 6px 20px ${T.gold}44`;
+              boxShadow: T.clayBtnGold,
             }}
           >
             {slide.cta.label} →
@@ -738,23 +708,12 @@ function VisionCard({ card, index }) {
   return (
     <div
       ref={ref}
+      className="clay-card-light"
       style={{
-        background: T.cream,
-        borderRadius: 12,
         overflow: "hidden",
-        boxShadow: "0 4px 24px rgba(15,32,68,.10)",
-        transition: "transform .3s, box-shadow .3s",
         opacity: inView ? 1 : 0,
         transform: inView ? "none" : "translateY(24px)",
         transitionDelay: `${index * 0.15}s`,
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-8px)";
-        e.currentTarget.style.boxShadow = "0 16px 48px rgba(15,32,68,.18)";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "none";
-        e.currentTarget.style.boxShadow = "0 4px 24px rgba(15,32,68,.10)";
       }}
     >
       <div style={{ height: 180, background: card.bg, display: "grid", placeItems: "center" }}>
@@ -841,20 +800,6 @@ export function AcademicPerformance() {
   const data = currentDataList[selectedYearIndex];
   const [ref, inView] = useInView();
 
-  const statCardStyle = {
-    background: T.white,
-    padding: "24px",
-    borderRadius: 16,
-    boxShadow: `0 4px 20px ${T.shadow}`,
-    textAlign: "center",
-    transition: "all 0.3s ease",
-    border: "1px solid rgba(15,32,68,0.05)",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    height: "100%",
-  };
-
   return (
     <section id="academic-performance" style={{ background: T.cream, padding: "80px 7%" }}>
       <SectionHeader
@@ -866,11 +811,13 @@ export function AcademicPerformance() {
       {/* Category Toggle */}
       <div style={{ display: "flex", justifyContent: "center", marginBottom: 32 }}>
         <div style={{ 
-          background: "rgba(15,32,68,0.05)", 
+          background: "#ffffff", 
           padding: 6, 
           borderRadius: 40, 
           display: "flex",
-          gap: 4
+          gap: 4,
+          boxShadow: "inset 4px 4px 10px rgba(15,32,68,0.08), inset -4px -4px 10px #ffffff",
+          border: "2px solid rgba(15,32,68,0.02)"
         }}>
           {[
             { id: "highSchool", label: "High School" },
@@ -882,17 +829,17 @@ export function AcademicPerformance() {
                 setCategory(cat.id);
                 setSelectedYearIndex(0);
               }}
+              className={category === cat.id ? "clay-btn" : ""}
               style={{
                 padding: "10px 24px",
                 borderRadius: 30,
                 border: "none",
-                background: category === cat.id ? T.white : "transparent",
+                background: category === cat.id ? `linear-gradient(135deg, #ffffff 0%, ${T.light} 100%)` : "transparent",
                 color: category === cat.id ? T.navy : T.gray,
                 fontWeight: 700,
                 fontSize: "0.95rem",
                 cursor: "pointer",
-                transition: "all 0.3s ease",
-                boxShadow: category === cat.id ? `0 4px 12px rgba(0,0,0,0.1)` : "none",
+                boxShadow: category === cat.id ? T.clayBtnLight : "none",
               }}
             >
               {cat.label}
@@ -916,18 +863,20 @@ export function AcademicPerformance() {
           <button
             key={item.year}
             onClick={() => setSelectedYearIndex(i)}
+            className="clay-btn"
             style={{
               padding: "10px 20px",
               borderRadius: 30,
-              border: `2px solid ${selectedYearIndex === i ? T.gold : "transparent"}`,
-              background: selectedYearIndex === i ? T.white : "rgba(15,32,68,0.05)",
+              border: "none",
+              background: selectedYearIndex === i 
+                ? `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)` 
+                : `linear-gradient(135deg, #ffffff 0%, ${T.light} 100%)`,
               color: selectedYearIndex === i ? T.navy : T.gray,
               fontWeight: 700,
               fontSize: "0.9rem",
               cursor: "pointer",
               whiteSpace: "nowrap",
-              transition: "all 0.3s ease",
-              boxShadow: selectedYearIndex === i ? `0 4px 12px ${T.gold}33` : "none",
+              boxShadow: selectedYearIndex === i ? T.clayBtnGold : T.clayBtnLight,
             }}
           >
             {item.year}
@@ -947,22 +896,20 @@ export function AcademicPerformance() {
           }}
         >
           <div
-            className="scorer-card"
+            className="scorer-card clay-card-light"
             style={{
-              background: T.white,
-              borderRadius: 24,
-              boxShadow: `0 20px 50px ${T.shadowMd}`,
-              border: `1px solid ${T.gold}22`,
               position: "relative",
               overflow: "hidden",
               height: "100%",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
-              alignItems: "center"
+              alignItems: "center",
+              boxShadow: T.clayLight,
+              border: "1px solid rgba(255, 255, 255, 0.7)"
             }}
           >
-            <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 8, background: T.gold }}></div>
+            <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: 8, background: `linear-gradient(90deg, ${T.goldLt}, ${T.gold})` }}></div>
             <div style={{ marginBottom: 24, position: "relative", display: "inline-block" }}>
               <img 
                 src={data.topScorer.photo} 
@@ -974,14 +921,15 @@ export function AcademicPerformance() {
                   objectFit: "cover",
                   border: `4px solid ${T.gold}`,
                   padding: 4,
-                  background: T.white
+                  background: T.white,
+                  boxShadow: "inset 2px 2px 6px rgba(0,0,0,0.15), 2px 4px 10px rgba(15,32,68,0.12)"
                 }} 
               />
               <div style={{ 
                 position: "absolute", 
                 bottom: 5, 
                 right: 5, 
-                background: T.gold, 
+                background: `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)`, 
                 color: T.white, 
                 width: 40, 
                 height: 40, 
@@ -989,7 +937,7 @@ export function AcademicPerformance() {
                 display: "grid", 
                 placeItems: "center",
                 fontSize: "1.2rem",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.2)"
+                boxShadow: "4px 4px 10px rgba(201,150,58,0.3), inset 2px 2px 5px rgba(255,255,255,0.4)"
               }}>🏆</div>
             </div>
             <h3 style={{ fontSize: "1.8rem", color: T.navy, marginBottom: 8, textAlign: "center" }}>{data.topScorer.name}</h3>
@@ -1007,17 +955,19 @@ export function AcademicPerformance() {
                 <div style={{ fontSize: "0.8rem", color: T.gray, textTransform: "uppercase" }}>Percentage</div>
               </div>
             </div>
-            <div style={{ 
-              background: "rgba(15,32,68,0.05)", 
-              padding: "14px 20px", 
-              borderRadius: 12, 
-              fontSize: "0.95rem", 
-              color: T.navy,
-              fontWeight: 600,
-              width: "100%",
-              maxWidth: "240px",
-              textAlign: "center"
-            }}>
+            <div 
+              className="clay-input"
+              style={{ 
+                padding: "14px 20px", 
+                borderRadius: 16, 
+                fontSize: "0.95rem", 
+                color: T.navy,
+                fontWeight: 600,
+                width: "100%",
+                maxWidth: "240px",
+                textAlign: "center"
+              }}
+            >
               {data.topScorer.class}
             </div>
           </div>
@@ -1036,27 +986,60 @@ export function AcademicPerformance() {
           }}
         >
           <div className="stats-grid" style={{ width: "100%" }}>
-            <div style={{ ...statCardStyle, background: `linear-gradient(135deg, ${T.navy} 0%, ${T.navy}dd 100%)`, color: T.white }}>
+            <div 
+              className="clay-card-navy"
+              style={{ 
+                padding: "24px", 
+                color: T.white, 
+                textAlign: "center",
+                boxShadow: T.clayNavy,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                height: "100%"
+              }}
+            >
               <div style={{ fontSize: "2.4rem", fontWeight: 800, marginBottom: 4 }}>{data.passPercentage}%</div>
               <div style={{ fontSize: "0.85rem", opacity: 0.8, textTransform: "uppercase", letterSpacing: "0.1em" }}>Overall Pass</div>
             </div>
-            <div style={statCardStyle}>
+            <div 
+              className="clay-card-light"
+              style={{ 
+                padding: "24px", 
+                textAlign: "center",
+                boxShadow: T.clayLight,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                height: "100%"
+              }}
+            >
               <div style={{ fontSize: "2rem", fontWeight: 800, color: T.navy, marginBottom: 4 }}>{data.totalAppeared}</div>
               <div style={{ fontSize: "0.85rem", color: T.gray, textTransform: "uppercase" }}>Students Appeared</div>
             </div>
-            <div style={statCardStyle}>
-              <div style={{ fontSize: "2rem", fontWeight: 800, color: T.gold, marginBottom: 4 }}>{data.distinction}</div>
+            <div 
+              className="clay-card-gold"
+              style={{ 
+                padding: "24px", 
+                textAlign: "center",
+                boxShadow: T.clayGold,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                height: "100%"
+              }}
+            >
+              <div style={{ fontSize: "2rem", fontWeight: 800, color: T.navy, marginBottom: 4 }}>{data.distinction}</div>
               <div style={{ fontSize: "0.85rem", color: T.gray, textTransform: "uppercase" }}>Distinctions</div>
             </div>
           </div>
 
           {/* Detailed Results Table */}
           <div 
-            className="table-card"
+            className="table-card clay-card-light"
             style={{ 
-              background: T.white, 
               borderRadius: 24, 
-              boxShadow: `0 10px 30px ${T.shadow}`,
+              boxShadow: T.clayLight,
               flex: 1,
               width: "100%",
               maxWidth: "100%",
@@ -1134,20 +1117,9 @@ export function Admissions() {
         {ADMISSION_DATA.map((d, i) => (
           <div
             key={i}
+            className="clay-card-light"
             style={{
-              background: T.white,
-              borderRadius: 12,
               overflow: "hidden",
-              boxShadow: "0 4px 24px rgba(15,32,68,.10)",
-              transition: "transform .3s, box-shadow .3s",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "translateY(-6px)";
-              e.currentTarget.style.boxShadow = "0 12px 40px rgba(15,32,68,.16)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "none";
-              e.currentTarget.style.boxShadow = "0 4px 24px rgba(15,32,68,.10)";
             }}
           >
             {/* Skeleton */}
@@ -1432,6 +1404,7 @@ export function Achievements() {
 
   // Reset slide index when category changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActiveSlide(0);
     setActiveImg(0);
     setAnimKey((k) => k + 1);
@@ -1851,7 +1824,6 @@ export function Faculty() {
   const [mainCat, setMainCat] = useState("highSchool"); // "highSchool" or "puc"
   const [subCat, setSubCat] = useState("8th Standard");
   const [stream, setStream] = useState("Science Stream");
-  const [hovered, setHovered] = useState(null);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
 
   const handleMainCatChange = (catId) => {
@@ -1993,17 +1965,10 @@ export function Faculty() {
         {facultyList.map((f, i) => (
           <div
             key={`${f.name}-${f.subject}`}
-            onMouseEnter={() => setHovered(`${f.name}-${f.subject}`)}
-            onMouseLeave={() => setHovered(null)}
+            className="clay-card-light"
             style={{
-              background: T.white,
-              borderRadius: 24,
               padding: "clamp(24px, 5vw, 40px) clamp(20px, 4vw, 28px)",
               textAlign: "center",
-              transition: "all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)",
-              transform: hovered === `${f.name}-${f.subject}` ? "translateY(-10px)" : "none",
-              boxShadow: hovered === `${f.name}-${f.subject}` ? `0 20px 40px ${T.shadowMd}` : `0 10px 30px ${T.shadow}`,
-              border: `1px solid ${hovered === `${f.name}-${f.subject}` ? T.gold + "44" : "rgba(15,32,68,0.05)"}`,
               display: "flex",
               flexDirection: "column",
               animation: `fadeInUp .5s ${i * 0.05}s both`,
@@ -2406,14 +2371,14 @@ export function ContactUs() {
   const inputStyle = (err) => ({
     width: "100%",
     padding: "12px 16px",
-    borderRadius: 8,
-    border: `1.5px solid ${err ? T.red : "#e5e7eb"}`,
+    borderRadius: 16,
+    border: `2px solid ${err ? T.red : "rgba(15, 32, 68, 0.03)"}`,
     fontSize: ".95rem",
     fontFamily: "'Inter', sans-serif",
     color: T.navy,
-    background: "#f9fafb",
+    background: "#ffffff",
     outline: "none",
-    transition: "all .2s ease",
+    boxShadow: "inset 4px 4px 10px rgba(15, 32, 68, 0.08), inset -4px -4px 10px #ffffff, 1px 1px 4px rgba(255, 255, 255, 0.8)",
     boxSizing: "border-box",
     textAlign: "left",
   });
@@ -2451,16 +2416,15 @@ export function ContactUs() {
       />
 
       <div
-        className="mobile-stack"
+        className="mobile-stack clay-card-light"
         style={{
           maxWidth: "min(820px, 95vw)",
           margin: "0 auto",
-          background: T.white,
-          borderRadius: 18,
-          boxShadow: "0 8px 48px rgba(15,32,68,.10)",
           overflow: "hidden",
           display: "grid",
           gridTemplateColumns: "1fr 1.6fr",
+          boxShadow: T.clayLight,
+          border: "1px solid rgba(255, 255, 255, 0.7)"
         }}
       >
         {/* ── Left info panel ── */}
@@ -2652,28 +2616,19 @@ export function ContactUs() {
           {/* Submit */}
           <button
             type="submit"
+            className="clay-btn"
             style={{
-              background: T.gold,
+              background: `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)`,
               color: T.navy,
               border: "none",
               padding: "13px 32px",
-              borderRadius: 9,
               fontSize: ".95rem",
               fontWeight: 700,
               cursor: "pointer",
               letterSpacing: ".03em",
-              transition: "all .2s",
               marginTop: 4,
               alignSelf: "flex-start",
-              boxShadow: `0 4px 14px ${T.gold}55`,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = T.goldLt;
-              e.currentTarget.style.transform = "translateY(-2px)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = T.gold;
-              e.currentTarget.style.transform = "none";
+              boxShadow: T.clayBtnGold,
             }}
           >
             Send Message →
@@ -2932,5 +2887,266 @@ export function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+export function GitHubSync() {
+  const [token, setToken] = useState(localStorage.getItem("gh_pat") || "");
+  const [owner, setOwner] = useState("jacksonmongbam123");
+  const [repo, setRepo] = useState("st-antony");
+  const [branch, setBranch] = useState("main");
+  const [message, setMessage] = useState("feat: apply gorgeous claymorphic design tokens and styling");
+  
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState(null);
+
+  const handleCommit = async (e) => {
+    e.preventDefault();
+    if (!token) {
+      setError("Please provide your GitHub Personal Access Token.");
+      return;
+    }
+    
+    localStorage.setItem("gh_pat", token);
+    setLoading(true);
+    setResult(null);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/commit-to-github", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, owner, repo, branch, message })
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to commit changes to GitHub");
+      }
+
+      setResult(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const labelStyle = {
+    display: "block",
+    fontSize: ".85rem",
+    fontWeight: 600,
+    color: T.navy,
+    marginBottom: 6,
+    textAlign: "left",
+  };
+
+  const inputStyle = {
+    width: "100%",
+    padding: "12px 16px",
+    borderRadius: 16,
+    border: "2px solid rgba(15, 32, 68, 0.03)",
+    fontSize: ".95rem",
+    fontFamily: "'Inter', sans-serif",
+    color: T.navy,
+    background: "#ffffff",
+    outline: "none",
+    boxShadow: "inset 4px 4px 10px rgba(15, 32, 68, 0.08), inset -4px -4px 10px #ffffff, 1px 1px 4px rgba(255, 255, 255, 0.8)",
+    boxSizing: "border-box",
+  };
+
+  return (
+    <section id="github" style={{ background: T.white, padding: "80px 7%" }}>
+      <SectionHeader
+        eyebrow="Developer Sync"
+        title="GitHub Integration"
+        sub="Commit and push your claymorphic styling changes directly to your GitHub repository in 1-click."
+        center
+      />
+
+      <div
+        className="clay-card-light"
+        style={{
+          maxWidth: 680,
+          margin: "0 auto",
+          padding: "clamp(24px, 5vw, 44px) clamp(20px, 4vw, 36px)",
+          boxShadow: T.clayLight,
+          border: "1px solid rgba(255, 255, 255, 0.7)",
+          textAlign: "center"
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "center", gap: 12, alignItems: "center", marginBottom: 28 }}>
+          <span style={{ fontSize: "2.5rem" }}>🧱</span>
+          <span style={{ fontSize: "1.5rem", color: T.gray }}>➔</span>
+          <span style={{ fontSize: "2.5rem" }}>🐙</span>
+        </div>
+
+        <form onSubmit={handleCommit} style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          {/* Token */}
+          <div>
+            <label style={labelStyle}>GitHub Personal Access Token (PAT) <span style={{ color: T.red }}>*</span></label>
+            <input
+              type="password"
+              placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+              value={token}
+              onChange={(e) => setToken(e.target.value)}
+              style={inputStyle}
+              required
+            />
+            <p style={{ color: T.gray, fontSize: "0.78rem", marginTop: 4, textAlign: "left" }}>
+              Your token requires <strong>repo</strong> permissions. It is processed securely on-the-fly and never stored.
+            </p>
+          </div>
+
+          {/* Owner & Repo Grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
+            <div>
+              <label style={labelStyle}>Repository Owner</label>
+              <input
+                type="text"
+                value={owner}
+                onChange={(e) => setOwner(e.target.value)}
+                style={inputStyle}
+                required
+              />
+            </div>
+            <div>
+              <label style={labelStyle}>Repository Name</label>
+              <input
+                type="text"
+                value={repo}
+                onChange={(e) => setRepo(e.target.value)}
+                style={inputStyle}
+                required
+              />
+            </div>
+          </div>
+
+          {/* Branch & Message */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 16 }}>
+            <div>
+              <label style={labelStyle}>Target Branch</label>
+              <input
+                type="text"
+                value={branch}
+                onChange={(e) => setBranch(e.target.value)}
+                style={inputStyle}
+                required
+              />
+            </div>
+            <div>
+              <label style={labelStyle}>Commit Message</label>
+              <input
+                type="text"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                style={inputStyle}
+                required
+              />
+            </div>
+          </div>
+
+          {/* Feedback */}
+          {error && (
+            <div
+              className="clay-card-light"
+              style={{
+                background: "#fef2f2",
+                border: "1.5px solid #fecaca",
+                borderRadius: 16,
+                padding: "14px 18px",
+                color: "#991b1b",
+                fontSize: ".9rem",
+                textAlign: "left",
+                boxShadow: "inset 2px 2px 5px rgba(153, 27, 27, 0.05)",
+                display: "flex",
+                gap: 10,
+                alignItems: "center"
+              }}
+            >
+              <span style={{ fontSize: "1.2rem" }}>❌</span>
+              <div>{error}</div>
+            </div>
+          )}
+
+          {result && (
+            <div
+              className="clay-card-light"
+              style={{
+                background: "#f0fdf4",
+                border: "1.5px solid #bbf7d0",
+                borderRadius: 16,
+                padding: "18px 22px",
+                color: "#166534",
+                fontSize: ".95rem",
+                textAlign: "left",
+                boxShadow: "inset 2px 2px 5px rgba(22, 101, 52, 0.05)"
+              }}
+            >
+              <div style={{ display: "flex", gap: 10, alignItems: "center", marginBottom: 10 }}>
+                <span style={{ fontSize: "1.5rem" }}>🎉</span>
+                <strong style={{ fontSize: "1.1rem" }}>Changes Committed & Pushed!</strong>
+              </div>
+              <p style={{ marginBottom: 12, fontSize: "0.9rem", color: "#1e293b" }}>
+                Claymorphic styling changes are now live on branch <strong>{result.branch}</strong>.
+              </p>
+              <a
+                href={result.commitUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="clay-btn"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  background: `linear-gradient(135deg, ${T.goldLt} 0%, ${T.gold} 100%)`,
+                  color: T.navy,
+                  textDecoration: "none",
+                  padding: "8px 20px",
+                  fontSize: "0.85rem",
+                  fontWeight: 700,
+                  boxShadow: T.clayBtnGold
+                }}
+              >
+                View Commit on GitHub ➔
+              </a>
+            </div>
+          )}
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="clay-btn"
+            style={{
+              background: loading 
+                ? `linear-gradient(135deg, ${T.light} 0%, #cbd5e1 100%)` 
+                : `linear-gradient(135deg, ${T.navy2} 0%, ${T.navy} 100%)`,
+              color: loading ? T.gray : T.white,
+              border: "none",
+              padding: "14px 32px",
+              fontSize: "1rem",
+              fontWeight: 700,
+              cursor: loading ? "not-allowed" : "pointer",
+              boxShadow: loading ? T.clayBtnLight : T.clayBtnNavy,
+              marginTop: 10,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 12
+            }}
+          >
+            {loading ? (
+              <>
+                Syncing changes...
+              </>
+            ) : (
+              "Commit & Push to GitHub 🚀"
+            )}
+          </button>
+        </form>
+      </div>
+    </section>
   );
 }

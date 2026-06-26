@@ -687,16 +687,17 @@ function VisionCard({ card, index }) {
         <span
     style={{
       display: "inline-block",
-      background: "#ebf8ff",
-      color: "#2b6cb0",
-      fontSize: ".75rem",
+      background: "#eef2f7",
+      color: "#1a4a82",
+      fontSize: "0.78rem",
       fontWeight: 700,
-      letterSpacing: ".05em",
+      letterSpacing: "0.12em",
       textTransform: "uppercase",
-      padding: "6px 14px",
-      borderRadius: 20,
-      marginBottom: 14,
-      boxShadow: "inset 1px 1px 3px rgba(15, 32, 68, 0.05), inset -1px -1px 3px #ffffff"
+      padding: "8px 22px",
+      borderRadius: "30px",
+      marginBottom: 16,
+      border: "3px solid #ffffff",
+      boxShadow: "3px 3px 8px #cfd8e3, -3px -3px 8px #ffffff"
     }}
   >
           {card.tag}

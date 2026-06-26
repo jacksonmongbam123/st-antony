@@ -1,47 +1,40 @@
 export const T = {
-  navy: "#0f172a",
-  // Slate 900 - Deep charcoal slate
-  navy2: "#1e293b",
-  // Slate 800 - Dark slate gray
-  gold: "#475569",
-  // Slate 600 - Sophisticated steel gray accent
-  goldLt: "#94a3b8",
-  // Slate 400 - Elegant cool silver
-  cream: "#eef2f6",
-  // Slate 100 - Pristine graymorphic background
+  navy: "#0f2044",
+  navy2: "#1e3a6e",
+  gold: "#c9963a",
+  goldLt: "#f0c96e",
+  cream: "#f8f5ef",
   white: "#ffffff",
-  gray: "#64748b",
-  // Slate 500 - Refined mid-tone gray for texts
-  light: "#f8fafc",
-  // Slate 50 - Off-white slate
-  red: "#ef4444",
-  shadow: "rgba(100, 116, 139, 0.08)",
-  shadowMd: "rgba(100, 116, 139, 0.12)",
+  gray: "#6b7280",
+  light: "#f1f3f7",
+  red: "#c0392b",
+  shadow: "rgba(15, 32, 68, 0.08)",
+  shadowMd: "rgba(15, 32, 68, 0.12)",
   radius: 24,
   // Neumorphism uses elegant, soft, rounded corners
   radiusLg: 32,
   // Neumorphic shadow values for direct use in inline styles
-  clayLight: "10px 10px 20px #cbd5e0, -10px -10px 20px #ffffff",
-  clayCream: "10px 10px 20px #cbd5e0, -10px -10px 20px #ffffff",
-  clayNavy: "10px 10px 20px #090e18, -10px -10px 20px #2a3a52",
-  clayGold: "10px 10px 20px #2a333f, -10px -10px 20px #647793",
-  clayBtnLight: "5px 5px 10px #cbd5e0, -5px -5px 10px #ffffff",
-  clayBtnGold: "5px 5px 10px #2a333f, -5px -5px 10px #647793",
-  clayBtnNavy: "5px 5px 10px #090e18, -5px -5px 10px #2a3a52",
+  clayLight: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  clayCream: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  clayNavy: "10px 10px 20px #060d1b, -10px -10px 20px #18336d",
+  clayGold: "10px 10px 20px #98712c, -10px -10px 20px #fbdf88",
+  clayBtnLight: "5px 5px 10px #e2dcd2, -5px -5px 10px #ffffff",
+  clayBtnGold: "5px 5px 10px #98712c, -5px -5px 10px #fbdf88",
+  clayBtnNavy: "5px 5px 10px #060d1b, -5px -5px 10px #18336d",
   // True Neumorphic styled variables
-  neuLight: "10px 10px 20px #cbd5e0, -10px -10px 20px #ffffff",
-  neuCream: "10px 10px 20px #cbd5e0, -10px -10px 20px #ffffff",
-  neuNavy: "10px 10px 20px #090e18, -10px -10px 20px #2a3a52",
-  neuGold: "10px 10px 20px #2a333f, -10px -10px 20px #647793",
-  neuBtnLight: "5px 5px 10px #cbd5e0, -5px -5px 10px #ffffff",
-  neuBtnGold: "5px 5px 10px #2a333f, -5px -5px 10px #647793",
-  neuBtnNavy: "5px 5px 10px #090e18, -5px -5px 10px #2a3a52"
+  neuLight: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  neuCream: "10px 10px 20px #e2dcd2, -10px -10px 20px #ffffff",
+  neuNavy: "10px 10px 20px #060d1b, -10px -10px 20px #18336d",
+  neuGold: "10px 10px 20px #98712c, -10px -10px 20px #fbdf88",
+  neuBtnLight: "5px 5px 10px #e2dcd2, -5px -5px 10px #ffffff",
+  neuBtnGold: "5px 5px 10px #98712c, -5px -5px 10px #fbdf88",
+  neuBtnNavy: "5px 5px 10px #060d1b, -5px -5px 10px #18336d"
 };
 export const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
-  body { font-family: 'Inter', sans-serif; background: #eef2f6; color: #1e293b; overflow-x: hidden; max-width: 100vw; position: relative; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  body { font-family: 'Inter', sans-serif; background: #f8f5ef; color: #0f2044; overflow-x: hidden; max-width: 100vw; position: relative; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
   #root { overflow-x: hidden; max-width: 100vw; }
 
   h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; }
@@ -68,108 +61,106 @@ export const GLOBAL_CSS = `
     to   { opacity: 1; transform: scale(1); }
   }
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(71,85,105,0.4); }
-    50%       { box-shadow: 0 0 0 10px rgba(71,85,105,0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201,150,58,0.4); }
+    50%       { box-shadow: 0 0 0 10px rgba(201,150,58,0); }
   }
 
   /* Neumorphism CSS Classes */
   .clay-card-light, .neu-card-light {
-    background: rgba(238, 242, 246, 0.75);
-    backdrop-filter: blur(16px);
+    background: #f8f5ef;
     border-radius: 24px;
-    box-shadow: 10px 10px 20px #cbd5e0, 
+    box-shadow: 10px 10px 20px #e2dcd2, 
                 -10px -10px 20px #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.6);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-light:hover, .neu-card-light:hover {
     transform: translateY(-4px);
-    box-shadow: 14px 14px 28px #bac3cf, 
+    box-shadow: 14px 14px 28px #d6cfc3, 
                 -14px -14px 28px #ffffff;
   }
 
   .clay-card-cream, .neu-card-cream {
-    background: rgba(238, 242, 246, 0.75);
-    backdrop-filter: blur(16px);
+    background: #f8f5ef;
     border-radius: 24px;
-    box-shadow: 10px 10px 20px #cbd5e0, 
+    box-shadow: 10px 10px 20px #e2dcd2, 
                 -10px -10px 20px #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.6);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-cream:hover, .neu-card-cream:hover {
     transform: translateY(-4px);
-    box-shadow: 14px 14px 28px #bac3cf, 
+    box-shadow: 14px 14px 28px #d6cfc3, 
                 -14px -14px 28px #ffffff;
   }
 
   .clay-card-navy, .neu-card-navy {
-    background: #1e293b;
+    background: #0f2044;
     border-radius: 24px;
-    box-shadow: 10px 10px 20px #090e18, 
-                -10px -10px 20px #2a3a52;
+    box-shadow: 10px 10px 20px #060d1b, 
+                -10px -10px 20px #18336d;
     border: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-navy:hover, .neu-card-navy:hover {
     transform: translateY(-4px);
-    box-shadow: 14px 14px 28px #05080e, 
-                -14px -14px 28px #324562;
+    box-shadow: 14px 14px 28px #040811, 
+                -14px -14px 28px #204491;
   }
 
   .clay-card-gold, .neu-card-gold {
-    background: #475569;
+    background: #c9963a;
     border-radius: 24px;
-    box-shadow: 10px 10px 20px #2a333f, 
-                -10px -10px 20px #647793;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 10px 10px 20px #98712c, 
+                -10px -10px 20px #fbdf88;
+    border: 1px solid rgba(255, 255, 255, 0.15);
     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-card-gold:hover, .neu-card-gold:hover {
     transform: translateY(-4px);
-    box-shadow: 14px 14px 28px #1e242c, 
-                -14px -14px 28px #7085a5;
+    box-shadow: 14px 14px 28px #805f25, 
+                -14px -14px 28px #ffe59b;
   }
 
   .clay-btn, .neu-btn {
-    background: #eef2f6;
-    color: #1e293b;
+    background: #f8f5ef;
+    color: #0f2044;
     border-radius: 20px;
-    box-shadow: 5px 5px 10px #cbd5e0, 
+    box-shadow: 5px 5px 10px #e2dcd2, 
                 -5px -5px 10px #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .clay-btn:hover, .neu-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 7px 7px 14px #bac3cf, 
+    box-shadow: 7px 7px 14px #d6cfc3, 
                 -7px -7px 14px #ffffff;
   }
   .clay-btn:active, .neu-btn:active {
-    box-shadow: inset 4px 4px 8px #cbd5e0, 
+    box-shadow: inset 4px 4px 8px #d6cfc3, 
                 inset -4px -4px 8px #ffffff;
     transform: translateY(1px) scale(0.98);
   }
 
   /* Inset neumorphic style for form inputs, search bars, timeline tracks */
   .clay-input, .neu-input {
-    background: #eef2f6 !important;
+    background: #f8f5ef !important;
     border-radius: 16px;
-    border: 1px solid rgba(30, 41, 59, 0.05) !important;
-    box-shadow: inset 4px 4px 8px #cbd5e0,
+    border: 1px solid rgba(15, 32, 68, 0.05) !important;
+    box-shadow: inset 4px 4px 8px #e2dcd2,
                 inset -4px -4px 8px #ffffff !important;
     transition: all 0.25s ease;
     outline: none;
   }
   .clay-input:focus, .neu-input:focus {
-    border-color: #475569 !important;
-    box-shadow: inset 2px 2px 4px #cbd5e0,
+    border-color: #c9963a !important;
+    box-shadow: inset 2px 2px 4px #e2dcd2,
                 inset -2px -2px 4px #ffffff,
-                0 0 10px rgba(71, 85, 105, 0.15) !important;
+                0 0 10px rgba(201, 150, 58, 0.15) !important;
   }
 
   .skeleton {
-    background: linear-gradient(90deg, #cbd5e1 25%, #e2e8f0 50%, #cbd5e1 75%);
+    background: linear-gradient(90deg, #e2e8f0 25%, #f0f4f8 50%, #e2e8f0 75%);
     background-size: 700px 100%;
     animation: shimmer 1.4s infinite linear;
     border-radius: 6px;
@@ -178,13 +169,13 @@ export const GLOBAL_CSS = `
   .animate-scaleIn  { animation: scaleIn .4s ease both; }
 
   ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #f1f5f9; }
-  ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
+  ::-webkit-scrollbar-track { background: #f1f3f7; }
+  ::-webkit-scrollbar-thumb { background: #c9963a; border-radius: 3px; }
 
   .nav-active::after {
     content: ''; position: absolute; bottom: 0; left: 0;
-    width: 100%; height: 3px; background: #475569; border-radius: 3px;
-    box-shadow: 0 1px 4px rgba(71, 85, 105, 0.4);
+    width: 100%; height: 3px; background: #c9963a; border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(201, 150, 58, 0.4);
   }
 
   button:active { transform: scale(0.98); }
@@ -307,7 +298,7 @@ export const HERO_SLIDES = [
 export const ADMISSION_DATA = [
   {
     icon: "\u{1F3EB}",
-    bg: "#f1f5f9",
+    bg: "#eff6ff",
     title: "High School Admission",
     subtitle: "Classes 8th, 9th, and 10th Standard",
     rows: [
@@ -319,7 +310,7 @@ export const ADMISSION_DATA = [
   },
   {
     icon: "\u{1F3DB}\uFE0F",
-    bg: "#e2e8f0",
+    bg: "#f0fdf4",
     title: "PUC Admission",
     subtitle: "1st PUC & 2nd PUC (Class 11 & 12)",
     rows: [
@@ -331,7 +322,7 @@ export const ADMISSION_DATA = [
   },
   {
     icon: "\u{1F4B0}",
-    bg: "#cbd5e1",
+    bg: "#fffbeb",
     title: "Fee Structure",
     subtitle: "Competitive and transparent pricing",
     rows: [
@@ -343,7 +334,7 @@ export const ADMISSION_DATA = [
   },
   {
     icon: "\u{1F393}",
-    bg: "#f8fafc",
+    bg: "#faf5ff",
     title: "Programmes",
     subtitle: "Diverse educational paths",
     rows: [

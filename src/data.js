@@ -1,22 +1,17 @@
-/* ═══════════════════════════════════════════════════════════
-   data.js
-   Central store for all design tokens, static content,
-   and seed data used across the St. Antony's website.
-═══════════════════════════════════════════════════════════ */
-// ── DESIGN TOKENS ──────────────────────────────────────────
 export const T = {
-  navy:   "#0f2044",
-  navy2:  "#1e3a6e",
-  gold:   "#c9963a",
+  navy: "#0f2044",
+  navy2: "#1e3a6e",
+  gold: "#c9963a",
   goldLt: "#f0c96e",
-  cream:  "#f8f5ef",
-  white:  "#ffffff",
-  gray:   "#6b7280",
-  light:  "#f1f3f7",
-  red:    "#c0392b",
+  cream: "#f8f5ef",
+  white: "#ffffff",
+  gray: "#6b7280",
+  light: "#f1f3f7",
+  red: "#c0392b",
   shadow: "rgba(15, 32, 68, 0.08)",
   shadowMd: "rgba(15, 32, 68, 0.12)",
-  radius: 20, // Neumorphism uses larger, softer border radius
+  radius: 20,
+  // Neumorphism uses larger, softer border radius
   radiusLg: 24,
   // Neumorphic Soft UI styled variables
   clayLight: "10px 10px 20px #cfd8e3, -10px -10px 20px #ffffff",
@@ -33,10 +28,8 @@ export const T = {
   neuGold: "10px 10px 20px #a1711e, -10px -10px 20px #ebd19b",
   neuBtnLight: "6px 6px 12px #cfd8e3, -6px -6px 12px #ffffff",
   neuBtnGold: "6px 6px 12px #a1711e, -6px -6px 12px #ebd19b",
-  neuBtnNavy: "6px 6px 12px #060e1f, -6px -6px 12px #1a3465",
+  neuBtnNavy: "6px 6px 12px #060e1f, -6px -6px 12px #1a3465"
 };
-
-// ── GLOBAL CSS (injected once in App) ──────────────────────
 export const GLOBAL_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap');
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -268,119 +261,113 @@ export const GLOBAL_CSS = `
   .equal-grid { display: grid; align-items: stretch; }
   .table-scroll { overflow-x: auto; }
 `;
-
-// ── NAVIGATION ─────────────────────────────────────────────
 export const NAV_LINKS = [
-  { label: "Home",         href: "hero" },
-  { label: "About",        href: "vision" },
-  { label: "Performance",  href: "academic-performance" },
-  { label: "Admissions",   href: "admissions" },
+  { label: "Home", href: "hero" },
+  { label: "About", href: "vision" },
+  { label: "Performance", href: "academic-performance" },
+  { label: "Admissions", href: "admissions" },
   { label: "Achievements", href: "achievements" },
-  { label: "Faculty",      href: "faculty" },
-  { label: "Contact",      href: "contact" },
+  { label: "Faculty", href: "faculty" },
+  { label: "Contact", href: "contact" }
 ];
-
-// ── HERO SLIDES ────────────────────────────────────────────
 export const HERO_SLIDES = [
   {
-    image:    "./school.jpeg",
-    overlay:  "linear-gradient(135deg,rgba(70, 71, 71, 0.78) 0%,rgba(218, 221, 227, 0.55) 100%)",
-    eyebrow:  "Est. 1986 · High School & PUC",
-    title:    ["Shaping Minds,", "Building Futures"],
-    desc:     "St. Antony's Institution nurtures curiosity and excellence across High School (8th-10th) and Pre-University (PUC) levels.",
-    cta:      { label: "Apply Now", href: "admissions" },
-    accent:   "#4e7fd4",
+    image: "./school.jpeg",
+    overlay: "linear-gradient(135deg,rgba(70, 71, 71, 0.78) 0%,rgba(218, 221, 227, 0.55) 100%)",
+    eyebrow: "Est. 1986 \xB7 High School & PUC",
+    title: ["Shaping Minds,", "Building Futures"],
+    desc: "St. Antony's Institution nurtures curiosity and excellence across High School (8th-10th) and Pre-University (PUC) levels.",
+    cta: { label: "Apply Now", href: "admissions" },
+    accent: "#4e7fd4"
   },
   {
-    image:    "./Lab3.jpeg",
-    overlay:  "linear-gradient(135deg,rgba(13,74,60,0.80) 0%,rgba(220, 225, 224, 0.55) 100%)",
-    eyebrow:  "Excellence in Education",
-    title:    ["Holistic Growth,", "Academic Rigor"],
-    desc:     "From foundational high school years to specialized PUC streams, we provide a complete educational journey.",
-    cta:      { label: "Meet Our Faculty", href: "faculty" },
-    accent:   "#2fa0d8",
-  },
+    image: "./Lab3.jpeg",
+    overlay: "linear-gradient(135deg,rgba(13,74,60,0.80) 0%,rgba(220, 225, 224, 0.55) 100%)",
+    eyebrow: "Excellence in Education",
+    title: ["Holistic Growth,", "Academic Rigor"],
+    desc: "From foundational high school years to specialized PUC streams, we provide a complete educational journey.",
+    cta: { label: "Meet Our Faculty", href: "faculty" },
+    accent: "#2fa0d8"
+  }
 ];
-
-// ── ADMISSIONS ─────────────────────────────────────────────
 export const ADMISSION_DATA = [
   {
-    icon: "🏫", bg: "#eff6ff",
+    icon: "\u{1F3EB}",
+    bg: "#eff6ff",
     title: "High School Admission",
     subtitle: "Classes 8th, 9th, and 10th Standard",
     rows: [
       { label: "Application Starts", value: "March 1st, 2026" },
-      { label: "Eligibility",        value: "Previous class pass" },
-      { label: "Entrance Test",      value: "Aptitude Based" },
-      { label: "Medium",             value: "English / Kannada" },
-    ],
+      { label: "Eligibility", value: "Previous class pass" },
+      { label: "Entrance Test", value: "Aptitude Based" },
+      { label: "Medium", value: "English / Kannada" }
+    ]
   },
   {
-    icon: "🏛️", bg: "#f0fdf4",
+    icon: "\u{1F3DB}\uFE0F",
+    bg: "#f0fdf4",
     title: "PUC Admission",
     subtitle: "1st PUC & 2nd PUC (Class 11 & 12)",
     rows: [
-      { label: "Science Streams",    value: "PCMB, PCMC" },
-      { label: "Commerce Streams",   value: "EBAC, HEBA" },
-      { label: "Arts Streams",       value: "HEPS" },
-      { label: "SSLC Cut-off",       value: "Min 60% aggregate" },
-    ],
+      { label: "Science Streams", value: "PCMB, PCMC" },
+      { label: "Commerce Streams", value: "EBAC, HEBA" },
+      { label: "Arts Streams", value: "HEPS" },
+      { label: "SSLC Cut-off", value: "Min 60% aggregate" }
+    ]
   },
   {
-    icon: "💰", bg: "#fffbeb",
+    icon: "\u{1F4B0}",
+    bg: "#fffbeb",
     title: "Fee Structure",
     subtitle: "Competitive and transparent pricing",
     rows: [
-      { label: "High School",        value: "₹22,000 / yr" },
-      { label: "PUC Science",        value: "₹48,000 / yr" },
-      { label: "PUC Commerce/Arts",  value: "₹35,000 / yr" },
-      { label: "Scholarships",       value: "Merit-based available" },
-    ],
+      { label: "High School", value: "\u20B922,000 / yr" },
+      { label: "PUC Science", value: "\u20B948,000 / yr" },
+      { label: "PUC Commerce/Arts", value: "\u20B935,000 / yr" },
+      { label: "Scholarships", value: "Merit-based available" }
+    ]
   },
   {
-    icon: "🎓", bg: "#faf5ff",
+    icon: "\u{1F393}",
+    bg: "#faf5ff",
     title: "Programmes",
     subtitle: "Diverse educational paths",
     rows: [
-      { label: "Academic",           value: "KSEEB & PUE Board" },
-      { label: "Co-Curricular",      value: "Sports, Arts, Music" },
-      { label: "Infrastructure",     value: "Modern Labs & Library" },
-      { label: "Hostel",             value: "Available for Boys/Girls" },
-    ],
-  },
+      { label: "Academic", value: "KSEEB & PUE Board" },
+      { label: "Co-Curricular", value: "Sports, Arts, Music" },
+      { label: "Infrastructure", value: "Modern Labs & Library" },
+      { label: "Hostel", value: "Available for Boys/Girls" }
+    ]
+  }
 ];
-
-// ── CLASS & SUBJECTS ───────────────────────────────────────
 export const CLASS_DATA = [
   {
     label: "High School (8th-10th)",
     rows: [
-      { subject: "Mathematics",   code: "HS-MTH", periods: 6, teacher: "Mr. Ramesh K.",      emoji: "📐" },
-      { subject: "Science",       code: "HS-SCI", periods: 6, teacher: "Ms. Savitha M.",     emoji: "🧪" },
-      { subject: "Social Science", code: "HS-SOC", periods: 5, teacher: "Mr. Prakash G.",     emoji: "🌍" },
-      { subject: "English",       code: "HS-ENG", periods: 5, teacher: "Ms. Mary D.",        emoji: "📖" },
-      { subject: "Kannada/Hindi", code: "HS-LAN", periods: 4, teacher: "Mr. Shivu L.",       emoji: "🗣️" },
-    ],
+      { subject: "Mathematics", code: "HS-MTH", periods: 6, teacher: "Mr. Ramesh K.", emoji: "\u{1F4D0}" },
+      { subject: "Science", code: "HS-SCI", periods: 6, teacher: "Ms. Savitha M.", emoji: "\u{1F9EA}" },
+      { subject: "Social Science", code: "HS-SOC", periods: 5, teacher: "Mr. Prakash G.", emoji: "\u{1F30D}" },
+      { subject: "English", code: "HS-ENG", periods: 5, teacher: "Ms. Mary D.", emoji: "\u{1F4D6}" },
+      { subject: "Kannada/Hindi", code: "HS-LAN", periods: 4, teacher: "Mr. Shivu L.", emoji: "\u{1F5E3}\uFE0F" }
+    ]
   },
   {
     label: "PUC Science",
     rows: [
-      { subject: "Physics",       code: "PU-PHY", periods: 5, teacher: "Dr. Rajan Mehta",      emoji: "👨‍🏫" },
-      { subject: "Chemistry",     code: "PU-CHE", periods: 5, teacher: "Ms. Priya Nair",        emoji: "👩‍🔬" },
-      { subject: "Mathematics",   code: "PU-MAT", periods: 6, teacher: "Mr. Aarav Singh",       emoji: "👨‍💻" },
-      { subject: "Biology/CS",    code: "PU-BIO", periods: 4, teacher: "Dr. Sunita Rao",        emoji: "👩‍🏫" },
-    ],
-  },
+      { subject: "Physics", code: "PU-PHY", periods: 5, teacher: "Dr. Rajan Mehta", emoji: "\u{1F468}\u200D\u{1F3EB}" },
+      { subject: "Chemistry", code: "PU-CHE", periods: 5, teacher: "Ms. Priya Nair", emoji: "\u{1F469}\u200D\u{1F52C}" },
+      { subject: "Mathematics", code: "PU-MAT", periods: 6, teacher: "Mr. Aarav Singh", emoji: "\u{1F468}\u200D\u{1F4BB}" },
+      { subject: "Biology/CS", code: "PU-BIO", periods: 4, teacher: "Dr. Sunita Rao", emoji: "\u{1F469}\u200D\u{1F3EB}" }
+    ]
+  }
 ];
-
-// ── ACHIEVEMENTS ───────────────────────────────────────────
 export const ACHIEVEMENT_DATA = [
   {
     id: "sports",
-    label: "🏆 Sports",
+    label: "\u{1F3C6} Sports",
     slides: [
       {
-        medal: "🏆",
+        medal: "\u{1F3C6}",
         year: "2024",
         tag: "KABADDI",
         title: "District Level Kabaddi Gold",
@@ -389,11 +376,11 @@ export const ACHIEVEMENT_DATA = [
         images: [
           "https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=600&q=80",
           "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?auto=format&fit=crop&w=600&q=80"
         ]
       },
       {
-        medal: "🏃",
+        medal: "\u{1F3C3}",
         year: "2024",
         tag: "ATHLETICS",
         title: "State Athletics Championship",
@@ -401,17 +388,17 @@ export const ACHIEVEMENT_DATA = [
         color: "#132247",
         images: [
           "https://images.unsplash.com/photo-1502224562085-639556652f33?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=600&q=80"
         ]
       }
     ]
   },
   {
     id: "education",
-    label: "📚 Education",
+    label: "\u{1F4DA} Education",
     slides: [
       {
-        medal: "🎓",
+        medal: "\u{1F393}",
         year: "2024",
         tag: "ACADEMICS",
         title: "100% Pass in SSLC Board",
@@ -420,11 +407,11 @@ export const ACHIEVEMENT_DATA = [
         images: [
           "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80",
           "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80"
         ]
       },
       {
-        medal: "📜",
+        medal: "\u{1F4DC}",
         year: "2024",
         tag: "DISTINCTIONS",
         title: "Top PUC Board Ranks",
@@ -432,11 +419,11 @@ export const ACHIEVEMENT_DATA = [
         color: "#132247",
         images: [
           "https://images.unsplash.com/photo-1518655061766-48f23af0a636?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
         ]
       },
       {
-        medal: "🏫",
+        medal: "\u{1F3EB}",
         year: "2024",
         tag: "RANKING",
         title: "#3 in State Rankings",
@@ -446,22 +433,22 @@ export const ACHIEVEMENT_DATA = [
           "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80",
           "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80",
           "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80"
         ]
       },
       {
-        medal: "💡",
+        medal: "\u{1F4A1}",
         year: "2023",
         tag: "SCHOLARSHIP",
         title: "National Merit Scholarship",
         desc: "Three of our science stream students were awarded the prestigious National Merit Scholarship.",
         color: "#16223f",
         images: [
-          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80"
         ]
       },
       {
-        medal: "🔬",
+        medal: "\u{1F52C}",
         year: "2024",
         tag: "SCIENCE",
         title: "State Science Fair Winner",
@@ -469,17 +456,17 @@ export const ACHIEVEMENT_DATA = [
         color: "#132247",
         images: [
           "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=600&q=80"
         ]
       }
     ]
   },
   {
     id: "cultural",
-    label: "🎭 Cultural",
+    label: "\u{1F3AD} Cultural",
     slides: [
       {
-        medal: "🎭",
+        medal: "\u{1F3AD}",
         year: "2024",
         tag: "DRAMA",
         title: "State Level Drama Gold",
@@ -487,28 +474,28 @@ export const ACHIEVEMENT_DATA = [
         color: "#16223f",
         images: [
           "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1460723237483-7a6dc9d0b212?auto=format&fit=crop&w=600&q=80"
         ]
       },
       {
-        medal: "🎤",
+        medal: "\u{1F3A4}",
         year: "2024",
         tag: "MUSIC",
         title: "Classical Vocal Championship",
         desc: "Anjali Sharma of 2nd PUC won the gold medal in classical vocal solo competition.",
         color: "#132247",
         images: [
-          "https://images.unsplash.com/photo-1516280440614-37939bbacd6a?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1516280440614-37939bbacd6a?auto=format&fit=crop&w=600&q=80"
         ]
       }
     ]
   },
   {
     id: "events",
-    label: "📅 Events",
+    label: "\u{1F4C5} Events",
     slides: [
       {
-        medal: "🎉",
+        medal: "\u{1F389}",
         year: "2024",
         tag: "ANNUAL DAY",
         title: "40th Annual Day Celebration",
@@ -517,11 +504,11 @@ export const ACHIEVEMENT_DATA = [
         images: [
           "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80",
           "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80"
         ]
       },
       {
-        medal: "🏢",
+        medal: "\u{1F3E2}",
         year: "2024",
         tag: "LABORATORIES",
         title: "New Science Block",
@@ -529,14 +516,12 @@ export const ACHIEVEMENT_DATA = [
         color: "#132247",
         images: [
           "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80",
-          "https://images.unsplash.com/photo-1532187863486-abf9d39d66e8?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1532187863486-abf9d39d66e8?auto=format&fit=crop&w=600&q=80"
         ]
       }
     ]
   }
 ];
-
-// ── FACULTY ────────────────────────────────────────────────
 const generateFaculty = (name, subject, role, qualification, experience, yearsOfService) => ({
   name,
   subject,
@@ -545,9 +530,8 @@ const generateFaculty = (name, subject, role, qualification, experience, yearsOf
   experience: `${experience} Years`,
   yearsOfService: `${yearsOfService} Years at St. Antony's`,
   bio: `Expert in ${subject} with a passion for student-centric learning and academic excellence.`,
-  photo: `https://i.pravatar.cc/150?u=${name.replace(/\s+/g, '')}`
+  photo: `https://i.pravatar.cc/150?u=${name.replace(/\s+/g, "")}`
 });
-
 export const FACULTY_DATA = {
   highSchool: {
     "8th Standard": [
@@ -557,7 +541,7 @@ export const FACULTY_DATA = {
       generateFaculty("Ms. Mary D.", "English", "Language Head", "MA, BEd", 14, 9),
       generateFaculty("Mr. Shivu L.", "Kannada", "Senior Teacher", "MA, BEd", 20, 15),
       generateFaculty("Mr. Vinay P.", "Hindi", "Teacher", "MA, BEd", 8, 5),
-      generateFaculty("Mr. Raju S.", "Physical Education", "PET", "BPEd", 10, 6),
+      generateFaculty("Mr. Raju S.", "Physical Education", "PET", "BPEd", 10, 6)
     ],
     "9th Standard": [
       generateFaculty("Mr. Ramesh K.", "Mathematics", "Senior Teacher", "MSc, BEd", 15, 10),
@@ -566,7 +550,7 @@ export const FACULTY_DATA = {
       generateFaculty("Ms. Mary D.", "English", "Language Head", "MA, BEd", 14, 9),
       generateFaculty("Mr. Shivu L.", "Kannada", "Senior Teacher", "MA, BEd", 20, 15),
       generateFaculty("Mr. Vinay P.", "Hindi", "Teacher", "MA, BEd", 8, 5),
-      generateFaculty("Mr. Raju S.", "Physical Education", "PET", "BPEd", 10, 6),
+      generateFaculty("Mr. Raju S.", "Physical Education", "PET", "BPEd", 10, 6)
     ],
     "10th Standard": [
       generateFaculty("Mr. Ramesh K.", "Mathematics", "Senior Teacher", "MSc, BEd", 15, 10),
@@ -575,8 +559,8 @@ export const FACULTY_DATA = {
       generateFaculty("Ms. Mary D.", "English", "Language Head", "MA, BEd", 14, 9),
       generateFaculty("Mr. Shivu L.", "Kannada", "Senior Teacher", "MA, BEd", 20, 15),
       generateFaculty("Mr. Vinay P.", "Hindi", "Teacher", "MA, BEd", 8, 5),
-      generateFaculty("Mr. Raju S.", "Physical Education", "PET", "BPEd", 10, 6),
-    ],
+      generateFaculty("Mr. Raju S.", "Physical Education", "PET", "BPEd", 10, 6)
+    ]
   },
   puc: {
     "1st PUC": {
@@ -587,7 +571,7 @@ export const FACULTY_DATA = {
         generateFaculty("Dr. Sunita Rao", "Biology", "Senior Lecturer", "PhD", 16, 10),
         generateFaculty("Prof. Ananya K.", "Computer Science", "HOD CS", "MTech", 14, 8),
         generateFaculty("Ms. Clara F.", "English", "Senior Lecturer", "MA", 11, 6),
-        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10),
+        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10)
       ],
       "Commerce Stream": [
         generateFaculty("Mr. Vikram Joshi", "Accountancy", "HOD Commerce", "MBA, CA", 18, 12),
@@ -596,8 +580,8 @@ export const FACULTY_DATA = {
         generateFaculty("Mr. Aarav Singh", "Statistics", "Senior Lecturer", "MTech", 10, 5),
         generateFaculty("Prof. Ananya K.", "Computer Science", "HOD CS", "MTech", 14, 8),
         generateFaculty("Ms. Clara F.", "English", "Senior Lecturer", "MA", 11, 6),
-        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10),
-      ],
+        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10)
+      ]
     },
     "2nd PUC": {
       "Science Stream": [
@@ -607,7 +591,7 @@ export const FACULTY_DATA = {
         generateFaculty("Dr. Sunita Rao", "Biology", "Senior Lecturer", "PhD", 16, 10),
         generateFaculty("Prof. Ananya K.", "Computer Science", "HOD CS", "MTech", 14, 8),
         generateFaculty("Ms. Clara F.", "English", "Senior Lecturer", "MA", 11, 6),
-        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10),
+        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10)
       ],
       "Commerce Stream": [
         generateFaculty("Mr. Vikram Joshi", "Accountancy", "HOD Commerce", "MBA, CA", 18, 12),
@@ -616,13 +600,11 @@ export const FACULTY_DATA = {
         generateFaculty("Mr. Aarav Singh", "Statistics", "Senior Lecturer", "MTech", 10, 5),
         generateFaculty("Prof. Ananya K.", "Computer Science", "HOD CS", "MTech", 14, 8),
         generateFaculty("Ms. Clara F.", "English", "Senior Lecturer", "MA", 11, 6),
-        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10),
-      ],
-    },
-  },
+        generateFaculty("Mr. Somu G.", "Physical Education", "PET", "MPEd", 15, 10)
+      ]
+    }
+  }
 };
-
-// ── ACADEMIC PERFORMANCE ──────────────────────────────────
 export const ACADEMIC_PERFORMANCE_DATA = {
   highSchool: [
     {
@@ -701,14 +683,12 @@ export const ACADEMIC_PERFORMANCE_DATA = {
     }
   ]
 };
-// Fill in simulated data for 20 years for both categories
 const years = Array.from({ length: 18 }, (_, i) => {
   const startYear = 2022 - i;
   const endYear = 2023 - i;
   return `${startYear}-${endYear}`;
 });
-
-years.forEach(year => {
+years.forEach((year) => {
   ACADEMIC_PERFORMANCE_DATA.highSchool.push({
     year,
     passPercentage: 95 + Math.random() * 5,

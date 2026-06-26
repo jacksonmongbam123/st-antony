@@ -1476,6 +1476,8 @@ export function Achievements() {
           position: "relative",
           zIndex: 2,
           width: "100%",
+          maxWidth: 720,
+          margin: "0 auto",
         }}
       >
         {/* Prev Button */}
@@ -1522,11 +1524,10 @@ export function Achievements() {
             background: "#132247",
             borderRadius: 20,
             overflow: "hidden",
-            minHeight: isDesktop ? 400 : "auto",
             border: "1px solid rgba(255,255,255,.08)",
             animation: "scaleIn .45s ease both",
-            display: "grid",
-            gridTemplateColumns: isDesktop ? "1fr 1fr" : "1fr",
+            display: "flex",
+            flexDirection: "column",
             boxShadow: "0 20px 60px rgba(0,0,0,.3)",
           }}
         >
@@ -1534,12 +1535,13 @@ export function Achievements() {
           <div
             style={{
               position: "relative",
-              height: isDesktop ? "100%" : 240,
+              height: isDesktop ? 400 : 240,
               background: "#0b1320",
               overflow: "hidden",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
+              width: "100%",
             }}
           >
             {slide.images && slide.images.length > 0 ? (

@@ -941,16 +941,27 @@ export function AcademicPerformance() {
   >
           <div className="stats-grid" style={{ width: "100%" }}>
             <div
-    className="neu-card-navy"
     style={{
       padding: "24px",
+      background: "#2b6cb0",
       color: T.white,
       textAlign: "center",
-      boxShadow: T.neuNavy,
+      borderRadius: "20px",
+      boxShadow: "5px 5px 15px rgba(43, 108, 176, 0.25), -5px -5px 15px rgba(255, 255, 255, 0.4)",
+      border: "1px solid rgba(255, 255, 255, 0.25)",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      height: "100%"
+      height: "100%",
+      transition: "all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1)"
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = "translateY(-2px)";
+      e.currentTarget.style.boxShadow = "8px 8px 20px rgba(43, 108, 176, 0.35), -8px -8px 20px rgba(255, 255, 255, 0.45)";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = "none";
+      e.currentTarget.style.boxShadow = "5px 5px 15px rgba(43, 108, 176, 0.25), -5px -5px 15px rgba(255, 255, 255, 0.4)";
     }}
   >
               <div style={{ fontSize: "2.4rem", fontWeight: 800, marginBottom: 4 }}>{Math.floor(data.passPercentage)}%</div>

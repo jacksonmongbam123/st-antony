@@ -22,7 +22,6 @@ import {
   Achievements,
   Faculty,
   ContactUs,
-  GitHubSync,
   Footer,
 } from "./components";
 
@@ -45,7 +44,6 @@ export default function App() {
       <Achievements />
       <Faculty />
       <ContactUs />
-      <GitHubSync />
       <Footer />
     </div>
   );
